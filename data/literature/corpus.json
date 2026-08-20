@@ -1,0 +1,41 @@
+[
+  {
+    "paper_id": "li-2018-hyperband",
+    "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+    "authors": ["Lisha Li", "Kevin Jamieson", "Giulia DeSalvo", "Afshin Rostamizadeh", "Ameet Talwalkar"],
+    "year": 2018,
+    "identifier": "JMLR 18(185)",
+    "source_path": "curated://hyperband",
+    "primary": true,
+    "sections": {
+      "mechanism": "Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+      "limitations": "The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism."
+    }
+  },
+  {
+    "paper_id": "awad-2021-dehb",
+    "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+    "authors": ["Noor Awad", "Neeratyoy Mallik", "Frank Hutter"],
+    "year": 2021,
+    "identifier": "DOI:10.24963/ijcai.2021/296",
+    "source_path": "curated://dehb",
+    "primary": true,
+    "sections": {
+      "mechanism": "DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+      "assumptions": "It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation."
+    }
+  },
+  {
+    "paper_id": "liu-2024-eoh",
+    "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+    "authors": ["Fei Liu", "Xialiang Tong", "Mingxuan Yuan", "Qingfu Zhang"],
+    "year": 2024,
+    "identifier": "ICML 2024",
+    "source_path": "curated://eoh",
+    "primary": true,
+    "sections": {
+      "mechanism": "Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+      "comparison": "The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning."
+    }
+  }
+]

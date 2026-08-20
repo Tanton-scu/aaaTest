@@ -1,0 +1,2597 @@
+{
+  "case_count": 5,
+  "configurations": {
+    "BM25": {
+      "cases": [
+        {
+          "case_id": "dehb-mechanism",
+          "gold_chunk_ids": [
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "awad-2021-dehb"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "awad-2021-dehb:assumptions:0",
+            "li-2018-hyperband:limitations:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "awad-2021-dehb",
+            "li-2018-hyperband"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 12.18584098,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.48305504,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17015489,
+              "bm25_raw_score": 3.29867413,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.17015489,
+              "fusion_score": 0.17015489,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.50194797,
+              "vector_raw_score": 0.32799594,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.12785239,
+              "bm25_raw_score": 2.84563852,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 0.12785239,
+              "fusion_score": 0.12785239,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.20921728,
+              "vector_raw_score": 0.23685976,
+              "year": 2018
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-mechanism",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "li-2018-hyperband:mechanism:0",
+            "awad-2021-dehb:assumptions:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "li-2018-hyperband",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 6.84545853,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.43408502,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.96192147,
+              "bm25_raw_score": 6.61423033,
+              "chunk_id": "li-2018-hyperband:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | li-2018-hyperband:mechanism:0] Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:mechanism:0"
+              ],
+              "final_score": 0.96192147,
+              "fusion_score": 0.96192147,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.74827211,
+              "vector_raw_score": 0.37058692,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.20420573,
+              "bm25_raw_score": 2.01307481,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.20420573,
+              "fusion_score": 0.20420573,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.67102348,
+              "vector_raw_score": 0.35110104,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-limitations",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:limitations:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "li-2018-hyperband:limitations:0",
+            "awad-2021-dehb:assumptions:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "li-2018-hyperband",
+            "awad-2021-dehb",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 10.04937313,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.8339427,
+              "vector_raw_score": 0.30538166,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.34766276,
+              "bm25_raw_score": 3.70561605,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.34766276,
+              "fusion_score": 0.34766276,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.34518692,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17072459,
+              "bm25_raw_score": 1.98495273,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.17072459,
+              "fusion_score": 0.17072459,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.38516628,
+              "vector_raw_score": 0.19780635,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-automatic-design",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:mechanism:0",
+            "liu-2024-eoh:comparison:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.81269449,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.52430778,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.73927354,
+              "bm25_raw_score": 11.77600984,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 0.73927354,
+              "fusion_score": 0.73927354,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69016982,
+              "vector_raw_score": 0.4269089,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.11757601,
+              "bm25_raw_score": 2.15060822,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.11757601,
+              "fusion_score": 0.11757601,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.08383564,
+              "vector_raw_score": 0.23630039,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-prievo-comparison",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:comparison:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:comparison:0",
+            "liu-2024-eoh:mechanism:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.6861815,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.42134352,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.41756208,
+              "bm25_raw_score": 6.54995464,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 0.41756208,
+              "fusion_score": 0.41756208,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69366775,
+              "vector_raw_score": 0.33581622,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.21549677,
+              "bm25_raw_score": 3.38032146,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.21549677,
+              "fusion_score": 0.21549677,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "bm25",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.04686175,
+              "vector_raw_score": 0.1552294,
+              "year": 2021
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "document_hit_rate_at_k": 1.0,
+        "document_mrr_at_k": 0.9,
+        "document_recall_at_k": 1.0,
+        "hit_rate_at_k": 1.0,
+        "mrr_at_k": 0.9,
+        "recall_at_k": 1.0
+      },
+      "mode": "bm25",
+      "rerank": false
+    },
+    "Hybrid": {
+      "cases": [
+        {
+          "case_id": "dehb-mechanism",
+          "gold_chunk_ids": [
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "awad-2021-dehb"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "awad-2021-dehb:assumptions:0",
+            "li-2018-hyperband:limitations:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "awad-2021-dehb",
+            "li-2018-hyperband"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 12.18584098,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.48305504,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17015489,
+              "bm25_raw_score": 3.29867413,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.30950799,
+              "fusion_score": 0.30950799,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.50194797,
+              "vector_raw_score": 0.32799594,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.12785239,
+              "bm25_raw_score": 2.84563852,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 0.16202564,
+              "fusion_score": 0.16202564,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.20921728,
+              "vector_raw_score": 0.23685976,
+              "year": 2018
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-mechanism",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "li-2018-hyperband:mechanism:0",
+            "awad-2021-dehb:assumptions:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "li-2018-hyperband",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 6.84545853,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.43408502,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.96192147,
+              "bm25_raw_score": 6.61423033,
+              "chunk_id": "li-2018-hyperband:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | li-2018-hyperband:mechanism:0] Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:mechanism:0"
+              ],
+              "final_score": 0.87218874,
+              "fusion_score": 0.87218874,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.74827211,
+              "vector_raw_score": 0.37058692,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.20420573,
+              "bm25_raw_score": 2.01307481,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.40026918,
+              "fusion_score": 0.40026918,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.67102348,
+              "vector_raw_score": 0.35110104,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-limitations",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:limitations:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "li-2018-hyperband:limitations:0",
+            "awad-2021-dehb:assumptions:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "li-2018-hyperband",
+            "awad-2021-dehb",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 10.04937313,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 0.93025593,
+              "fusion_score": 0.93025593,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.8339427,
+              "vector_raw_score": 0.30538166,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.34766276,
+              "bm25_raw_score": 3.70561605,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.6216444,
+              "fusion_score": 0.6216444,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.34518692,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17072459,
+              "bm25_raw_score": 1.98495273,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.2607901,
+              "fusion_score": 0.2607901,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.38516628,
+              "vector_raw_score": 0.19780635,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-automatic-design",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:mechanism:0",
+            "liu-2024-eoh:comparison:0",
+            "awad-2021-dehb:assumptions:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.81269449,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.52430778,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.73927354,
+              "bm25_raw_score": 11.77600984,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 0.71864998,
+              "fusion_score": 0.71864998,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69016982,
+              "vector_raw_score": 0.4269089,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.05478313,
+              "bm25_raw_score": 1.17842055,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.11047468,
+              "fusion_score": 0.11047468,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.18738206,
+              "vector_raw_score": 0.26885147,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-prievo-comparison",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:comparison:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:comparison:0",
+            "liu-2024-eoh:mechanism:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.6861815,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.42134352,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.41756208,
+              "bm25_raw_score": 6.54995464,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 0.53352646,
+              "fusion_score": 0.53352646,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69366775,
+              "vector_raw_score": 0.33581622,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.21549677,
+              "bm25_raw_score": 3.38032146,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.14467006,
+              "fusion_score": 0.14467006,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "hybrid",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.04686175,
+              "vector_raw_score": 0.1552294,
+              "year": 2021
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "document_hit_rate_at_k": 1.0,
+        "document_mrr_at_k": 0.9,
+        "document_recall_at_k": 1.0,
+        "hit_rate_at_k": 1.0,
+        "mrr_at_k": 0.9,
+        "recall_at_k": 1.0
+      },
+      "mode": "hybrid",
+      "rerank": false
+    },
+    "Hybrid+Rerank": {
+      "cases": [
+        {
+          "case_id": "dehb-mechanism",
+          "gold_chunk_ids": [
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "awad-2021-dehb"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "awad-2021-dehb:assumptions:0",
+            "li-2018-hyperband:limitations:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "awad-2021-dehb",
+            "li-2018-hyperband"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 12.18584098,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.07966667,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.07966667,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.48305504,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17015489,
+              "bm25_raw_score": 3.29867413,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.38750799,
+              "fusion_score": 0.30950799,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.078,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.50194797,
+              "vector_raw_score": 0.32799594,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.12785239,
+              "bm25_raw_score": 2.84563852,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 0.17969231,
+              "fusion_score": 0.16202564,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.01766667,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.20921728,
+              "vector_raw_score": 0.23685976,
+              "year": 2018
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-mechanism",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "li-2018-hyperband:mechanism:0",
+            "awad-2021-dehb:assumptions:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "li-2018-hyperband",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 6.84545853,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.07875,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.07875,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.43408502,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.96192147,
+              "bm25_raw_score": 6.61423033,
+              "chunk_id": "li-2018-hyperband:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | li-2018-hyperband:mechanism:0] Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:mechanism:0"
+              ],
+              "final_score": 0.9476054,
+              "fusion_score": 0.87218874,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.07541667,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.74827211,
+              "vector_raw_score": 0.37058692,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.20420573,
+              "bm25_raw_score": 2.01307481,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.47693585,
+              "fusion_score": 0.40026918,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.07666667,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.67102348,
+              "vector_raw_score": 0.35110104,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-limitations",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:limitations:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "li-2018-hyperband:limitations:0",
+            "awad-2021-dehb:assumptions:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "li-2018-hyperband",
+            "awad-2021-dehb",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 10.04937313,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 1.00675593,
+              "fusion_score": 0.93025593,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0765,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.8339427,
+              "vector_raw_score": 0.30538166,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.34766276,
+              "bm25_raw_score": 3.70561605,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.7021444,
+              "fusion_score": 0.6216444,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0805,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.34518692,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17072459,
+              "bm25_raw_score": 1.98495273,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.3412901,
+              "fusion_score": 0.2607901,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0805,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.38516628,
+              "vector_raw_score": 0.19780635,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-automatic-design",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:mechanism:0",
+            "liu-2024-eoh:comparison:0",
+            "awad-2021-dehb:assumptions:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.81269449,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 1.08894737,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.08894737,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.52430778,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.73927354,
+              "bm25_raw_score": 11.77600984,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 0.80759735,
+              "fusion_score": 0.71864998,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.08894737,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69016982,
+              "vector_raw_score": 0.4269089,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.05478313,
+              "bm25_raw_score": 1.17842055,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.12968521,
+              "fusion_score": 0.11047468,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.01921053,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.18738206,
+              "vector_raw_score": 0.26885147,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-prievo-comparison",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:comparison:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:comparison:0",
+            "liu-2024-eoh:mechanism:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.6861815,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 1.1390625,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.1390625,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.42134352,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.41756208,
+              "bm25_raw_score": 6.54995464,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 0.61602646,
+              "fusion_score": 0.53352646,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0825,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69366775,
+              "vector_raw_score": 0.33581622,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.21549677,
+              "bm25_raw_score": 3.38032146,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.15967006,
+              "fusion_score": 0.14467006,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.015,
+              "retrieval_mode": "hybrid+rerank",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.04686175,
+              "vector_raw_score": 0.1552294,
+              "year": 2021
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "document_hit_rate_at_k": 1.0,
+        "document_mrr_at_k": 0.9,
+        "document_recall_at_k": 1.0,
+        "hit_rate_at_k": 1.0,
+        "mrr_at_k": 0.9,
+        "recall_at_k": 1.0
+      },
+      "mode": "hybrid",
+      "rerank": true
+    },
+    "Vector": {
+      "cases": [
+        {
+          "case_id": "dehb-mechanism",
+          "gold_chunk_ids": [
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "awad-2021-dehb"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "awad-2021-dehb:assumptions:0",
+            "li-2018-hyperband:limitations:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "awad-2021-dehb",
+            "li-2018-hyperband"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 12.18584098,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.48305504,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17015489,
+              "bm25_raw_score": 3.29867413,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.50194797,
+              "fusion_score": 0.50194797,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.50194797,
+              "vector_raw_score": 0.32799594,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.12785239,
+              "bm25_raw_score": 2.84563852,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 0.20921728,
+              "fusion_score": 0.20921728,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.20921728,
+              "vector_raw_score": 0.23685976,
+              "year": 2018
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-mechanism",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:mechanism:0",
+            "li-2018-hyperband:mechanism:0",
+            "awad-2021-dehb:assumptions:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "li-2018-hyperband",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 6.84545853,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.43408502,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.96192147,
+              "bm25_raw_score": 6.61423033,
+              "chunk_id": "li-2018-hyperband:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | li-2018-hyperband:mechanism:0] Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:mechanism:0"
+              ],
+              "final_score": 0.74827211,
+              "fusion_score": 0.74827211,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.74827211,
+              "vector_raw_score": 0.37058692,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.20420573,
+              "bm25_raw_score": 2.01307481,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 0.67102348,
+              "fusion_score": 0.67102348,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.67102348,
+              "vector_raw_score": 0.35110104,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "hyperband-limitations",
+          "gold_chunk_ids": [
+            "li-2018-hyperband:limitations:0"
+          ],
+          "gold_paper_ids": [
+            "li-2018-hyperband"
+          ],
+          "ranked_chunk_ids": [
+            "awad-2021-dehb:assumptions:0",
+            "li-2018-hyperband:limitations:0",
+            "awad-2021-dehb:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "awad-2021-dehb",
+            "li-2018-hyperband",
+            "awad-2021-dehb"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.34766276,
+              "bm25_raw_score": 3.70561605,
+              "chunk_id": "awad-2021-dehb:assumptions:0",
+              "chunk_index": 0,
+              "content": "[assumptions | awad-2021-dehb:assumptions:0] It benefits when low-fidelity evaluations correlate with full-budget performance and when mutation and crossover can operate over the configuration representation.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:assumptions:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "assumptions",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.34518692,
+              "year": 2021
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 10.04937313,
+              "chunk_id": "li-2018-hyperband:limitations:0",
+              "chunk_index": 0,
+              "content": "[limitations | li-2018-hyperband:limitations:0] The method depends on meaningful low-resource evaluations and does not itself provide a model-based proposal mechanism.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:limitations:0"
+              ],
+              "final_score": 0.8339427,
+              "fusion_score": 0.8339427,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "limitations",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.8339427,
+              "vector_raw_score": 0.30538166,
+              "year": 2018
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Noor Awad",
+                "Neeratyoy Mallik",
+                "Frank Hutter"
+              ],
+              "bm25_normalized_score": 0.17072459,
+              "bm25_raw_score": 1.98495273,
+              "chunk_id": "awad-2021-dehb:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | awad-2021-dehb:mechanism:0] DEHB combines Differential Evolution with Hyperband. Differential Evolution proposes configurations while Hyperband supplies multi-fidelity resource allocation and selection.",
+              "expanded_chunk_ids": [
+                "awad-2021-dehb:mechanism:0"
+              ],
+              "final_score": 0.38516628,
+              "fusion_score": 0.38516628,
+              "identifier": "DOI:10.24963/ijcai.2021/296",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "awad-2021-dehb",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://dehb",
+              "title": "DEHB: Evolutionary Hyperband for Scalable, Robust and Efficient Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.38516628,
+              "vector_raw_score": 0.19780635,
+              "year": 2021
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-automatic-design",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:mechanism:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:mechanism:0",
+            "liu-2024-eoh:comparison:0",
+            "li-2018-hyperband:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "li-2018-hyperband"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.81269449,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.52430778,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.73927354,
+              "bm25_raw_score": 11.77600984,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 0.69016982,
+              "fusion_score": 0.69016982,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69016982,
+              "vector_raw_score": 0.4269089,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.02734372,
+              "bm25_raw_score": 0.7535913,
+              "chunk_id": "li-2018-hyperband:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | li-2018-hyperband:mechanism:0] Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:mechanism:0"
+              ],
+              "final_score": 0.21407709,
+              "fusion_score": 0.21407709,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.21407709,
+              "vector_raw_score": 0.27724337,
+              "year": 2018
+            }
+          ]
+        },
+        {
+          "case_id": "eoh-prievo-comparison",
+          "gold_chunk_ids": [
+            "liu-2024-eoh:comparison:0"
+          ],
+          "gold_paper_ids": [
+            "liu-2024-eoh"
+          ],
+          "ranked_chunk_ids": [
+            "liu-2024-eoh:comparison:0",
+            "liu-2024-eoh:mechanism:0",
+            "li-2018-hyperband:mechanism:0"
+          ],
+          "ranked_paper_ids": [
+            "liu-2024-eoh",
+            "liu-2024-eoh",
+            "li-2018-hyperband"
+          ],
+          "results": [
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 1.0,
+              "bm25_raw_score": 15.6861815,
+              "chunk_id": "liu-2024-eoh:comparison:0",
+              "chunk_index": 0,
+              "content": "[comparison | liu-2024-eoh:comparison:0] The method targets automated heuristic design; PriEvO adds instance-specific landscape prior and optimize-while-evolve behavior for configuration tuning.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:comparison:0"
+              ],
+              "final_score": 1.0,
+              "fusion_score": 1.0,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 1,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "comparison",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 1.0,
+              "vector_raw_score": 0.42134352,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Fei Liu",
+                "Xialiang Tong",
+                "Mingxuan Yuan",
+                "Qingfu Zhang"
+              ],
+              "bm25_normalized_score": 0.41756208,
+              "bm25_raw_score": 6.54995464,
+              "chunk_id": "liu-2024-eoh:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | liu-2024-eoh:mechanism:0] Evolution of Heuristics uses an LLM inside an evolutionary framework to generate and improve executable heuristic ideas through prompt-based operators and fitness evaluation.",
+              "expanded_chunk_ids": [
+                "liu-2024-eoh:mechanism:0"
+              ],
+              "final_score": 0.69366775,
+              "fusion_score": 0.69366775,
+              "identifier": "ICML 2024",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "liu-2024-eoh",
+              "primary": true,
+              "rank": 2,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://eoh",
+              "title": "Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.69366775,
+              "vector_raw_score": 0.33581622,
+              "year": 2024
+            },
+            {
+              "adjacent_chunk_ids": [],
+              "authors": [
+                "Lisha Li",
+                "Kevin Jamieson",
+                "Giulia DeSalvo",
+                "Afshin Rostamizadeh",
+                "Ameet Talwalkar"
+              ],
+              "bm25_normalized_score": 0.09098343,
+              "bm25_raw_score": 1.42718261,
+              "chunk_id": "li-2018-hyperband:mechanism:0",
+              "chunk_index": 0,
+              "content": "[mechanism | li-2018-hyperband:mechanism:0] Hyperband allocates resources with successive halving across multiple brackets. It trades off the number of configurations against resources assigned to each configuration.",
+              "expanded_chunk_ids": [
+                "li-2018-hyperband:mechanism:0"
+              ],
+              "final_score": 0.18200608,
+              "fusion_score": 0.18200608,
+              "identifier": "JMLR 18(185)",
+              "page_end": null,
+              "page_start": null,
+              "paper_id": "li-2018-hyperband",
+              "primary": true,
+              "rank": 3,
+              "rerank_bonus": 0.0,
+              "retrieval_mode": "vector",
+              "section": "mechanism",
+              "source_path": "curated://hyperband",
+              "title": "Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization",
+              "vector_backend": "deterministic-token-hashing-v1",
+              "vector_is_production_semantic": false,
+              "vector_normalized_score": 0.18200608,
+              "vector_raw_score": 0.1929614,
+              "year": 2018
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "document_hit_rate_at_k": 1.0,
+        "document_mrr_at_k": 0.8,
+        "document_recall_at_k": 1.0,
+        "hit_rate_at_k": 1.0,
+        "mrr_at_k": 0.8,
+        "recall_at_k": 1.0
+      },
+      "mode": "vector",
+      "rerank": false
+    }
+  },
+  "corpus": {
+    "chunk_count": 6,
+    "paper_count": 3,
+    "path": "data/literature/corpus.json",
+    "sha256": "5fe533952077a00a8b5a1c77862f2de5d903df0ff4ce4db27c3deafc287cfffc"
+  },
+  "eval_cases": {
+    "gold_identity": "固定 paper_id + chunk_id；不使用标题模糊匹配",
+    "path": "data/literature/eval_cases.json",
+    "sha256": "c73f35cbac43442f18489a37757dce894869aad8aac39437d199565d2d6e1ef9"
+  },
+  "fusion": {
+    "bm25_weight": 0.58,
+    "neighbor_expansion": "anchor chunk ±1 within the same paper section",
+    "normalization": "per-query min-max over canonical chunks",
+    "rerank": "deterministic algorithm/title/section overlap + primary bonus",
+    "vector_weight": 0.42
+  },
+  "generated_at_utc": "2026-08-13T07:48:15.562794+00:00",
+  "k": 3,
+  "limitations": [
+    "当前 curated corpus 只有少量论文和 section，指标方差很大，不能外推到生产规模。",
+    "gold cases 由当前 corpus 人工固定，尚未经过多人标注一致性检验。",
+    "默认 Vector 是 deterministic lexical hashing，不是语义 embedding；生产部署应接入真实 embedding provider 后重跑同一评测。",
+    "当前评测只衡量 retrieval ranking，不衡量下游生成答案的事实正确性。"
+  ],
+  "schema_version": "literature-rag-eval-v1",
+  "vector": {
+    "backend": "deterministic-token-hashing-v1",
+    "production_semantic_embedding": false,
+    "warning": "当前 deterministic hashing vector 只提供离线、可解释、可复验的 lexical vector；它不是生产语义 embedding。"
+  }
+}

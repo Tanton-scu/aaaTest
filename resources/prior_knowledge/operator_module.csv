@@ -1,0 +1,11 @@
+operator,module
+a,Data Structure
+b,Surrogate Model
+c,Multi-Fidelity
+d,Exploration-Exploitation Balance
+ea,Candidate Solution Generation-Parent Selection
+eb,Candidate Solution Generation-Mutation
+ec,Candidate Solution Generation-Crossover
+ed,Candidate Solution Generation-Dimensionality Reduction
+ee,Candidate Solution Generation-Sampling
+f,Actual Solution Selection

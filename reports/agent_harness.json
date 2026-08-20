@@ -1,0 +1,2433 @@
+{
+  "agent_task_count": 9,
+  "assertion_count": 116,
+  "candidate_count": 12,
+  "checks": {
+    "budget_contention": true,
+    "cancel": true,
+    "candidate_oom": true,
+    "candidate_syntax_failure": true,
+    "candidate_timeout": true,
+    "checkpoint_recovery": true,
+    "duplicate_evaluation_submit": true,
+    "duplicate_runtime_event": true,
+    "evaluation_transient_retry": true,
+    "final_exact_tie": true,
+    "knowledge_gap_research_resume": true,
+    "lease_expire_recovery": true,
+    "llm_malformed_output": true,
+    "llm_transient_failure": true,
+    "pause": true,
+    "rag_empty_result": true,
+    "redis_unavailable": true,
+    "repair_beyond_limit": true,
+    "repair_success": true,
+    "resume": true,
+    "run_crash": true,
+    "similarity_generation_mainline": true,
+    "tool_unauthorized": true,
+    "worker_crash": true
+  },
+  "duration_ms": 7541,
+  "final_llm_calls": 0,
+  "generated_at": "2026-08-20T12:40:59.590489+00:00",
+  "generation_llm_calls": 8,
+  "isolation": {
+    "artifacts": "one temporary Artifact directory per scenario",
+    "database": "one temporary SQLite database per scenario",
+    "datasets": "fixed repository dataset plus temporary evaluator fixture",
+    "llm": "ScriptedFakeLLM FIFO queues with full prompt/call records",
+    "redis": "in-process unavailable-client fixture; Redis is not Source of Truth"
+  },
+  "passed": true,
+  "passed_assertion_count": 116,
+  "passed_scenario_count": 24,
+  "scenario_count": 24,
+  "scenario_pass_rate": 1.0,
+  "scenarios": [
+    {
+      "actual_trace": [
+        "RUN_STARTED",
+        "LANDSCAPE_SAMPLED",
+        "SIMILARITY_CANDIDATES_READY",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "PRIOR_EXECUTION_COMPATIBILITY_AUDITED",
+        "LANDSCAPE_ANALYZED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "CHECKPOINT_SAVED",
+        "GENERATION_STARTED",
+        "OPERATOR_BATCH_STARTED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "GENERATION_MEMORY_UPDATED",
+        "GENERATION_MEMORY_UPDATED",
+        "OPERATOR_BATCH_COMPLETED",
+        "CHECKPOINT_SAVED",
+        "OPERATOR_BATCH_STARTED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "GENERATION_MEMORY_UPDATED",
+        "GENERATION_MEMORY_UPDATED",
+        "OPERATOR_BATCH_COMPLETED",
+        "CHECKPOINT_SAVED",
+        "OPERATOR_BATCH_STARTED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "GENERATION_MEMORY_UPDATED",
+        "GENERATION_MEMORY_UPDATED",
+        "OPERATOR_BATCH_COMPLETED",
+        "CHECKPOINT_SAVED",
+        "OPERATOR_BATCH_STARTED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "HISTORY_SUMMARY_CREATED",
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "CANDIDATE_GENERATED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "GENERATION_MEMORY_UPDATED",
+        "GENERATION_MEMORY_UPDATED",
+        "OPERATOR_BATCH_COMPLETED",
+        "CHECKPOINT_SAVED",
+        "OPERATOR_SELECTION_COMPLETED",
+        "GENERATION_SELECTION_COMPLETED",
+        "GENERATION_COMPLETED",
+        "CHECKPOINT_SAVED",
+        "CANDIDATE_SELECTED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_SUBMITTED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "EVALUATION_STARTED",
+        "CANDIDATE_EVALUATED",
+        "FINAL_OPTIMIZATION_COMPLETED",
+        "FINAL_CONFIGURATION_SELECTED",
+        "RUN_COMPLETED"
+      ],
+      "assertions": [
+        {
+          "actual": "COMPLETED",
+          "detail": "",
+          "expected": "COMPLETED",
+          "name": "run_completed",
+          "passed": true
+        },
+        {
+          "actual": {
+            "HEURISTIC_GENERATION": 8,
+            "SEMANTIC_SIMILARITY_SELECTION": 1
+          },
+          "detail": "",
+          "expected": {
+            "HEURISTIC_GENERATION": 8,
+            "SEMANTIC_SIMILARITY_SELECTION": 1
+          },
+          "name": "agent_task_cardinality",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "all_tasks_completed",
+          "passed": true
+        },
+        {
+          "actual": 9,
+          "detail": "",
+          "expected": 9,
+          "name": "blackboard_task_projection",
+          "passed": true
+        },
+        {
+          "actual": 8,
+          "detail": "",
+          "expected": 8,
+          "name": "generation_draft_cardinality",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "operator_selection_cardinality",
+          "passed": true
+        },
+        {
+          "actual": 10,
+          "detail": "",
+          "expected": 10,
+          "name": "generation_5p_combined_cardinality",
+          "passed": true
+        },
+        {
+          "actual": 8,
+          "detail": "",
+          "expected": 8,
+          "name": "generation_4p_offspring_cardinality",
+          "passed": true
+        },
+        {
+          "actual": "fitness-diversity",
+          "detail": "",
+          "expected": "fitness-diversity",
+          "name": "generation_one_uses_early_selection",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "final_decision_artifact",
+          "passed": true
+        },
+        {
+          "actual": 9,
+          "detail": "",
+          "expected": 9,
+          "name": "trace_task_count",
+          "passed": true
+        },
+        {
+          "actual": 8,
+          "detail": "",
+          "expected": 8,
+          "name": "generation_model_calls",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "context_contains_strategy_skill",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "context_excludes_whole_population",
+          "passed": true
+        },
+        {
+          "actual": [
+            "RUN_STARTED",
+            "LANDSCAPE_SAMPLED",
+            "SIMILARITY_CANDIDATES_READY",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "PRIOR_EXECUTION_COMPATIBILITY_AUDITED",
+            "LANDSCAPE_ANALYZED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "CHECKPOINT_SAVED",
+            "GENERATION_STARTED",
+            "OPERATOR_BATCH_STARTED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "GENERATION_MEMORY_UPDATED",
+            "GENERATION_MEMORY_UPDATED",
+            "OPERATOR_BATCH_COMPLETED",
+            "CHECKPOINT_SAVED",
+            "OPERATOR_BATCH_STARTED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "GENERATION_MEMORY_UPDATED",
+            "GENERATION_MEMORY_UPDATED",
+            "OPERATOR_BATCH_COMPLETED",
+            "CHECKPOINT_SAVED",
+            "OPERATOR_BATCH_STARTED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "GENERATION_MEMORY_UPDATED",
+            "GENERATION_MEMORY_UPDATED",
+            "OPERATOR_BATCH_COMPLETED",
+            "CHECKPOINT_SAVED",
+            "OPERATOR_BATCH_STARTED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "HISTORY_SUMMARY_CREATED",
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "CANDIDATE_GENERATED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "GENERATION_MEMORY_UPDATED",
+            "GENERATION_MEMORY_UPDATED",
+            "OPERATOR_BATCH_COMPLETED",
+            "CHECKPOINT_SAVED",
+            "OPERATOR_SELECTION_COMPLETED",
+            "GENERATION_SELECTION_COMPLETED",
+            "GENERATION_COMPLETED",
+            "CHECKPOINT_SAVED",
+            "CANDIDATE_SELECTED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_SUBMITTED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "EVALUATION_STARTED",
+            "CANDIDATE_EVALUATED",
+            "FINAL_OPTIMIZATION_COMPLETED",
+            "FINAL_CONFIGURATION_SELECTED",
+            "RUN_COMPLETED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "SIMILARITY_CANDIDATES_READY",
+            "PRIOR_EXECUTION_COMPATIBILITY_AUDITED",
+            "LANDSCAPE_ANALYZED",
+            "GENERATION_REQUESTED",
+            "CANDIDATE_DRAFT_MATERIALIZED",
+            "OPERATOR_SELECTION_COMPLETED",
+            "RUN_COMPLETED"
+          ],
+          "name": "mainline_trace",
+          "passed": true
+        }
+      ],
+      "category": "agent-normal",
+      "duration_ms": 4622,
+      "error": "",
+      "evidence": {
+        "artifact_count": 66,
+        "llm_call_routes": [
+          "similarity",
+          "generation:i1",
+          "generation:i1",
+          "generation:e1",
+          "generation:e1",
+          "generation:e2",
+          "generation:e2",
+          "generation:m1",
+          "generation:m1"
+        ],
+        "run_id": "run-mainline",
+        "task_counts": {
+          "HEURISTIC_GENERATION": 8,
+          "SEMANTIC_SIMILARITY_SELECTION": 1
+        },
+        "trace_summary": {
+          "artifact_counts_by_kind": {
+            "CANDIDATE_DRAFT": 8,
+            "FINAL_SELECTION_DECISION": 1,
+            "GENERATION_PROMPT": 8,
+            "GENERATION_REQUEST": 8,
+            "SIMILARITY_DECISION": 1,
+            "SIMILARITY_PROMPT": 1,
+            "TOP5_CANDIDATES": 1
+          },
+          "completed_task_count": 9,
+          "failed_task_count": 0,
+          "task_count": 9,
+          "task_counts_by_type": {
+            "HEURISTIC_GENERATION": 8,
+            "SEMANTIC_SIMILARITY_SELECTION": 1
+          },
+          "tool_call_count": 0
+        }
+      },
+      "expected_trace": [
+        "SIMILARITY_CANDIDATES_READY",
+        "PRIOR_EXECUTION_COMPATIBILITY_AUDITED",
+        "LANDSCAPE_ANALYZED",
+        "GENERATION_REQUESTED",
+        "CANDIDATE_DRAFT_MATERIALIZED",
+        "OPERATOR_SELECTION_COMPLETED",
+        "RUN_COMPLETED"
+      ],
+      "name": "similarity_generation_mainline",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "AGENT_TASK_CREATED",
+        "PRIOR_RESEARCH_REQUESTED",
+        "AGENT_TASK_CLAIMED",
+        "TOOL_CALL_STARTED",
+        "TOOL_CALL_COMPLETED",
+        "PRIOR_RESEARCH_COMPLETED",
+        "AGENT_TASK_COMPLETED",
+        "RESEARCH_MEMORY_UPDATED",
+        "GENERATION_RESUMED_AFTER_RESEARCH",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED"
+      ],
+      "assertions": [
+        {
+          "actual": {
+            "HEURISTIC_GENERATION": 1,
+            "HEURISTIC_GENERATION_RESUME": 1,
+            "PRIOR_RESEARCH": 1
+          },
+          "detail": "",
+          "expected": {
+            "HEURISTIC_GENERATION": 1,
+            "HEURISTIC_GENERATION_RESUME": 1,
+            "PRIOR_RESEARCH": 1
+          },
+          "name": "agent_task_cardinality",
+          "passed": true
+        },
+        {
+          "actual": {
+            "evidence_version": "prior-evidence-v1",
+            "numeric_candidates": [],
+            "optimizers": [
+              {
+                "code": "def run_tuners(file, budget, seed, maxlives):\n    return 1\n",
+                "description": "Tree surrogate optimizer.",
+                "name": "tuner-a",
+                "operators": [
+                  {
+                    "code": "tree = DecisionTreeRegressor()",
+                    "description": "Partition the response space.",
+                    "module": "Surrogate",
+                    "name": "Decision Tree Surrogate",
+                    "operator_id": "op-tree",
+                    "optimizer": "tuner-a",
+                    "rank": "rank1",
+                    "source_instance": "history-a"
+                  }
+                ],
+                "rank": "rank1",
+                "source_instance": "history-a"
+              }
+            ],
+            "refinement": {
+              "fallback_used": false,
+              "raw_response": null,
+              "reason": "fixture",
+              "refiner": "fixture",
+              "selected_instances": [
+                "history-a"
+              ]
+            },
+            "target": {
+              "analyzer": "fixture FLA",
+              "instance_name": "fixture-target",
+              "metrics": {
+                "CL": 0.6,
+                "FBD": 0.2,
+                "FDC": 0.1,
+                "Kurtosis": 0.5,
+                "MIE": 0.7,
+                "NBC": 0.8,
+                "PLO": 0.3,
+                "Skewness": 0.4
+              },
+              "sample_count": 100
+            }
+          },
+          "detail": "",
+          "expected": {
+            "evidence_version": "prior-evidence-v1",
+            "numeric_candidates": [],
+            "optimizers": [
+              {
+                "code": "def run_tuners(file, budget, seed, maxlives):\n    return 1\n",
+                "description": "Tree surrogate optimizer.",
+                "name": "tuner-a",
+                "operators": [
+                  {
+                    "code": "tree = DecisionTreeRegressor()",
+                    "description": "Partition the response space.",
+                    "module": "Surrogate",
+                    "name": "Decision Tree Surrogate",
+                    "operator_id": "op-tree",
+                    "optimizer": "tuner-a",
+                    "rank": "rank1",
+                    "source_instance": "history-a"
+                  }
+                ],
+                "rank": "rank1",
+                "source_instance": "history-a"
+              }
+            ],
+            "refinement": {
+              "fallback_used": false,
+              "raw_response": null,
+              "reason": "fixture",
+              "refiner": "fixture",
+              "selected_instances": [
+                "history-a"
+              ]
+            },
+            "target": {
+              "analyzer": "fixture FLA",
+              "instance_name": "fixture-target",
+              "metrics": {
+                "CL": 0.6,
+                "FBD": 0.2,
+                "FDC": 0.1,
+                "Kurtosis": 0.5,
+                "MIE": 0.7,
+                "NBC": 0.8,
+                "PLO": 0.3,
+                "Skewness": 0.4
+              },
+              "sample_count": 100
+            }
+          },
+          "name": "original_prior_immutable",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "literature_tool_calls",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "durable_tool_call_cardinality",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "stable_generation_request",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "resumed_draft_materialized",
+          "passed": true
+        },
+        {
+          "actual": [
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "AGENT_TASK_CREATED",
+            "PRIOR_RESEARCH_REQUESTED",
+            "AGENT_TASK_CLAIMED",
+            "TOOL_CALL_STARTED",
+            "TOOL_CALL_COMPLETED",
+            "PRIOR_RESEARCH_COMPLETED",
+            "AGENT_TASK_COMPLETED",
+            "RESEARCH_MEMORY_UPDATED",
+            "GENERATION_RESUMED_AFTER_RESEARCH",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "GENERATION_REQUESTED",
+            "PRIOR_RESEARCH_REQUESTED",
+            "TOOL_CALL_STARTED",
+            "TOOL_CALL_COMPLETED",
+            "PRIOR_RESEARCH_COMPLETED",
+            "GENERATION_RESUMED_AFTER_RESEARCH"
+          ],
+          "name": "knowledge_gap_trace",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "rag_status",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "explanation_model_calls",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "evidence_in_resume_context",
+          "passed": true
+        },
+        {
+          "actual": 3,
+          "detail": "",
+          "expected": 3,
+          "name": "trace_task_count",
+          "passed": true
+        }
+      ],
+      "category": "agent-normal",
+      "duration_ms": 151,
+      "error": "",
+      "evidence": {
+        "agent_trace_summary": {
+          "artifact_counts_by_kind": {
+            "GENERATION_PROMPT": 1,
+            "GENERATION_REQUEST": 1,
+            "GENERATION_RESUME_PROMPT": 1,
+            "GENERATION_RESUME_REQUEST": 1,
+            "KNOWLEDGE_GAP": 1,
+            "LITERATURE_EVIDENCE": 1,
+            "PRIOR_EXPLANATION": 1,
+            "PRIOR_RESEARCH_EXPLANATION_PROMPT": 1,
+            "PRIOR_RESEARCH_QUERY_PROMPT": 1,
+            "RESUMED_CANDIDATE_DRAFT": 1
+          },
+          "completed_task_count": 3,
+          "failed_task_count": 0,
+          "task_count": 3,
+          "task_counts_by_type": {
+            "HEURISTIC_GENERATION": 1,
+            "HEURISTIC_GENERATION_RESUME": 1,
+            "PRIOR_RESEARCH": 1
+          },
+          "tool_call_count": 1
+        },
+        "artifact_counts": {
+          "GENERATION_PROMPT": 1,
+          "GENERATION_REQUEST": 1,
+          "GENERATION_RESUME_PROMPT": 1,
+          "GENERATION_RESUME_REQUEST": 1,
+          "KNOWLEDGE_GAP": 1,
+          "LITERATURE_EVIDENCE": 1,
+          "PRIOR_EXPLANATION": 1,
+          "PRIOR_RESEARCH_EXPLANATION_PROMPT": 1,
+          "PRIOR_RESEARCH_QUERY_PROMPT": 1,
+          "RESUMED_CANDIDATE_DRAFT": 1
+        },
+        "llm_calls": [
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"fixture\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 1, \"random_seed\": 9}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"artifact-original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "knowledge_gap": "Decision Tree Surrogate mechanism evidence is missing",
+              "reason": "Original Prior names the operator but does not explain it.",
+              "required_evidence": [
+                "Primary literature evidence"
+              ],
+              "result_type": "KnowledgeGap"
+            },
+            "route": "generation:i1",
+            "sequence": 1,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are PriorResearchAgent. Form one bounded literature query for the declared KnowledgeGap. Never replace or rewrite Original Prior. Return only the query text.\n\nSkill ref: skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\nSkill version: 1\nSkill digest: d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\nContext ref: context:1da229e1a710884a4ba187b6\nOriginal prior ref: artifact-b1d85b09-generation_request-8033536b53b1f0e6\n\nSkill instructions:\n# Prior Explanation\n\n1. Restate the bounded KnowledgeGap and cite the exact original Prior reference.\n2. Explain only mechanisms supported by the supplied Prior slice and LiteratureEvidence.\n3. Separate source facts, agent annotation, and hypotheses that still require benchmark validation.\n4. Preserve provenance: original prior ref, paper ref, chunk ref, retrieval scores, and source metadata.\n5. Never rewrite, delete, or replace the original PriEvO Prior.\n6. Return a concise `PriorExplanation` plus evidence references; do not generate Candidate code unless a later GenerationTask requests it.\n\nResearch context:\nPinned Agent Context:\n- [Gap] Knowledge gap: {\"original_prior_ref\": \"artifact-b1d85b09-generation_request-8033536b53b1f0e6\", \"reason\": \"Original Prior names the operator but does not explain it.\", \"ref\": \"artifact-b1d85b09-knowledge_gap-c1878b77727a3fb2\", \"summary\": \"Decision Tree Surrogate mechanism evidence is missing\"}\n- [Prior] Original prior slice: {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}\n- [Landscape] Target landscape summary: {\"metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}, \"target_instance\": \"fixture-target\"}\n- [Strategy] Current strategy: \"i1\"\n- [Skill] Prior research skill: {\"digest\": \"d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"instructions\": \"# Prior Explanation\\n\\n1. Restate the bounded KnowledgeGap and cite the exact original Prior reference.\\n2. Explain only mechanisms supported by the supplied Prior slice and LiteratureEvidence.\\n3. Separate source facts, agent annotation, and hypotheses that still require benchmark validation.\\n4. Preserve provenance: original prior ref, paper ref, chunk ref, retrieval scores, and source metadata.\\n5. Never rewrite, delete, or replace the original PriEvO Prior.\\n6. Return a concise `PriorExplanation` plus evidence references; do not generate Candidate code unless a later GenerationTask requests it.\", \"name\": \"prior_explanation\", \"ref\": \"skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"version\": \"1\"}\n- [Contract] Research output schema: {\"original_prior_policy\": \"immutable\", \"outputs\": [\"PriorExplanation\", \"LiteratureEvidence\"]}\n[Context compression: applied=false]",
+            "request": {},
+            "response": "decision tree surrogate rugged fitness landscape",
+            "route": "research:query",
+            "sequence": 2,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are PriorResearchAgent. Explain the immutable Original Prior only to the extent supported by the supplied LiteratureEvidence. Return a mapping with summary, relationship_to_landscape, strategy_implications. Do not invent fitness or overwrite the Prior.\n\nSkill ref: skill:literature_evidence_review@1#096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\nSkill version: 1\nSkill digest: 096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\nContext ref: context:127c82137ba2c03837a62c58\nOriginal prior ref: artifact-b1d85b09-generation_request-8033536b53b1f0e6\nEvidence bundle ref: literature-evidence-bundle:4c62475aa1197656fbdc6bab\n\nSkill instructions:\n# Literature Evidence Review\n\n1. 明确知识缺口：algorithm/operator、mechanism、assumption、limitation 或 comparison。\n2. 只用带 title/authors/year/identifier/section/chunk 的 evidence；优先 primary paper。\n3. 区分“论文说明的机制”与“当前 candidate 已实际实现的机制”。\n4. 说明证据支持什么、不支持什么，以及仍需由 benchmark 验证的假设。\n5. 输出必须包含 evidence IDs；无 evidence 时不得编造结论。\n\n该 Skill 是 Agent/reflection 的推理 SOP，不是 PriEvO Operator，不参与 population diversity 或 candidate lineage 的算法算子统计。\n\nGrounded context:\nPinned Agent Context:\n- [Gap] Knowledge gap: {\"original_prior_ref\": \"artifact-b1d85b09-generation_request-8033536b53b1f0e6\", \"reason\": \"Original Prior names the operator but does not explain it.\", \"ref\": \"artifact-b1d85b09-knowledge_gap-c1878b77727a3fb2\", \"summary\": \"Decision Tree Surrogate mechanism evidence is missing\"}\n- [Prior] Original prior slice: {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}\n- [Landscape] Target landscape summary: {\"metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}, \"target_instance\": \"fixture-target\"}\n- [Strategy] Current strategy: \"i1\"\n- [Skill] Prior research skill: {\"literature_evidence_review\": {\"digest\": \"096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\", \"instructions\": \"# Literature Evidence Review\\n\\n1. 明确知识缺口：algorithm/operator、mechanism、assumption、limitation 或 comparison。\\n2. 只用带 title/authors/year/identifier/section/chunk 的 evidence；优先 primary paper。\\n3. 区分“论文说明的机制”与“当前 candidate 已实际实现的机制”。\\n4. 说明证据支持什么、不支持什么，以及仍需由 benchmark 验证的假设。\\n5. 输出必须包含 evidence IDs；无 evidence 时不得编造结论。\\n\\n该 Skill 是 Agent/reflection 的推理 SOP，不是 PriEvO Operator，不参与 population diversity 或 candidate lineage 的算法算子统计。\", \"name\": \"literature_evidence_review\", \"ref\": \"skill:literature_evidence_review@1#096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\", \"version\": \"1\"}, \"prior_explanation\": {\"digest\": \"d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"instructions\": \"# Prior Explanation\\n\\n1. Restate the bounded KnowledgeGap and cite the exact original Prior reference.\\n2. Explain only mechanisms supported by the supplied Prior slice and LiteratureEvidence.\\n3. Separate source facts, agent annotation, and hypotheses that still require benchmark validation.\\n4. Preserve provenance: original prior ref, paper ref, chunk ref, retrieval scores, and source metadata.\\n5. Never rewrite, delete, or replace the original PriEvO Prior.\\n6. Return a concise `PriorExplanation` plus evidence references; do not generate Candidate code unless a later GenerationTask requests it.\", \"name\": \"prior_explanation\", \"ref\": \"skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"version\": \"1\"}}\n- [Contract] Research output schema: {\"original_prior_policy\": \"immutable\", \"outputs\": [\"PriorExplanation\", \"LiteratureEvidence\"]}\nLiterature evidence:\n- [Evidence] Retrieved literature evidence: [{\"chunk_ref\": \"fixture-tree:methods:2\", \"content\": \"Tree partitions capture bounded non-linear interactions.\", \"paper_ref\": \"fixture-tree\", \"query_ref\": \"literature-query:4f145890048225af973e7377\", \"score\": 0.91, \"section\": \"Methods\", \"tool_call_ref\": \"tool-call-7c50a5449aa1434898bf6a9764419592\"}]\n[Context compression: applied=false]",
+            "request": {},
+            "response": {
+              "relationship_to_landscape": "The fixture evidence supports only this bounded annotation.",
+              "strategy_implications": [
+                "Use the immutable tree Prior as bounded inspiration."
+              ],
+              "summary": "Tree partitions model bounded non-linear response regions."
+            },
+            "route": "research:explain",
+            "sequence": 3,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"fixture\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 1, \"random_seed\": 9, \"research_resolution\": {\"bounded_retry\": 1, \"policy\": \"Research is bounded and complete. Generate a best-effort CandidateDraft using immutable Original Prior plus supplied annotation. Do not emit another KnowledgeGap merely because literature status is EMPTY.\", \"status\": \"FOUND\"}}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"artifact-original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\nLiterature evidence:\n- [Evidence] Existing literature evidence: [{\"annotation_type\": \"PRIOR_RESEARCH\", \"evidence_status\": \"FOUND\", \"items\": [{\"chunk_ref\": \"fixture-tree:methods:2\", \"content\": \"Tree partitions capture bounded non-linear interactions.\", \"evidence_ref\": \"literature-evidence:082503ca0ca366c4d9234cee\", \"paper_ref\": \"fixture-tree\", \"provenance\": {\"identifier\": \"doi:fixture/tree\", \"rerank_score\": \"0.91\", \"source_path\": \"fixture/tree.pdf\"}, \"query_ref\": \"literature-query:4f145890048225af973e7377\", \"score\": 0.91, \"section\": \"Methods\", \"title\": \"Tree Surrogates for Configuration Optimization\", \"tool_call_ref\": \"tool-call-7c50a5449aa1434898bf6a9764419592\"}], \"knowledge_gap_ref\": \"artifact-b1d85b09-knowledge_gap-c1878b77727a3fb2\", \"literature_evidence_ref\": \"artifact-b1d85b09-literature_evidence-06be729e5f4231ee\", \"original_prior_digest\": \"08c73dca247677a63faed809997e63c9e1a1c6909c0042ef8ccbb0046ebf6664\", \"original_prior_ref\": \"artifact-b1d85b09-generation_request-8033536b53b1f0e6\", \"prior_explanation_ref\": \"artifact-b1d85b09-prior_explanation-9126aac0c227580e\", \"relationship_to_landscape\": \"The fixture evidence supports only this bounded annotation.\", \"run_id\": \"run-research-found\", \"skill_provenance\": [{\"digest\": \"d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"name\": \"prior_explanation\", \"ref\": \"skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"role\": \"query_and_prior_explanation\", \"version\": \"1\"}, {\"digest\": \"096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\", \"name\": \"literature_evidence_review\", \"ref\": \"skill:literature_evidence_review@1#096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\", \"role\": \"literature_evidence_review\", \"version\": \"1\"}], \"strategy_implications\": [\"Use the immutable tree Prior as bounded inspiration.\"], \"summary\": \"Tree partitions model bounded non-linear response regions.\"}]\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "code": "def run_tuners(file, budget, seed, maxlives):\n    used_budget = 0\n    lives = 0\n    history = {}\n    best = float('inf')\n    cursor = 0\n    while used_budget < budget and lives < maxlives:\n        configuration = []\n        index = seed + cursor * 3\n        for values in file.independent_set:\n            configuration.append(values[index % len(values)])\n            index //= len(values)\n        before = used_budget\n        used_budget, lives, history, best, score, mapped = evaluate(\n            used_budget, lives, history, best, configuration\n        )\n        cursor += 1\n        if used_budget == before and cursor > budget * 100:\n            break\n    return best\n",
+              "description": "Harness deterministic candidate after bounded evidence.",
+              "generation_note": "resumed-after-research",
+              "operators": [
+                "Decision Tree Surrogate"
+              ],
+              "result_type": "CandidateDraft"
+            },
+            "route": "generation:i1",
+            "sequence": 4,
+            "source": "script"
+          }
+        ],
+        "run_id": "run-research-found",
+        "task_counts": {
+          "HEURISTIC_GENERATION": 1,
+          "HEURISTIC_GENERATION_RESUME": 1,
+          "PRIOR_RESEARCH": 1
+        }
+      },
+      "expected_trace": [
+        "GENERATION_REQUESTED",
+        "PRIOR_RESEARCH_REQUESTED",
+        "TOOL_CALL_STARTED",
+        "TOOL_CALL_COMPLETED",
+        "PRIOR_RESEARCH_COMPLETED",
+        "GENERATION_RESUMED_AFTER_RESEARCH"
+      ],
+      "name": "knowledge_gap_research_resume",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "FINAL_TIE_DETECTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED"
+      ],
+      "assertions": [
+        {
+          "actual": "candidate-a",
+          "detail": "",
+          "expected": "candidate-a",
+          "name": "selected_candidate",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "final_task_cardinality",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "final_model_call_cardinality",
+          "passed": true
+        },
+        {
+          "actual": [
+            "candidate-a",
+            "candidate-b"
+          ],
+          "detail": "",
+          "expected": [
+            "candidate-a",
+            "candidate-b"
+          ],
+          "name": "model_allowlist",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "prompt_has_exact_allowlist",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "decision_artifact",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "model_called_flag",
+          "passed": true
+        },
+        {
+          "actual": [
+            "FINAL_TIE_DETECTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "FINAL_TIE_DETECTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED"
+          ],
+          "name": "final_tie_trace",
+          "passed": true
+        }
+      ],
+      "category": "agent-normal",
+      "duration_ms": 27,
+      "error": "",
+      "evidence": {
+        "decision_artifact_id": "artifact-4bd0463e-final_selection_decision-82b689c651134faf",
+        "prompt": "You are FinalSelectionAgent. All supplied candidates have the exact same minimum objective. Apply the final_heuristic_audit Skill to select exactly one candidate for large-budget robustness. Use only C (code), D (description), O (operators), F (fitness/objective), and T (trajectory). Return a mapping with selected_candidate_id, reason, and structural_operator_comparison containing structural_comparison and operator_comparison.\n\nSkill ref: skill:final_heuristic_audit:9cf1ccbcb07217b7\nSkill digest: 9cf1ccbcb07217b75c202ece393eb0fdcf42b6321d6e8ba167f0e9db96ba8d1b\nContext ref: context:571743895fc8def83148ecdd\nAllowed candidate IDs: [\"candidate-a\", \"candidate-b\"]\n\nSkill instructions:\n# Final Heuristic Audit\n\nSelect exactly one candidate from the supplied tied set.\n\n1. PRIMARY: assess sustained global convergence under a larger evaluation budget, including exploration and long-term improvement mechanisms.\n2. SECONDARY: assess algorithm integrity, modular completeness, and justified code complexity.\n3. AUXILIARY: use trajectory smoothness and volatility only as supporting evidence.\n4. Use only supplied code, description, objective, trajectory, and operators. Do not request Memory or Literature RAG and do not consider candidates outside the tied set.\n5. Return `selected_candidate_id`, `reason`, and `structural_operator_comparison` only.\n\nThis Skill preserves the decision criteria in `references/prievo/prievo/methods/prievo/prievo.py::best_stability`; the Runtime owns qualification, exact-tie detection, and deterministic fallback.\n\nFinal tie context:\nPinned Agent Context:\n- [Candidates] Tied final candidates: [{\"C\": \"def run_tuners(file, budget, seed, maxlives):\\n    fixture_0 = 0\\n    fixture_1 = 1\\n    fixture_2 = 2\\n    fixture_3 = 3\\n    fixture_4 = 4\\n    fixture_5 = 5\\n    fixture_6 = 6\\n    fixture_7 = 7\\n    fixture_8 = 8\\n    fixture_9 = 9\\n    fixture_10 = 10\\n    fixture_11 = 11\\n    fixture_12 = 12\\n    fixture_13 = 13\\n    fixture_14 = 14\\n    fixture_15 = 15\\n    fixture_16 = 16\\n    fixture_17 = 17\\n    fixture_18 = 18\\n    fixture_19 = 19\\n    fixture_20 = 20\\n    fixture_21 = 21\\n    fixture_22 = 22\\n    fixture_23 = 23\\n    fixture_24 = 24\\n    fixture_25 = 25\\n    fixture_26 = 26\\n    fixture_27 = 27\\n    fixture_28 = 28\\n    fixture_29 = 29\\n    fixture_30 = 30\\n    fixture_31 = 31\\n    fixture_32 = 32\\n    fixture_33 = 33\\n    fixture_34 = 34\\n    fixture_35 = 35\\n    fixture_36 = 36\\n    fixture_37 = 37\\n    fixture_38 = 38\\n    fixture_39 = 39\\n    fixture_40 = 40\\n    fixture_41 = 41\\n    fixture_42 = 42\\n    fixture_43 = 43\\n    fixture_44 = 44\\n    fixture_45 = 45\\n    fixture_46 = 46\\n    fixture_47 = 47\\n    fixture_48 = 48\\n    fixture_49 = 49\\n    fixture_50 = 50\\n    fixture_51 = 51\\n    fixture_52 = 52\\n    fixture_53 = 53\\n    fixture_54 = 54\\n    return 'candidate-a'\\n\", \"D\": \"final tie candidate-a\", \"F\": 0.1, \"O\": [\"Fixture\"], \"T\": [0.3, 0.2, 0.1], \"candidate_id\": \"candidate-a\"}, {\"C\": \"def run_tuners(file, budget, seed, maxlives):\\n    fixture_0 = 0\\n    fixture_1 = 1\\n    fixture_2 = 2\\n    fixture_3 = 3\\n    fixture_4 = 4\\n    fixture_5 = 5\\n    fixture_6 = 6\\n    fixture_7 = 7\\n    fixture_8 = 8\\n    fixture_9 = 9\\n    fixture_10 = 10\\n    fixture_11 = 11\\n    fixture_12 = 12\\n    fixture_13 = 13\\n    fixture_14 = 14\\n    fixture_15 = 15\\n    fixture_16 = 16\\n    fixture_17 = 17\\n    fixture_18 = 18\\n    fixture_19 = 19\\n    fixture_20 = 20\\n    fixture_21 = 21\\n    fixture_22 = 22\\n    fixture_23 = 23\\n    fixture_24 = 24\\n    fixture_25 = 25\\n    fixture_26 = 26\\n    fixture_27 = 27\\n    fixture_28 = 28\\n    fixture_29 = 29\\n    fixture_30 = 30\\n    fixture_31 = 31\\n    fixture_32 = 32\\n    fixture_33 = 33\\n    fixture_34 = 34\\n    fixture_35 = 35\\n    fixture_36 = 36\\n    fixture_37 = 37\\n    fixture_38 = 38\\n    fixture_39 = 39\\n    fixture_40 = 40\\n    fixture_41 = 41\\n    fixture_42 = 42\\n    fixture_43 = 43\\n    fixture_44 = 44\\n    fixture_45 = 45\\n    fixture_46 = 46\\n    fixture_47 = 47\\n    fixture_48 = 48\\n    fixture_49 = 49\\n    fixture_50 = 50\\n    fixture_51 = 51\\n    fixture_52 = 52\\n    fixture_53 = 53\\n    fixture_54 = 54\\n    return 'candidate-b'\\n\", \"D\": \"final tie candidate-b\", \"F\": 0.1, \"O\": [\"Fixture\"], \"T\": [0.3, 0.2, 0.1], \"candidate_id\": \"candidate-b\"}]\n- [Skill] Final heuristic audit skill: {\"digest\": \"9cf1ccbcb07217b75c202ece393eb0fdcf42b6321d6e8ba167f0e9db96ba8d1b\", \"instructions\": \"# Final Heuristic Audit\\n\\nSelect exactly one candidate from the supplied tied set.\\n\\n1. PRIMARY: assess sustained global convergence under a larger evaluation budget, including exploration and long-term improvement mechanisms.\\n2. SECONDARY: assess algorithm integrity, modular completeness, and justified code complexity.\\n3. AUXILIARY: use trajectory smoothness and volatility only as supporting evidence.\\n4. Use only supplied code, description, objective, trajectory, and operators. Do not request Memory or Literature RAG and do not consider candidates outside the tied set.\\n5. Return `selected_candidate_id`, `reason`, and `structural_operator_comparison` only.\\n\\nThis Skill preserves the decision criteria in `references/prievo/prievo/methods/prievo/prievo.py::best_stability`; the Runtime owns qualification, exact-tie detection, and deterministic fallback.\", \"name\": \"final_heuristic_audit\", \"ref\": \"skill:final_heuristic_audit:9cf1ccbcb07217b7\"}\n- [Contract] FinalSelectionDecision schema: {\"reason\": \"string\", \"selected_candidate_id\": [\"candidate-a\", \"candidate-b\"], \"structural_operator_comparison\": {\"operator_comparison\": \"comparison grounded in tied O\", \"structural_comparison\": \"comparison grounded in tied C/D/T\"}}\n[Context compression: applied=false]",
+        "task_id": "agent-task-9724166990d45853ed1d2e90ab111f40"
+      },
+      "expected_trace": [
+        "FINAL_TIE_DETECTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED"
+      ],
+      "name": "final_exact_tie",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_FAILED",
+        "AGENT_TASK_REDRIVE_SCHEDULED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_FAILED",
+        "AGENT_TASK_REDRIVE_SCHEDULED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_FAILED"
+      ],
+      "assertions": [
+        {
+          "actual": "MalformedHeuristicOutputError",
+          "detail": "",
+          "expected": "MalformedHeuristicOutputError",
+          "name": "terminal_failure_type",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "single_durable_task",
+          "passed": true
+        },
+        {
+          "actual": 3,
+          "detail": "",
+          "expected": 3,
+          "name": "max_attempts_consumed",
+          "passed": true
+        },
+        {
+          "actual": "FAILED",
+          "detail": "",
+          "expected": "FAILED",
+          "name": "task_terminal_status",
+          "passed": true
+        },
+        {
+          "actual": 3,
+          "detail": "",
+          "expected": 3,
+          "name": "model_call_cardinality",
+          "passed": true
+        },
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "bounded_redrive_events",
+          "passed": true
+        },
+        {
+          "actual": 0,
+          "detail": "",
+          "expected": 0,
+          "name": "candidate_draft_absent",
+          "passed": true
+        },
+        {
+          "actual": [
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_FAILED",
+            "AGENT_TASK_REDRIVE_SCHEDULED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_FAILED",
+            "AGENT_TASK_REDRIVE_SCHEDULED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_FAILED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "AGENT_TASK_FAILED",
+            "AGENT_TASK_REDRIVE_SCHEDULED",
+            "AGENT_TASK_FAILED",
+            "AGENT_TASK_REDRIVE_SCHEDULED",
+            "AGENT_TASK_FAILED"
+          ],
+          "name": "malformed_terminal_trace",
+          "passed": true
+        }
+      ],
+      "category": "agent-fault",
+      "duration_ms": 23,
+      "error": "",
+      "evidence": {
+        "model_calls": [
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 3, \"random_seed\": 2024}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "code": 42,
+              "result_type": "CandidateDraft",
+              "unexpected": "malformed-fixture"
+            },
+            "route": "generation:i1",
+            "sequence": 1,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 3, \"random_seed\": 2024}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "code": 42,
+              "result_type": "CandidateDraft",
+              "unexpected": "malformed-fixture"
+            },
+            "route": "generation:i1",
+            "sequence": 2,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 3, \"random_seed\": 2024}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "code": 42,
+              "result_type": "CandidateDraft",
+              "unexpected": "malformed-fixture"
+            },
+            "route": "generation:i1",
+            "sequence": 3,
+            "source": "script"
+          }
+        ],
+        "task_id": "agent-task-32f88a979faed94b1c4e27390f4fc75a"
+      },
+      "expected_trace": [
+        "AGENT_TASK_FAILED",
+        "AGENT_TASK_REDRIVE_SCHEDULED",
+        "AGENT_TASK_FAILED",
+        "AGENT_TASK_REDRIVE_SCHEDULED",
+        "AGENT_TASK_FAILED"
+      ],
+      "name": "llm_malformed_output",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_FAILED",
+        "AGENT_TASK_REDRIVE_SCHEDULED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED"
+      ],
+      "assertions": [
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "single_durable_task",
+          "passed": true
+        },
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "task_attempts",
+          "passed": true
+        },
+        {
+          "actual": "COMPLETED",
+          "detail": "",
+          "expected": "COMPLETED",
+          "name": "task_terminal_status",
+          "passed": true
+        },
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "model_call_cardinality",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "bounded_redrive_events",
+          "passed": true
+        },
+        {
+          "actual": "auto-redrive-success",
+          "detail": "",
+          "expected": "auto-redrive-success",
+          "name": "draft_note",
+          "passed": true
+        },
+        {
+          "actual": [
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_FAILED",
+            "AGENT_TASK_REDRIVE_SCHEDULED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "AGENT_TASK_FAILED",
+            "AGENT_TASK_REDRIVE_SCHEDULED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED"
+          ],
+          "name": "fault_retry_trace",
+          "passed": true
+        }
+      ],
+      "category": "agent-fault",
+      "duration_ms": 44,
+      "error": "",
+      "evidence": {
+        "candidate_draft_artifact_id": "artifact-e6e93de4-candidate_draft-f0a05b06976890a6",
+        "generation_request_artifact_id": "artifact-e6e93de4-generation_request-3e8504da19b476ee",
+        "model_calls": [
+          {
+            "error_message": "fixture provider temporarily unavailable",
+            "error_type": "ScriptedTransientLLMError",
+            "outcome": "RAISED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 3, \"random_seed\": 2024}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": null,
+            "route": "generation:i1",
+            "sequence": 1,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 3, \"random_seed\": 2024}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "code": "def run_tuners(file, budget, seed, maxlives):\n    used_budget = 0\n    lives = 0\n    history = {}\n    best = float('inf')\n    cursor = 0\n    while used_budget < budget and lives < maxlives:\n        configuration = []\n        index = seed + cursor * 3\n        for values in file.independent_set:\n            configuration.append(values[index % len(values)])\n            index //= len(values)\n        before = used_budget\n        used_budget, lives, history, best, score, mapped = evaluate(\n            used_budget, lives, history, best, configuration\n        )\n        cursor += 1\n        if used_budget == before and cursor > budget * 100:\n            break\n    return best\n",
+              "description": "Harness deterministic candidate after bounded evidence.",
+              "generation_note": "auto-redrive-success",
+              "operators": [
+                "Decision Tree Surrogate"
+              ],
+              "result_type": "CandidateDraft"
+            },
+            "route": "generation:i1",
+            "sequence": 2,
+            "source": "script"
+          }
+        ]
+      },
+      "expected_trace": [
+        "AGENT_TASK_FAILED",
+        "AGENT_TASK_REDRIVE_SCHEDULED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED"
+      ],
+      "name": "llm_transient_failure",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "GENERATION_REQUESTED",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED",
+        "AGENT_TASK_CREATED",
+        "PRIOR_RESEARCH_REQUESTED",
+        "AGENT_TASK_CLAIMED",
+        "TOOL_CALL_STARTED",
+        "TOOL_CALL_COMPLETED",
+        "PRIOR_RESEARCH_COMPLETED",
+        "AGENT_TASK_COMPLETED",
+        "RESEARCH_MEMORY_UPDATED",
+        "GENERATION_RESUMED_AFTER_RESEARCH",
+        "AGENT_TASK_CREATED",
+        "AGENT_TASK_CLAIMED",
+        "AGENT_TASK_COMPLETED"
+      ],
+      "assertions": [
+        {
+          "actual": {
+            "HEURISTIC_GENERATION": 1,
+            "HEURISTIC_GENERATION_RESUME": 1,
+            "PRIOR_RESEARCH": 1
+          },
+          "detail": "",
+          "expected": {
+            "HEURISTIC_GENERATION": 1,
+            "HEURISTIC_GENERATION_RESUME": 1,
+            "PRIOR_RESEARCH": 1
+          },
+          "name": "agent_task_cardinality",
+          "passed": true
+        },
+        {
+          "actual": {
+            "evidence_version": "prior-evidence-v1",
+            "numeric_candidates": [],
+            "optimizers": [
+              {
+                "code": "def run_tuners(file, budget, seed, maxlives):\n    return 1\n",
+                "description": "Tree surrogate optimizer.",
+                "name": "tuner-a",
+                "operators": [
+                  {
+                    "code": "tree = DecisionTreeRegressor()",
+                    "description": "Partition the response space.",
+                    "module": "Surrogate",
+                    "name": "Decision Tree Surrogate",
+                    "operator_id": "op-tree",
+                    "optimizer": "tuner-a",
+                    "rank": "rank1",
+                    "source_instance": "history-a"
+                  }
+                ],
+                "rank": "rank1",
+                "source_instance": "history-a"
+              }
+            ],
+            "refinement": {
+              "fallback_used": false,
+              "raw_response": null,
+              "reason": "fixture",
+              "refiner": "fixture",
+              "selected_instances": [
+                "history-a"
+              ]
+            },
+            "target": {
+              "analyzer": "fixture FLA",
+              "instance_name": "fixture-target",
+              "metrics": {
+                "CL": 0.6,
+                "FBD": 0.2,
+                "FDC": 0.1,
+                "Kurtosis": 0.5,
+                "MIE": 0.7,
+                "NBC": 0.8,
+                "PLO": 0.3,
+                "Skewness": 0.4
+              },
+              "sample_count": 100
+            }
+          },
+          "detail": "",
+          "expected": {
+            "evidence_version": "prior-evidence-v1",
+            "numeric_candidates": [],
+            "optimizers": [
+              {
+                "code": "def run_tuners(file, budget, seed, maxlives):\n    return 1\n",
+                "description": "Tree surrogate optimizer.",
+                "name": "tuner-a",
+                "operators": [
+                  {
+                    "code": "tree = DecisionTreeRegressor()",
+                    "description": "Partition the response space.",
+                    "module": "Surrogate",
+                    "name": "Decision Tree Surrogate",
+                    "operator_id": "op-tree",
+                    "optimizer": "tuner-a",
+                    "rank": "rank1",
+                    "source_instance": "history-a"
+                  }
+                ],
+                "rank": "rank1",
+                "source_instance": "history-a"
+              }
+            ],
+            "refinement": {
+              "fallback_used": false,
+              "raw_response": null,
+              "reason": "fixture",
+              "refiner": "fixture",
+              "selected_instances": [
+                "history-a"
+              ]
+            },
+            "target": {
+              "analyzer": "fixture FLA",
+              "instance_name": "fixture-target",
+              "metrics": {
+                "CL": 0.6,
+                "FBD": 0.2,
+                "FDC": 0.1,
+                "Kurtosis": 0.5,
+                "MIE": 0.7,
+                "NBC": 0.8,
+                "PLO": 0.3,
+                "Skewness": 0.4
+              },
+              "sample_count": 100
+            }
+          },
+          "name": "original_prior_immutable",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "literature_tool_calls",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "durable_tool_call_cardinality",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "stable_generation_request",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "resumed_draft_materialized",
+          "passed": true
+        },
+        {
+          "actual": [
+            "GENERATION_REQUESTED",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED",
+            "AGENT_TASK_CREATED",
+            "PRIOR_RESEARCH_REQUESTED",
+            "AGENT_TASK_CLAIMED",
+            "TOOL_CALL_STARTED",
+            "TOOL_CALL_COMPLETED",
+            "PRIOR_RESEARCH_COMPLETED",
+            "AGENT_TASK_COMPLETED",
+            "RESEARCH_MEMORY_UPDATED",
+            "GENERATION_RESUMED_AFTER_RESEARCH",
+            "AGENT_TASK_CREATED",
+            "AGENT_TASK_CLAIMED",
+            "AGENT_TASK_COMPLETED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "GENERATION_REQUESTED",
+            "PRIOR_RESEARCH_REQUESTED",
+            "TOOL_CALL_STARTED",
+            "TOOL_CALL_COMPLETED",
+            "PRIOR_RESEARCH_COMPLETED",
+            "GENERATION_RESUMED_AFTER_RESEARCH"
+          ],
+          "name": "knowledge_gap_trace",
+          "passed": true
+        },
+        {
+          "actual": "EMPTY",
+          "detail": "",
+          "expected": "EMPTY",
+          "name": "rag_status",
+          "passed": true
+        },
+        {
+          "actual": [],
+          "detail": "",
+          "expected": [],
+          "name": "rag_items",
+          "passed": true
+        },
+        {
+          "actual": 0,
+          "detail": "",
+          "expected": 0,
+          "name": "explanation_model_calls",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "empty_rag_still_resumed",
+          "passed": true
+        },
+        {
+          "actual": 3,
+          "detail": "",
+          "expected": 3,
+          "name": "trace_task_count",
+          "passed": true
+        }
+      ],
+      "category": "agent-fault",
+      "duration_ms": 146,
+      "error": "",
+      "evidence": {
+        "agent_trace_summary": {
+          "artifact_counts_by_kind": {
+            "GENERATION_PROMPT": 1,
+            "GENERATION_REQUEST": 1,
+            "GENERATION_RESUME_PROMPT": 1,
+            "GENERATION_RESUME_REQUEST": 1,
+            "KNOWLEDGE_GAP": 1,
+            "LITERATURE_EVIDENCE": 1,
+            "PRIOR_EXPLANATION": 1,
+            "PRIOR_RESEARCH_EXPLANATION_PROMPT": 1,
+            "PRIOR_RESEARCH_QUERY_PROMPT": 1,
+            "RESUMED_CANDIDATE_DRAFT": 1
+          },
+          "completed_task_count": 3,
+          "failed_task_count": 0,
+          "task_count": 3,
+          "task_counts_by_type": {
+            "HEURISTIC_GENERATION": 1,
+            "HEURISTIC_GENERATION_RESUME": 1,
+            "PRIOR_RESEARCH": 1
+          },
+          "tool_call_count": 1
+        },
+        "artifact_counts": {
+          "GENERATION_PROMPT": 1,
+          "GENERATION_REQUEST": 1,
+          "GENERATION_RESUME_PROMPT": 1,
+          "GENERATION_RESUME_REQUEST": 1,
+          "KNOWLEDGE_GAP": 1,
+          "LITERATURE_EVIDENCE": 1,
+          "PRIOR_EXPLANATION": 1,
+          "PRIOR_RESEARCH_EXPLANATION_PROMPT": 1,
+          "PRIOR_RESEARCH_QUERY_PROMPT": 1,
+          "RESUMED_CANDIDATE_DRAFT": 1
+        },
+        "llm_calls": [
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"fixture\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 1, \"random_seed\": 9}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"artifact-original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "knowledge_gap": "Decision Tree Surrogate mechanism evidence is missing",
+              "reason": "Original Prior names the operator but does not explain it.",
+              "required_evidence": [
+                "Primary literature evidence"
+              ],
+              "result_type": "KnowledgeGap"
+            },
+            "route": "generation:i1",
+            "sequence": 1,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are PriorResearchAgent. Form one bounded literature query for the declared KnowledgeGap. Never replace or rewrite Original Prior. Return only the query text.\n\nSkill ref: skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\nSkill version: 1\nSkill digest: d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\nContext ref: context:5e20d69d760616e28691a337\nOriginal prior ref: artifact-3330fc14-generation_request-51adc738ea7043b2\n\nSkill instructions:\n# Prior Explanation\n\n1. Restate the bounded KnowledgeGap and cite the exact original Prior reference.\n2. Explain only mechanisms supported by the supplied Prior slice and LiteratureEvidence.\n3. Separate source facts, agent annotation, and hypotheses that still require benchmark validation.\n4. Preserve provenance: original prior ref, paper ref, chunk ref, retrieval scores, and source metadata.\n5. Never rewrite, delete, or replace the original PriEvO Prior.\n6. Return a concise `PriorExplanation` plus evidence references; do not generate Candidate code unless a later GenerationTask requests it.\n\nResearch context:\nPinned Agent Context:\n- [Gap] Knowledge gap: {\"original_prior_ref\": \"artifact-3330fc14-generation_request-51adc738ea7043b2\", \"reason\": \"Original Prior names the operator but does not explain it.\", \"ref\": \"artifact-3330fc14-knowledge_gap-3d14fdfe0269b5cd\", \"summary\": \"Decision Tree Surrogate mechanism evidence is missing\"}\n- [Prior] Original prior slice: {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}\n- [Landscape] Target landscape summary: {\"metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}, \"target_instance\": \"fixture-target\"}\n- [Strategy] Current strategy: \"i1\"\n- [Skill] Prior research skill: {\"digest\": \"d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"instructions\": \"# Prior Explanation\\n\\n1. Restate the bounded KnowledgeGap and cite the exact original Prior reference.\\n2. Explain only mechanisms supported by the supplied Prior slice and LiteratureEvidence.\\n3. Separate source facts, agent annotation, and hypotheses that still require benchmark validation.\\n4. Preserve provenance: original prior ref, paper ref, chunk ref, retrieval scores, and source metadata.\\n5. Never rewrite, delete, or replace the original PriEvO Prior.\\n6. Return a concise `PriorExplanation` plus evidence references; do not generate Candidate code unless a later GenerationTask requests it.\", \"name\": \"prior_explanation\", \"ref\": \"skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"version\": \"1\"}\n- [Contract] Research output schema: {\"original_prior_policy\": \"immutable\", \"outputs\": [\"PriorExplanation\", \"LiteratureEvidence\"]}\n[Context compression: applied=false]",
+            "request": {},
+            "response": "decision tree surrogate rugged fitness landscape",
+            "route": "research:query",
+            "sequence": 2,
+            "source": "script"
+          },
+          {
+            "error_message": "",
+            "error_type": "",
+            "outcome": "RETURNED",
+            "prompt": "You are HeuristicGenerationAgent in PriEvO. PriEvO Core has already fixed generation, budget, active strategy, and parent selection. Never choose or replace those decisions, and never request or consume the whole Population. Execute only strategy i1 and its supplied Skill. Preserve the exact benchmark interface and injected evaluate/budget contract. Do not output fitness or trajectory; those are Benchmark facts. KnowledgeGap is valid only when supplied algorithm evidence is genuinely insufficient, never for infrastructure failures. Return exactly one JSON object matching one schema, with no Markdown or surrounding text.\n\nPinned Agent Context:\n- [Contract] Task / benchmark contract: {\"candidate_budget\": 3, \"dataset_id\": \"fixture\", \"evaluate_contract\": \"injected evaluate tracks unique mapped configurations\", \"generation\": 0, \"interface\": \"run_tuners(file, budget, seed, maxlives)\", \"objective\": \"minimize\", \"population_size\": 1, \"random_seed\": 9, \"research_resolution\": {\"bounded_retry\": 1, \"policy\": \"Research is bounded and complete. Generate a best-effort CandidateDraft using immutable Original Prior plus supplied annotation. Do not emit another KnowledgeGap merely because literature status is EMPTY.\", \"status\": \"EMPTY\"}}\n- [Contract] CandidateDraft / KnowledgeGap schema: {\"oneOf\": [{\"code\": \"Python source defining run_tuners(file, budget, seed, maxlives)\", \"description\": \"at most two sentences\", \"generation_note\": \"optional concise note\", \"operators\": [\"operator name\"], \"result_type\": \"CandidateDraft\"}, {\"knowledge_gap\": \"specific missing algorithm knowledge\", \"reason\": \"why supplied prior/parents/evidence are insufficient\", \"required_evidence\": [\"bounded evidence need\"], \"result_type\": \"KnowledgeGap\"}]}\n- [Prior] Original PriEvO prior: {\"original_prior_refs\": [\"artifact-original-prior\"], \"original_prior_slice\": {\"evidence_version\": \"prior-evidence-v1\", \"optimizers\": [{\"code\": \"def run_tuners(file, budget, seed, maxlives):\\n    return 1\\n\", \"description\": \"Tree surrogate optimizer.\", \"name\": \"tuner-a\", \"operators\": [{\"code\": \"tree = DecisionTreeRegressor()\", \"description\": \"Partition the response space.\", \"module\": \"Surrogate\", \"name\": \"Decision Tree Surrogate\", \"operator_id\": \"op-tree\", \"optimizer\": \"tuner-a\", \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"rank\": \"rank1\", \"source_instance\": \"history-a\"}], \"selected_instances\": [\"history-a\"], \"target_instance\": \"fixture-target\", \"target_landscape_metrics\": {\"CL\": 0.6, \"FBD\": 0.2, \"FDC\": 0.1, \"Kurtosis\": 0.5, \"MIE\": 0.7, \"NBC\": 0.8, \"PLO\": 0.3, \"Skewness\": 0.4}}}\n- [Strategy] Current strategy skill: {\"digest\": \"5b10e01005e6b068e42bbc48de928673917417a82e6d755b69cb16fcdeb69036\", \"instructions\": \"# Synthesize (i1)\\n\\nCreate one new parameter-tuning heuristic from scratch.\\n\\n1. Use the supplied PriEvO task and benchmark contract without changing `run_tuners(file, budget, seed, maxlives)`.\\n2. Use the supplied instance-specific reference operator components as inspiration; components may be combined, adapted, or extended.\\n3. Generate configurations only from `file.independent_set`. Treat every value as a categorical enumeration unless an explicit encoder is used.\\n4. Do not implement or bypass the injected `evaluate(...)` function, budget accounting, duplicate handling, or termination contract.\\n5. Return only `code`, a description of at most two sentences, `operators`, and an optional generation note. Do not invent fitness or trajectory.\\n\\nThis is the PriEvO `i1` strategy. It has no parent.\", \"name\": \"synthesize\", \"purpose\": \"PriEvO i1 策略，从 instance-specific operator prior 合成新的 HPO heuristic\", \"strategy\": \"i1\", \"version\": \"1\"}\nLiterature evidence:\n- [Evidence] Existing literature evidence: [{\"annotation_type\": \"PRIOR_RESEARCH\", \"evidence_status\": \"EMPTY\", \"items\": [], \"knowledge_gap_ref\": \"artifact-3330fc14-knowledge_gap-3d14fdfe0269b5cd\", \"literature_evidence_ref\": \"artifact-3330fc14-literature_evidence-132a6b223d642b75\", \"original_prior_digest\": \"08c73dca247677a63faed809997e63c9e1a1c6909c0042ef8ccbb0046ebf6664\", \"original_prior_ref\": \"artifact-3330fc14-generation_request-51adc738ea7043b2\", \"prior_explanation_ref\": \"artifact-3330fc14-prior_explanation-105b9f64cdc5e0c1\", \"relationship_to_landscape\": \"证据不足，无法新增 landscape 关系判断。\", \"run_id\": \"run-research-empty\", \"skill_provenance\": [{\"digest\": \"d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"name\": \"prior_explanation\", \"ref\": \"skill:prior_explanation@1#d864179ded9afb4c00dba0685d6c88754da677dcc7fa973aa41108ed3b21e04e\", \"role\": \"query_and_prior_explanation\", \"version\": \"1\"}, {\"digest\": \"096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\", \"name\": \"literature_evidence_review\", \"ref\": \"skill:literature_evidence_review@1#096c6a2f4ca510fdcf5721b6e84e858677b151c45fb35a14f4ded6c3ffc750e8\", \"role\": \"literature_evidence_review\", \"version\": \"1\"}], \"strategy_implications\": [], \"summary\": \"当前检索没有找到可追溯证据，Original Prior 保持不变。\"}]\n[Context compression: applied=false]",
+            "request": {
+              "strategy": "i1"
+            },
+            "response": {
+              "code": "def run_tuners(file, budget, seed, maxlives):\n    used_budget = 0\n    lives = 0\n    history = {}\n    best = float('inf')\n    cursor = 0\n    while used_budget < budget and lives < maxlives:\n        configuration = []\n        index = seed + cursor * 3\n        for values in file.independent_set:\n            configuration.append(values[index % len(values)])\n            index //= len(values)\n        before = used_budget\n        used_budget, lives, history, best, score, mapped = evaluate(\n            used_budget, lives, history, best, configuration\n        )\n        cursor += 1\n        if used_budget == before and cursor > budget * 100:\n            break\n    return best\n",
+              "description": "Harness deterministic candidate after bounded evidence.",
+              "generation_note": "resumed-after-research",
+              "operators": [
+                "Decision Tree Surrogate"
+              ],
+              "result_type": "CandidateDraft"
+            },
+            "route": "generation:i1",
+            "sequence": 3,
+            "source": "script"
+          }
+        ],
+        "run_id": "run-research-empty",
+        "task_counts": {
+          "HEURISTIC_GENERATION": 1,
+          "HEURISTIC_GENERATION_RESUME": 1,
+          "PRIOR_RESEARCH": 1
+        }
+      },
+      "expected_trace": [
+        "GENERATION_REQUESTED",
+        "PRIOR_RESEARCH_REQUESTED",
+        "TOOL_CALL_STARTED",
+        "TOOL_CALL_COMPLETED",
+        "PRIOR_RESEARCH_COMPLETED",
+        "GENERATION_RESUMED_AFTER_RESEARCH"
+      ],
+      "name": "rag_empty_result",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "CandidateSyntaxError",
+          "detail": "",
+          "expected": "CandidateSyntaxError",
+          "name": "typed_candidate_failure",
+          "passed": true
+        }
+      ],
+      "category": "candidate-fault",
+      "duration_ms": 1,
+      "error": "",
+      "evidence": {
+        "candidate_code_digest_input": "def run_tuners(file, budget, seed, maxlives):\n    broken = (\n",
+        "evaluator": "ExecutableDatasetEvaluator",
+        "expected_error": "CandidateSyntaxError"
+      },
+      "expected_trace": [],
+      "name": "candidate_syntax_failure",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "AlgorithmTimeoutError",
+          "detail": "",
+          "expected": "AlgorithmTimeoutError",
+          "name": "typed_candidate_failure",
+          "passed": true
+        }
+      ],
+      "category": "candidate-fault",
+      "duration_ms": 219,
+      "error": "",
+      "evidence": {
+        "candidate_code_digest_input": "def run_tuners(file, budget, seed, maxlives):\n    while True:\n        pass\n",
+        "evaluator": "ExecutableDatasetEvaluator",
+        "expected_error": "AlgorithmTimeoutError"
+      },
+      "expected_trace": [],
+      "name": "candidate_timeout",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "AlgorithmOOMError",
+          "detail": "",
+          "expected": "AlgorithmOOMError",
+          "name": "typed_candidate_failure",
+          "passed": true
+        }
+      ],
+      "category": "candidate-fault",
+      "duration_ms": 115,
+      "error": "",
+      "evidence": {
+        "candidate_code_digest_input": "def run_tuners(file, budget, seed, maxlives):\n    raise MemoryError('fixture OOM')\n",
+        "evaluator": "ExecutableDatasetEvaluator",
+        "expected_error": "AlgorithmOOMError"
+      },
+      "expected_trace": [],
+      "name": "candidate_oom",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "candidate-repair-R1",
+          "detail": "",
+          "expected": "candidate-repair-R1",
+          "name": "new_version_id",
+          "passed": true
+        },
+        {
+          "actual": "def run_tuners(file, budget, seed, maxlives):\n    raise ValueError('broken')\n",
+          "detail": "",
+          "expected": "def run_tuners(file, budget, seed, maxlives):\n    raise ValueError('broken')\n",
+          "name": "parent_immutable",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "repair_task_cardinality",
+          "passed": true
+        },
+        {
+          "actual": "COMPLETED",
+          "detail": "",
+          "expected": "COMPLETED",
+          "name": "repair_task_status",
+          "passed": true
+        },
+        {
+          "actual": [
+            "repair:diagnose",
+            "repair:repair"
+          ],
+          "detail": "",
+          "expected": [
+            "repair:diagnose",
+            "repair:repair"
+          ],
+          "name": "repair_model_phases",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "failure_artifact",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "draft_artifact",
+          "passed": true
+        }
+      ],
+      "category": "agent-fault",
+      "duration_ms": 84,
+      "error": "",
+      "evidence": {
+        "draft_artifact_id": "artifact-c80a6e4a-repaired_candidate_draft-a9307304dcb59c6d",
+        "failure_artifact_id": "artifact-c80a6e4a-candidate_failure-a21f412a8d21c412",
+        "parent_candidate_id": "candidate-repair",
+        "repaired_candidate_id": "candidate-repair-R1"
+      },
+      "expected_trace": [],
+      "name": "repair_success",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": [
+            "RepairAttemptLimitError",
+            "RepairAttemptLimitError",
+            "RepairAttemptLimitError"
+          ],
+          "detail": "",
+          "expected": [
+            "RepairAttemptLimitError",
+            "RepairAttemptLimitError",
+            "RepairAttemptLimitError"
+          ],
+          "name": "repair_attempt_errors",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "single_repair_task",
+          "passed": true
+        },
+        {
+          "actual": 3,
+          "detail": "",
+          "expected": 3,
+          "name": "task_attempts",
+          "passed": true
+        },
+        {
+          "actual": "FAILED",
+          "detail": "",
+          "expected": "FAILED",
+          "name": "task_failed_terminal",
+          "passed": true
+        },
+        {
+          "actual": 0,
+          "detail": "",
+          "expected": 0,
+          "name": "repair_phase_never_called",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "no_new_candidate_version",
+          "passed": true
+        }
+      ],
+      "category": "agent-fault",
+      "duration_ms": 33,
+      "error": "",
+      "evidence": {
+        "diagnosis_call_count": 3,
+        "errors": [
+          "RepairAttemptLimitError",
+          "RepairAttemptLimitError",
+          "RepairAttemptLimitError"
+        ],
+        "task_id": "agent-task-87166016578b3619dfe2ffa3d6b50bf7"
+      },
+      "expected_trace": [],
+      "name": "repair_beyond_limit",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "retry_attempts",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "logical_result_once",
+          "passed": true
+        }
+      ],
+      "category": "backend",
+      "duration_ms": 142,
+      "error": "",
+      "evidence": {
+        "budget_overrun_blocked": true,
+        "concurrent_budget_winners": 1,
+        "crash_benchmark_calls": 2,
+        "crash_budget_charged": 3,
+        "crash_logical_results": 1,
+        "crash_recovered_status": "SUCCESS",
+        "duplicate_jobs_created": 1,
+        "invalid_status": "DEAD",
+        "retry_attempts": 2,
+        "timeout_status": "DEAD"
+      },
+      "expected_trace": [],
+      "name": "evaluation_transient_retry",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "SUCCESS",
+          "detail": "",
+          "expected": "SUCCESS",
+          "name": "recovered_job_status",
+          "passed": true
+        },
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "benchmark_reexecuted_after_crash",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "single_logical_result",
+          "passed": true
+        }
+      ],
+      "category": "backend",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "budget_overrun_blocked": true,
+        "concurrent_budget_winners": 1,
+        "crash_benchmark_calls": 2,
+        "crash_budget_charged": 3,
+        "crash_logical_results": 1,
+        "crash_recovered_status": "SUCCESS",
+        "duplicate_jobs_created": 1,
+        "invalid_status": "DEAD",
+        "retry_attempts": 2,
+        "timeout_status": "DEAD"
+      },
+      "expected_trace": [],
+      "name": "worker_crash",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "SUCCESS",
+          "detail": "",
+          "expected": "SUCCESS",
+          "name": "lease_recovery_terminal_status",
+          "passed": true
+        },
+        {
+          "actual": 3,
+          "detail": "",
+          "expected": 3,
+          "name": "budget_charged_once",
+          "passed": true
+        }
+      ],
+      "category": "backend",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "budget_overrun_blocked": true,
+        "concurrent_budget_winners": 1,
+        "crash_benchmark_calls": 2,
+        "crash_budget_charged": 3,
+        "crash_logical_results": 1,
+        "crash_recovered_status": "SUCCESS",
+        "duplicate_jobs_created": 1,
+        "invalid_status": "DEAD",
+        "retry_attempts": 2,
+        "timeout_status": "DEAD"
+      },
+      "expected_trace": [],
+      "name": "lease_expire_recovery",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "duplicate_jobs_created",
+          "passed": true
+        }
+      ],
+      "category": "backend",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "budget_overrun_blocked": true,
+        "concurrent_budget_winners": 1,
+        "crash_benchmark_calls": 2,
+        "crash_budget_charged": 3,
+        "crash_logical_results": 1,
+        "crash_recovered_status": "SUCCESS",
+        "duplicate_jobs_created": 1,
+        "invalid_status": "DEAD",
+        "retry_attempts": 2,
+        "timeout_status": "DEAD"
+      },
+      "expected_trace": [],
+      "name": "duplicate_evaluation_submit",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "budget_overrun_blocked",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "two_connections_one_budget_winner",
+          "passed": true
+        }
+      ],
+      "category": "backend",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "budget_overrun_blocked": true,
+        "concurrent_budget_winners": 1,
+        "crash_benchmark_calls": 2,
+        "crash_budget_charged": 3,
+        "crash_logical_results": 1,
+        "crash_recovered_status": "SUCCESS",
+        "duplicate_jobs_created": 1,
+        "invalid_status": "DEAD",
+        "retry_attempts": 2,
+        "timeout_status": "DEAD"
+      },
+      "expected_trace": [],
+      "name": "budget_contention",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": false,
+          "detail": "",
+          "expected": false,
+          "name": "redis_write_degrades",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "durable_fallback_count",
+          "passed": true
+        },
+        {
+          "actual": "durable same-run evidence",
+          "detail": "",
+          "expected": "durable same-run evidence",
+          "name": "same_run_content",
+          "passed": true
+        },
+        {
+          "actual": "research",
+          "detail": "",
+          "expected": "research",
+          "name": "scope_preserved",
+          "passed": true
+        }
+      ],
+      "category": "memory",
+      "duration_ms": 10,
+      "error": "",
+      "evidence": {
+        "fallback_items": [
+          {
+            "content": "durable same-run evidence",
+            "created_at": "2026-08-20T12:40:57.670107+00:00",
+            "memory_type": "LITERATURE_INSIGHT",
+            "metadata": {
+              "agent_memory_id": "memory-1",
+              "evidence_artifact_id": "",
+              "subject": "research"
+            },
+            "scope": "research"
+          }
+        ],
+        "redis_source_of_truth": false
+      },
+      "expected_trace": [],
+      "name": "redis_unavailable",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "artifact-cdf9872e-top5_candidates-55ed2787fa7e91c8",
+          "detail": "",
+          "expected": "artifact-cdf9872e-top5_candidates-55ed2787fa7e91c8",
+          "name": "content_addressed_artifact",
+          "passed": true
+        },
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "duplicate_events_retained_for_audit",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "first_reconcile_created",
+          "passed": true
+        },
+        {
+          "actual": 0,
+          "detail": "",
+          "expected": 0,
+          "name": "replay_reconcile_created",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "derived_task_exactly_once",
+          "passed": true
+        }
+      ],
+      "category": "backend",
+      "duration_ms": 19,
+      "error": "",
+      "evidence": {
+        "agent_task_id": "agent-task-bec81aa88e462c5510849a01f24850eb",
+        "artifact_id": "artifact-cdf9872e-top5_candidates-55ed2787fa7e91c8",
+        "idempotency_key": "missing-work:v1:SEMANTIC_SIMILARITY_SELECTION:a6854ffd8a8c3c679b3f5131de54f675"
+      },
+      "expected_trace": [],
+      "name": "duplicate_runtime_event",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "recovery_event_present",
+          "passed": true
+        },
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "interrupted_checkpoint_present",
+          "passed": true
+        }
+      ],
+      "category": "recovery",
+      "duration_ms": 1776,
+      "error": "",
+      "evidence": {
+        "duplicate_evaluations": 0,
+        "recovered": {
+          "checkpoint_count": 11,
+          "consumed_budget": 81,
+          "evaluation_result_count": 27,
+          "final_digest": "6e8e2070fcb51737519635722109a5c47f1b92fd26dd0ed789a6d323927a2fb2",
+          "generation": 2,
+          "objective": 0.1176,
+          "recovery_event_present": true,
+          "status": "COMPLETED"
+        },
+        "recovery_event_present": true,
+        "uninterrupted": {
+          "checkpoint_count": 11,
+          "consumed_budget": 81,
+          "evaluation_result_count": 27,
+          "final_digest": "6e8e2070fcb51737519635722109a5c47f1b92fd26dd0ed789a6d323927a2fb2",
+          "generation": 2,
+          "objective": 0.1176,
+          "recovery_event_present": false,
+          "status": "COMPLETED"
+        }
+      },
+      "expected_trace": [],
+      "name": "run_crash",
+      "passed": true
+    },
+    {
+      "actual_trace": [],
+      "assertions": [
+        {
+          "actual": "COMPLETED",
+          "detail": "",
+          "expected": "COMPLETED",
+          "name": "recovered_matches_status",
+          "passed": true
+        },
+        {
+          "actual": 0.1176,
+          "detail": "",
+          "expected": 0.1176,
+          "name": "recovered_matches_objective",
+          "passed": true
+        },
+        {
+          "actual": "6e8e2070fcb51737519635722109a5c47f1b92fd26dd0ed789a6d323927a2fb2",
+          "detail": "",
+          "expected": "6e8e2070fcb51737519635722109a5c47f1b92fd26dd0ed789a6d323927a2fb2",
+          "name": "recovered_matches_final_digest",
+          "passed": true
+        },
+        {
+          "actual": 81,
+          "detail": "",
+          "expected": 81,
+          "name": "recovered_matches_consumed_budget",
+          "passed": true
+        },
+        {
+          "actual": 27,
+          "detail": "",
+          "expected": 27,
+          "name": "recovered_matches_evaluation_result_count",
+          "passed": true
+        },
+        {
+          "actual": 2,
+          "detail": "",
+          "expected": 2,
+          "name": "recovered_matches_generation",
+          "passed": true
+        },
+        {
+          "actual": 0,
+          "detail": "",
+          "expected": 0,
+          "name": "duplicate_evaluations",
+          "passed": true
+        }
+      ],
+      "category": "recovery",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "duplicate_evaluations": 0,
+        "recovered": {
+          "checkpoint_count": 11,
+          "consumed_budget": 81,
+          "evaluation_result_count": 27,
+          "final_digest": "6e8e2070fcb51737519635722109a5c47f1b92fd26dd0ed789a6d323927a2fb2",
+          "generation": 2,
+          "objective": 0.1176,
+          "recovery_event_present": true,
+          "status": "COMPLETED"
+        },
+        "recovery_event_present": true,
+        "uninterrupted": {
+          "checkpoint_count": 11,
+          "consumed_budget": 81,
+          "evaluation_result_count": 27,
+          "final_digest": "6e8e2070fcb51737519635722109a5c47f1b92fd26dd0ed789a6d323927a2fb2",
+          "generation": 2,
+          "objective": 0.1176,
+          "recovery_event_present": false,
+          "status": "COMPLETED"
+        }
+      },
+      "expected_trace": [],
+      "name": "checkpoint_recovery",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "RUN_STARTED",
+        "RUN_PAUSED",
+        "RUN_RESUMED",
+        "RUN_CANCEL_REQUESTED",
+        "RUN_CANCELLED"
+      ],
+      "assertions": [
+        {
+          "actual": "PAUSED",
+          "detail": "",
+          "expected": "PAUSED",
+          "name": "pause_status",
+          "passed": true
+        },
+        {
+          "actual": [
+            "RUN_STARTED",
+            "RUN_PAUSED",
+            "RUN_RESUMED",
+            "RUN_CANCEL_REQUESTED",
+            "RUN_CANCELLED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "RUN_STARTED",
+            "RUN_PAUSED"
+          ],
+          "name": "pause_trace",
+          "passed": true
+        }
+      ],
+      "category": "lifecycle",
+      "duration_ms": 12,
+      "error": "",
+      "evidence": {
+        "cancelled_status": "CANCELLED",
+        "events": [
+          "RUN_STARTED",
+          "RUN_PAUSED",
+          "RUN_RESUMED",
+          "RUN_CANCEL_REQUESTED",
+          "RUN_CANCELLED"
+        ],
+        "paused_status": "PAUSED",
+        "resumed_status": "RUNNING"
+      },
+      "expected_trace": [
+        "RUN_STARTED",
+        "RUN_PAUSED"
+      ],
+      "name": "pause",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "RUN_STARTED",
+        "RUN_PAUSED",
+        "RUN_RESUMED",
+        "RUN_CANCEL_REQUESTED",
+        "RUN_CANCELLED"
+      ],
+      "assertions": [
+        {
+          "actual": "RUNNING",
+          "detail": "",
+          "expected": "RUNNING",
+          "name": "resume_status",
+          "passed": true
+        },
+        {
+          "actual": [
+            "RUN_STARTED",
+            "RUN_PAUSED",
+            "RUN_RESUMED",
+            "RUN_CANCEL_REQUESTED",
+            "RUN_CANCELLED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "RUN_PAUSED",
+            "RUN_RESUMED"
+          ],
+          "name": "resume_trace",
+          "passed": true
+        }
+      ],
+      "category": "lifecycle",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "cancelled_status": "CANCELLED",
+        "events": [
+          "RUN_STARTED",
+          "RUN_PAUSED",
+          "RUN_RESUMED",
+          "RUN_CANCEL_REQUESTED",
+          "RUN_CANCELLED"
+        ],
+        "paused_status": "PAUSED",
+        "resumed_status": "RUNNING"
+      },
+      "expected_trace": [
+        "RUN_PAUSED",
+        "RUN_RESUMED"
+      ],
+      "name": "resume",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "RUN_STARTED",
+        "RUN_PAUSED",
+        "RUN_RESUMED",
+        "RUN_CANCEL_REQUESTED",
+        "RUN_CANCELLED"
+      ],
+      "assertions": [
+        {
+          "actual": "CANCELLED",
+          "detail": "",
+          "expected": "CANCELLED",
+          "name": "cancel_status",
+          "passed": true
+        },
+        {
+          "actual": [
+            "RUN_STARTED",
+            "RUN_PAUSED",
+            "RUN_RESUMED",
+            "RUN_CANCEL_REQUESTED",
+            "RUN_CANCELLED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "RUN_RESUMED",
+            "RUN_CANCELLED"
+          ],
+          "name": "cancel_trace",
+          "passed": true
+        }
+      ],
+      "category": "lifecycle",
+      "duration_ms": 0,
+      "error": "",
+      "evidence": {
+        "cancelled_status": "CANCELLED",
+        "events": [
+          "RUN_STARTED",
+          "RUN_PAUSED",
+          "RUN_RESUMED",
+          "RUN_CANCEL_REQUESTED",
+          "RUN_CANCELLED"
+        ],
+        "paused_status": "PAUSED",
+        "resumed_status": "RUNNING"
+      },
+      "expected_trace": [
+        "RUN_RESUMED",
+        "RUN_CANCELLED"
+      ],
+      "name": "cancel",
+      "passed": true
+    },
+    {
+      "actual_trace": [
+        "TOOL_CALL_DENIED"
+      ],
+      "assertions": [
+        {
+          "actual": true,
+          "detail": "",
+          "expected": true,
+          "name": "call_denied",
+          "passed": true
+        },
+        {
+          "actual": [],
+          "detail": "",
+          "expected": [],
+          "name": "operation_not_executed",
+          "passed": true
+        },
+        {
+          "actual": 1,
+          "detail": "",
+          "expected": 1,
+          "name": "audit_row_cardinality",
+          "passed": true
+        },
+        {
+          "actual": "DENIED",
+          "detail": "",
+          "expected": "DENIED",
+          "name": "audit_row_status",
+          "passed": true
+        },
+        {
+          "actual": [
+            "TOOL_CALL_DENIED"
+          ],
+          "detail": "ordered subsequence trace",
+          "expected": [
+            "TOOL_CALL_DENIED"
+          ],
+          "name": "denied_trace",
+          "passed": true
+        }
+      ],
+      "category": "security",
+      "duration_ms": 11,
+      "error": "",
+      "evidence": {
+        "tool_call": {
+          "created_at": "2026-08-20T12:40:59.491141+00:00",
+          "id": "tool-call-514e415beced4818acc7bf18b77a1c07",
+          "request": {
+            "caller": "UnauthorizedAgent",
+            "input_metadata": {},
+            "policy": "literature_search",
+            "reason": "fixture unauthorized call",
+            "started_at": "2026-08-20T12:40:59.491141+00:00"
+          },
+          "response": {
+            "duration_ms": 0,
+            "finished_at": "2026-08-20T12:40:59.491141+00:00",
+            "reason": "caller 不在 allowlist"
+          },
+          "run_id": "run-tool-denied",
+          "status": "DENIED",
+          "tool_name": "literature_search"
+        }
+      },
+      "expected_trace": [
+        "TOOL_CALL_DENIED"
+      ],
+      "name": "tool_unauthorized",
+      "passed": true
+    }
+  ],
+  "schema_version": "agent-engineering-harness-v1",
+  "similarity_llm_calls": 1
+}

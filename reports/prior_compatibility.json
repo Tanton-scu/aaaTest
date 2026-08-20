@@ -1,0 +1,545 @@
+{
+  "schema_version": "prior-compatibility-report-v1",
+  "policy_version": "prior-seed-static-v1",
+  "source_path": "resources/prior_knowledge/prior_population.json",
+  "source_sha256": "df5e7a57423feb2588782aa6597c1a176fb7975e99b3cb4cf3058745f06bd85a",
+  "total": 31,
+  "supported_count": 21,
+  "unsupported_count": 10,
+  "semantics": {
+    "SUPPORTED": "通过静态执行契约，可进入受控 evaluator 尝试执行；不等于对任意 Dataset 动态成功",
+    "UNSUPPORTED": "仍保留为 immutable prompt/evidence，但不得物化为可执行 initial seed"
+  },
+  "records": [
+    {
+      "index": 0,
+      "name": "FLASH",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "c906670c657ea003f228429df94c4fc3d4a320cc0aaf8e6c24ca83d9a18ff4a3",
+      "import_roots": [
+        "numpy",
+        "random",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 1,
+      "name": "HEBO",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：pymoo, torch",
+      "code_sha256": "776afdda342c882d3d7a01bf50ca7c2e4e1b0eb17d9be8889805e32183d18fea",
+      "import_roots": [
+        "numpy",
+        "pymoo",
+        "random",
+        "scipy",
+        "sklearn",
+        "torch",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "pymoo",
+        "torch"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 2,
+      "name": "PromiseTune",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：causallearn, lingam, pandas",
+      "code_sha256": "58a597fc97bed5c5158ff2497e969180ddd98af693fc8be0147d3a605c66d6c0",
+      "import_roots": [
+        "causallearn",
+        "copy",
+        "itertools",
+        "lingam",
+        "numpy",
+        "pandas",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "causallearn",
+        "lingam",
+        "pandas"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 3,
+      "name": "SWAY",
+      "status": "UNSUPPORTED",
+      "reason_code": "STATE_SCOPE_POLICY_BLOCKED",
+      "reason": "受控 evaluator 禁止 Candidate 使用 global/nonlocal 状态",
+      "code_sha256": "86ea36bf659bfa519576f8e6436d876411d4df09f76d4a3c5279d4727d9d5d6e",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 4,
+      "name": "Tuneful",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "5106111f5f2277a81b1eb3b39a4af431d797a1b6c23e03e64a44b7c3660cefe2",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 5,
+      "name": "CMAES",
+      "status": "UNSUPPORTED",
+      "reason_code": "ENTRYPOINT_CONTRACT_MISMATCH",
+      "reason": "run_tuners 必须是唯一同步顶层函数，签名严格为 (file, budget, seed, maxlives)",
+      "code_sha256": "75f7f1658d4844db21d849bdfe5e2388a617465008be1de1b10d391a633a5e9c",
+      "import_roots": [
+        "cma",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "cma"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 6,
+      "name": "RandomSearch",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "bb237a37de6484d8cb088b858b2239419d23408226cf638da1ebc960757c6746",
+      "import_roots": [
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 7,
+      "name": "ACO",
+      "status": "UNSUPPORTED",
+      "reason_code": "ENTRYPOINT_CONTRACT_MISMATCH",
+      "reason": "run_tuners 必须是唯一同步顶层函数，签名严格为 (file, budget, seed, maxlives)",
+      "code_sha256": "b2d2395c575db436d34b8ca4cb88e0cde7c5c64ef6ad8b3cfbd344b564e866a4",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 8,
+      "name": "BO",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "65cf4f01390d1c349a70e764826e09634e86b6dbcd0a71339354012a4ea6d9f9",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 9,
+      "name": "DE",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "b24c296a9d4ed5ce03fd1f8ab9cf7c882e8addd0997585be931e83dfcd8e4607",
+      "import_roots": [
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 10,
+      "name": "ES",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "5474e555db7932ab59f5b73992a70c3962ee713ac1cc5e615cfa8f51da4fd636",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 11,
+      "name": "GA",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "57fcfcc91eb48985b0a0c6f18d41384d42c3d7fcaa8de35928680ff7fa8c7abe",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 12,
+      "name": "HillClimbing",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "a80d892e622d9707f76c714ea2b6a24ef2e63ec694216bb6fe5ff15782161410",
+      "import_roots": [
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 13,
+      "name": "PSO",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "cf74888a8b7f88d12b4440ec279428ede588224996369d8026df414865b7bbc3",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 14,
+      "name": "SA",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "f062094e9e2c0fa817c17baebe803eab4572ebb81fff14aa4d554df355e57c2d",
+      "import_roots": [
+        "math",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 15,
+      "name": "ATConf",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "30fcd63e7c1ea6f257323a733fb1a4552f2406fe449f68115e0bfc3896e9948f",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 16,
+      "name": "BestConfig",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "52594114d15ea69f3d7ad39a34479bc5b1ba083c738b07022bbb47b93b1ebb13",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 17,
+      "name": "BOCA",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "94b1241a5cbc21e04bc9ec6c77bf0dac1b6da0b73f9c04269df967f006d91e36",
+      "import_roots": [
+        "itertools",
+        "numpy",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 18,
+      "name": "ConEx",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "7c202275caeab30cfac56d6ce9716815a4a28dccc00f98ddfc5b0a79b8211cd9",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 19,
+      "name": "OtterTune",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "0dd06e652fa84bf465fc367e637baa9e6f32bb118a7b34a9aa7376b29351876d",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 20,
+      "name": "ResTune",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：pyDOE2",
+      "code_sha256": "3f00461911bca83133e9267d697cd7f1303b9348c4de0dfedf498d1f07a81ad5",
+      "import_roots": [
+        "numpy",
+        "pyDOE2",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "pyDOE2"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 21,
+      "name": "ROBOTune",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：pyDOE2",
+      "code_sha256": "fa61013ac2968ed7ef9705443bc9d93192eced8964e7fd7f8b31555eb2172701",
+      "import_roots": [
+        "numpy",
+        "pyDOE2",
+        "random",
+        "scipy",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "pyDOE2"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 22,
+      "name": "GGA",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "3c8c9f69601df3e67524aab67c3e056204cf57dc72b3624ac0008a0cd50fc0a0",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 23,
+      "name": "HABO",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "2b7506d65d777616405ef1a28b27e32d0c3c4d660117a9570084ed9db0ab7118",
+      "import_roots": [
+        "numpy",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 24,
+      "name": "irace",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "8638fcfa2d457cd98b0eef99c6b8f4746aceadd6e1cc39d4951d83d9da8799bc",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 25,
+      "name": "ParamILS",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "e8bd8c5439f17a89866f6bb579b6ba8bcb306f25747bf035a2a105134eac7218",
+      "import_roots": [
+        "numpy",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 26,
+      "name": "SMAC",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "a475bb1b44b78841c2bb9a69d6cc1e67b7ad1bd0493246a9c766169afd7c42ce",
+      "import_roots": [
+        "math",
+        "numpy",
+        "random",
+        "sklearn",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 27,
+      "name": "UQGuided",
+      "status": "SUPPORTED",
+      "reason_code": "STATIC_CONTRACT_SATISFIED",
+      "reason": "通过受控 evaluator 静态源代码契约，可尝试作为 original-prior seed 执行",
+      "code_sha256": "736c62ef784b19a9d153e08c415353d256228003e270c3a906ecde4de7ae7ecf",
+      "import_roots": [
+        "numpy",
+        "random",
+        "scipy",
+        "util"
+      ],
+      "blocked_import_roots": [],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 28,
+      "name": "Hyperband",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：ConfigSpace, hpbandster, logging, serpent",
+      "code_sha256": "24409f5e9e91eeef1b61f99477ae5a53784d4f83ee59df52ea8e398bd59168d0",
+      "import_roots": [
+        "ConfigSpace",
+        "hpbandster",
+        "logging",
+        "numpy",
+        "random",
+        "serpent",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "ConfigSpace",
+        "hpbandster",
+        "logging",
+        "serpent"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 29,
+      "name": "BOHB",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：ConfigSpace, hpbandster, logging, serpent",
+      "code_sha256": "61e9e1edd2181d672b958988915b05aaea7b79ff21cae96f302947a1f56eb7c7",
+      "import_roots": [
+        "ConfigSpace",
+        "hpbandster",
+        "logging",
+        "numpy",
+        "random",
+        "serpent",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "ConfigSpace",
+        "hpbandster",
+        "logging",
+        "serpent"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    },
+    {
+      "index": 30,
+      "name": "DEHB",
+      "status": "UNSUPPORTED",
+      "reason_code": "IMPORT_POLICY_BLOCKED",
+      "reason": "包含产品 Candidate worker 未承诺的 import root：ConfigSpace, dehb",
+      "code_sha256": "b3eb487b9abd07dc367ba121d8e4bc9a2825c8e3643f0295acd2bc1b5bd4d689",
+      "import_roots": [
+        "ConfigSpace",
+        "dehb",
+        "random",
+        "util"
+      ],
+      "blocked_import_roots": [
+        "ConfigSpace",
+        "dehb"
+      ],
+      "policy_version": "prior-seed-static-v1"
+    }
+  ]
+}
