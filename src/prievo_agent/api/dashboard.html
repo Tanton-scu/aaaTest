@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PriEvO-Agent 控制台</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07111f;--card:#101d30;--line:#2b4059;--accent:#55d8ba;--warn:#ffca68;--danger:#ff7885;--muted:#9aadc4}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#153555,#07111f 48%);color:#edf6ff;font:15px/1.5 system-ui,-apple-system,sans-serif}
+    main{max-width:1240px;margin:auto;padding:28px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}.card{background:#101d30ed;border:1px solid var(--line);border-radius:14px;padding:19px;margin-bottom:18px;box-shadow:0 14px 38px #0005}
+    h1{font-size:38px;line-height:1.1;margin:0 0 10px}h2{font-size:18px;margin:0 0 12px}.muted{color:var(--muted)}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    label{display:block;margin:10px 0 6px}select,input,button{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);background:#0a1627;color:#fff}button{background:var(--accent);color:#05221b;font-weight:800;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.danger{background:var(--danger);color:#2b0509}.secondary{background:#152942;color:#dcecff}.warn{background:var(--warn);color:#302000}
+    .actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{background:#0b1728;padding:13px;border-radius:10px;border:1px solid #213650}.metric b{display:block;font-size:19px;margin-top:4px;overflow-wrap:anywhere}.wide{grid-column:span 2}.full{grid-column:1/-1}.advanced{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}details{margin-top:12px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}pre{white-space:pre-wrap;max-height:390px;overflow:auto;background:#07101c;padding:14px;border-radius:9px;word-break:break-word}.timeline{max-height:430px;overflow:auto}.event{padding:9px 0;border-bottom:1px solid var(--line)}.event small{display:block;color:var(--muted)}svg{width:100%;height:180px;background:#091525;border-radius:8px}.ok{color:var(--accent)}.bad{color:var(--danger)}.live{display:inline-flex;align-items:center;gap:7px}.live:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+    @media(max-width:820px){.hero,.grid{grid-template-columns:1fr}.wide,.full{grid-column:auto}.actions,.advanced{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main>
+  <section class="hero">
+    <div><div class="eyebrow">数据集驱动的自动启发式设计算法平台</div><h1>PriEvO-Agent</h1><p class="muted">真实 PriEvO 核心、五类持久化 Agent、MySQL/Redis、受控候选算法执行、检查点与可审计追踪。</p><p id="connection" class="muted">尚未连接运行实例</p></div>
+    <div class="card"><h2>创建优化任务</h2><label for="dataset">目标 Dataset</label><select id="dataset"></select>
+      <details><summary>运行参数</summary><div class="advanced">
+        <label for="generations">种群代数<input id="generations" type="number" value="4" min="1" max="20"></label>
+        <label for="population">种群大小<input id="population" type="number" value="10" min="2" max="40"></label>
+        <label for="candidateBudget">单个候选评价预算<input id="candidateBudget" type="number" value="20" min="1" max="200"></label>
+        <label for="seed">随机种子<input id="seed" type="number" value="2024" min="0"></label>
+      </div><p id="estimate" class="muted"></p></details>
+      <button id="start" type="button">开始优化</button>
+      <div class="actions"><button id="pause" class="warn" type="button" disabled>暂停</button><button id="resume" class="secondary" type="button" disabled>恢复</button><button id="cancel" class="danger" type="button" disabled>取消</button></div>
+      <p id="notice" class="muted"></p>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="metric">Run 状态<b id="status">尚未开始</b></div><div class="metric">当前阶段<b id="phase">-</b></div>
+    <div class="metric">当前代数<b id="generationView">-</b></div><div class="metric">评价预算<b id="budgetView">-</b></div>
+    <div class="card wide"><h2>适应度轨迹</h2><svg id="curve" viewBox="0 0 600 180"></svg></div>
+    <div class="card wide"><h2>实例级先验</h2><pre id="prior">等待运行</pre></div>
+  </section>
+
+  <section class="card"><h2>候选算法事实列表</h2><p class="muted">失败原件、修复版本与最终优化副本均会保留；它们不等同于当前种群。</p><table><thead><tr><th>ID</th><th>状态</th><th>适应度</th><th>策略 / 来源</th></tr></thead><tbody id="candidates"></tbody></table></section>
+
+  <section class="grid">
+    <div class="card wide"><h2>持久化事件时间线</h2><div id="events" class="timeline"></div></div>
+    <div class="card wide"><h2>Agent 调用追踪</h2><pre id="trace">等待 Agent 任务</pre></div>
+    <div class="card wide"><h2>最终启发式算法</h2><pre id="finalCode">等待最终选择</pre></div>
+    <div class="card wide"><h2>最终配置与报告</h2><pre id="finalReport">等待最终优化</pre></div>
+  </section>
+</main>
+<script>
+const ui={dataset:document.querySelector('#dataset'),generations:document.querySelector('#generations'),population:document.querySelector('#population'),candidateBudget:document.querySelector('#candidateBudget'),seed:document.querySelector('#seed'),estimate:document.querySelector('#estimate'),start:document.querySelector('#start'),pause:document.querySelector('#pause'),resume:document.querySelector('#resume'),cancel:document.querySelector('#cancel'),notice:document.querySelector('#notice'),connection:document.querySelector('#connection'),status:document.querySelector('#status'),phase:document.querySelector('#phase'),generation:document.querySelector('#generationView'),budget:document.querySelector('#budgetView'),curve:document.querySelector('#curve'),prior:document.querySelector('#prior'),candidates:document.querySelector('#candidates'),events:document.querySelector('#events'),trace:document.querySelector('#trace'),finalCode:document.querySelector('#finalCode'),finalReport:document.querySelector('#finalReport')};
+let runId=null,eventSource=null,lastSequence=0,refreshing=false,fallbackTimer=null;
+
+function estimate(){const g=+ui.generations.value,p=+ui.population.value,b=+ui.candidateBudget.value;const evolution=b*p*(1+4*g),finalOptimization=2*(2*b);ui.estimate.textContent=`演化：${p} 个初始个体 + ${g} 代 × 4 种策略 × ${p} 个后代；演化预算 ${evolution}；最终优化：2 个种子 × ${2*b}=${finalOptimization}；总预算 ${evolution+finalOptimization}`;}
+async function jsonFetch(url,options){const response=await fetch(url,options);if(!response.ok)throw new Error((await response.text())||`${response.status}`);return response.json();}
+async function loadDatasets(){try{const items=await jsonFetch('/api/datasets');ui.dataset.replaceChildren(...items.map(item=>{const option=document.createElement('option');option.value=item.id;option.textContent=`${item.display_name} · ${item.row_count} 行`;return option;}));ui.start.disabled=!items.length;ui.notice.textContent=items.length?`发现 ${items.length} 个合法数据集`:'没有合法数据集';}catch(error){ui.notice.textContent=`数据集加载失败：${error.message}`;}}
+async function startRun(){ui.start.disabled=true;ui.notice.textContent='正在创建 durable Run…';try{const body={dataset_id:ui.dataset.value,generations:+ui.generations.value,population_size:+ui.population.value,candidate_budget:+ui.candidateBudget.value,random_seed:+ui.seed.value};const run=await jsonFetch('/api/runs',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});runId=run.run_id;lastSequence=0;ui.notice.textContent=`Run ${runId} 已提交`;connectEvents();await refresh();}catch(error){ui.notice.textContent=`创建失败：${error.message}`;ui.start.disabled=false;}}
+async function control(action){if(!runId)return;const labels={pause:'暂停',resume:'恢复',cancel:'取消'};const label=labels[action]||action;try{ui.notice.textContent=`正在请求${label}…`;const run=await jsonFetch(`/api/runs/${runId}/${action}`,{method:'POST'});ui.notice.textContent=`${label}请求已持久化，当前状态 ${run.status}`;await refresh();if(action==='resume')connectEvents();}catch(error){ui.notice.textContent=`${label}失败：${error.message}`;}}
+function connectEvents(){if(!runId)return;if(eventSource)eventSource.close();eventSource=new EventSource(`/api/runs/${runId}/events/stream?after=${lastSequence}`);ui.connection.textContent='SSE 正在连接';eventSource.onopen=()=>{ui.connection.textContent='SSE durable event 已连接';ui.connection.className='live';};for(const type of ['RUN_STARTED','RUN_PAUSED','RUN_RESUMED','RUN_COMPLETED','RUN_FAILED','RUN_CANCELLED','LANDSCAPE_ANALYZED','AGENT_TASK_CREATED','AGENT_TASK_COMPLETED','CANDIDATE_GENERATED','CANDIDATE_EVALUATED','GENERATION_STARTED','GENERATION_COMPLETED','CHECKPOINT_SAVED','FINAL_OPTIMIZATION_COMPLETED'])eventSource.addEventListener(type,refresh);eventSource.onerror=()=>{ui.connection.textContent='SSE 暂时断开，浏览器会自动重连';ui.connection.className='muted';};clearInterval(fallbackTimer);fallbackTimer=setInterval(refresh,2500);}
+function draw(values){ui.curve.replaceChildren();if(!values.length)return;const min=Math.min(...values),max=Math.max(...values),span=max-min||1;const points=values.map((value,index)=>`${20+index*560/Math.max(1,values.length-1)},${160-(value-min)*140/span}`).join(' ');const line=document.createElementNS('http://www.w3.org/2000/svg','polyline');line.setAttribute('points',points);line.setAttribute('fill','none');line.setAttribute('stroke','#55d8ba');line.setAttribute('stroke-width','3');ui.curve.append(line);const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('x','12');label.setAttribute('y','18');label.setAttribute('fill','#9aadc4');label.textContent=`最优值 ${min.toFixed(6)}`;ui.curve.append(label);}
+function candidateRows(items){ui.candidates.replaceChildren(...items.map(item=>{const row=document.createElement('tr');for(const value of [item.candidate_id,item.status,item.objective??'-',item.lineage.creation_type||item.lineage.operator||'-']){const cell=document.createElement('td');cell.textContent=String(value);row.append(cell);}return row;}));}
+function eventRows(items){lastSequence=Math.max(lastSequence,...items.map(item=>item.sequence),0);ui.events.replaceChildren(...items.slice().reverse().map(item=>{const row=document.createElement('div');row.className='event';const title=document.createElement('b');title.textContent=item.event_type;const text=document.createTextNode(` · ${item.message}`);const detail=document.createElement('small');detail.textContent=`#${item.sequence} ${item.occurred_at}`;row.append(title,text,detail);return row;}));const newest=items.at(-1);ui.phase.textContent=newest?newest.event_type:'-';}
+async function artifactText(meta){return fetch(`/api/runs/${runId}/artifacts/${meta.artifact_id}/content`).then(response=>response.text());}
+async function refresh(){if(!runId||refreshing)return;refreshing=true;try{const [run,eventData,artifactData,trace]=await Promise.all([jsonFetch(`/api/runs/${runId}`),jsonFetch(`/api/runs/${runId}/events`),jsonFetch(`/api/runs/${runId}/artifacts`),jsonFetch(`/api/runs/${runId}/trace`)]);ui.status.textContent=run.status;ui.status.className=run.status==='COMPLETED'?'ok':(['FAILED','CANCELLED'].includes(run.status)?'bad':'');ui.generation.textContent=`${run.generation}/${run.settings.generations}`;ui.budget.textContent=`已消耗 ${run.budget.consumed} · 已预留 ${run.budget.reserved} · 剩余 ${run.budget.remaining}`;candidateRows(run.candidates);draw(run.candidates.flatMap(item=>item.trajectory||[]));eventRows(eventData.items);ui.trace.textContent=JSON.stringify({summary:trace.summary,tasks:trace.tasks,tool_calls:trace.tool_calls},null,2);const artifacts=artifactData.items;const prior=artifacts.find(item=>item.kind==='INSTANCE_SPECIFIC_PRIOR');if(prior)ui.prior.textContent=await artifactText(prior);const heuristic=artifacts.find(item=>item.kind==='FINAL_HEURISTIC');if(heuristic)ui.finalCode.textContent=await artifactText(heuristic);const report=artifacts.find(item=>item.kind==='FINAL_OPTIMIZATION_REPORT');if(report)ui.finalReport.textContent=await artifactText(report);const active=['PENDING','RUNNING'].includes(run.status);ui.pause.disabled=!active;ui.resume.disabled=run.status!=='PAUSED';ui.cancel.disabled=!['PENDING','RUNNING','PAUSED'].includes(run.status);if(['COMPLETED','FAILED','CANCELLED'].includes(run.status)){ui.start.disabled=false;if(eventSource)eventSource.close();clearInterval(fallbackTimer);ui.connection.textContent='运行已终止，SSE 已关闭';ui.connection.className='muted';}}catch(error){ui.notice.textContent=`刷新失败：${error.message}`;}finally{refreshing=false;}}
+
+ui.start.addEventListener('click',startRun);ui.pause.addEventListener('click',()=>control('pause'));ui.resume.addEventListener('click',()=>control('resume'));ui.cancel.addEventListener('click',()=>control('cancel'));[ui.generations,ui.population,ui.candidateBudget].forEach(element=>element.addEventListener('input',estimate));estimate();loadDatasets();
+</script></body></html>

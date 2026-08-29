@@ -1,0 +1,109 @@
+name: prievo-agent-v5
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-prievo}
+      MYSQL_USER: ${MYSQL_USER:-prievo}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-prievo}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-prievo-root-local}
+    command: ["--character-set-server=utf8mb4","--collation-server=utf8mb4_0900_ai_ci"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL","mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 8s
+      timeout: 4s
+      retries: 30
+
+  redis:
+    image: redis:7.4-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD","redis-cli","ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  app:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Compose 是唯一的 Full Mode 部署入口；Demo 请使用 scripts/run_demo.py。
+      PRIEVO_MODE: full
+      DATABASE_URL: ${DATABASE_URL:-mysql+pymysql://prievo:prievo@mysql:3306/prievo}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      RESEARCH_FAITHFUL_MODE: ${RESEARCH_FAITHFUL_MODE:-false}
+      # App 用该值构造 job identity；必须与独立 Worker 的执行 timeout 一致。
+      EVALUATION_TIMEOUT_SECONDS: ${EVALUATION_TIMEOUT_SECONDS:-10}
+    ports:
+      - "8000:8000"
+    volumes:
+      - prievo_data:/var/lib/prievo
+      - ./data/papers:/app/data/papers
+      # PDF ingest 产物写回宿主机，容器重建后仍会被产品 Hybrid RAG 读取。
+      - ./data/literature:/app/data/literature
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PRIEVO_MODE: full
+      DATABASE_URL: ${DATABASE_URL:-mysql+pymysql://prievo:prievo@mysql:3306/prievo}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      EVALUATION_WORKER_ID_PREFIX: ${EVALUATION_WORKER_ID_PREFIX:-evaluation-worker}
+      EVALUATION_TIMEOUT_SECONDS: ${EVALUATION_TIMEOUT_SECONDS:-10}
+      EVALUATION_LEASE_SECONDS: ${EVALUATION_LEASE_SECONDS:-30}
+      EVALUATION_WORKER_POLL_SECONDS: ${EVALUATION_WORKER_POLL_SECONDS:-0.25}
+      EVALUATION_WORKER_MAX_POLL_SECONDS: ${EVALUATION_WORKER_MAX_POLL_SECONDS:-2}
+      EVALUATION_STALE_SWEEP_SECONDS: ${EVALUATION_STALE_SWEEP_SECONDS:-10}
+      # Compose 中由已 healthy 的 app 完成 schema 初始化；独立部署 CLI 默认 true。
+      EVALUATION_WORKER_ENSURE_SCHEMA: "false"
+    command:
+      - python
+      - -m
+      - prievo_agent.cli.evaluation_worker
+      - --root
+      - /var/lib/prievo
+    volumes:
+      - prievo_data:/var/lib/prievo
+    depends_on:
+      mysql:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -m
+        - prievo_agent.cli.evaluation_worker
+        - --root
+        - /var/lib/prievo
+        - --health-check
+      interval: 15s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
+    stop_signal: SIGTERM
+    # 默认 benchmark timeout=10s；修改 timeout 时应同步放宽该窗口。
+    stop_grace_period: 45s
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  redis_data:
+  prievo_data:

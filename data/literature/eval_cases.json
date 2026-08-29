@@ -1,0 +1,62 @@
+[
+  {
+    "case_id": "dehb-mechanism",
+    "query": {
+      "algorithm_names": ["DEHB"],
+      "topic": "Differential Evolution combined with Hyperband multi-fidelity resource allocation",
+      "purpose": "explain the proposal and selection mechanism",
+      "reason": "offline RAG evaluation",
+      "max_results": 3
+    },
+    "gold_paper_ids": ["awad-2021-dehb"],
+    "gold_chunk_ids": ["awad-2021-dehb:mechanism:0"]
+  },
+  {
+    "case_id": "hyperband-mechanism",
+    "query": {
+      "algorithm_names": ["Hyperband"],
+      "topic": "successive halving brackets configurations and resource allocation",
+      "purpose": "explain the core Hyperband mechanism",
+      "reason": "offline RAG evaluation",
+      "max_results": 3
+    },
+    "gold_paper_ids": ["li-2018-hyperband"],
+    "gold_chunk_ids": ["li-2018-hyperband:mechanism:0"]
+  },
+  {
+    "case_id": "hyperband-limitations",
+    "query": {
+      "algorithm_names": ["Hyperband"],
+      "topic": "limitations low-resource evaluations model-based proposal mechanism",
+      "purpose": "identify assumptions and limitations",
+      "reason": "offline RAG evaluation",
+      "max_results": 3
+    },
+    "gold_paper_ids": ["li-2018-hyperband"],
+    "gold_chunk_ids": ["li-2018-hyperband:limitations:0"]
+  },
+  {
+    "case_id": "eoh-automatic-design",
+    "query": {
+      "algorithm_names": ["Evolution of Heuristics", "EoH"],
+      "topic": "large language model evolutionary framework executable heuristic automatic algorithm design",
+      "purpose": "explain how EoH generates and improves heuristics",
+      "reason": "offline RAG evaluation",
+      "max_results": 3
+    },
+    "gold_paper_ids": ["liu-2024-eoh"],
+    "gold_chunk_ids": ["liu-2024-eoh:mechanism:0"]
+  },
+  {
+    "case_id": "eoh-prievo-comparison",
+    "query": {
+      "algorithm_names": ["PriEvO", "Evolution of Heuristics"],
+      "topic": "instance-specific landscape prior optimize while evolve comparison",
+      "purpose": "compare PriEvO with automatic heuristic design",
+      "reason": "offline RAG evaluation",
+      "max_results": 3
+    },
+    "gold_paper_ids": ["liu-2024-eoh"],
+    "gold_chunk_ids": ["liu-2024-eoh:comparison:0"]
+  }
+]

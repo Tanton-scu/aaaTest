@@ -1,0 +1,15 @@
+__pycache__
+*.pyc
+build
+*.egg-info
+.git
+.env
+.prievo-runtime
+.prievo-runtime*
+.demo-runtime
+snapshots
+references
+docs
+reports
+data/papers
+data/literature/pdf_corpus.json
