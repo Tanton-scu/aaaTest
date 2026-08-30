@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.generation_workflow import DurableGenerationWorkflow
-from prievo_agent.agents.heuristic_generation import KnowledgeGap
+from prievo_agent.application.workflows.generation_workflow import DurableGenerationWorkflow
+from prievo_agent.agents.nodes.heuristic_generation import KnowledgeGap
 from prievo_agent.domain.models import (
     AgentMemory,
     Candidate,
@@ -24,9 +24,9 @@ from prievo_agent.infrastructure.agent_memory import (
     InMemoryAgentWorkingMemory,
     RedisAgentWorkingMemory,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class _UnavailableRedis:

@@ -1,6 +1,6 @@
 import unittest
 
-from prievo_agent.agents.context import AgentContextBuilder
+from prievo_agent.agents.common.context import AgentContextBuilder
 
 
 class AgentContextBuilderTest(unittest.TestCase):

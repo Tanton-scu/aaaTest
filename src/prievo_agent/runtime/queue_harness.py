@@ -15,8 +15,8 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.fake_evaluator import FakeEvaluator
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.fake_evaluator import FakeEvaluator
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 from .evaluation_queue import (
     EvaluationQueueService,

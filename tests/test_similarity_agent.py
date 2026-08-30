@@ -3,9 +3,9 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from prievo_agent.agents.similarity import (
+from prievo_agent.agents.nodes.similarity import (
     MalformedSimilarityDecisionError,
-    SimilarityAgent,
+    SimilaritySelectionNode,
 )
 from prievo_agent.domain.models import AgentCapability
 from prievo_agent.domain.prior import (
@@ -13,7 +13,7 @@ from prievo_agent.domain.prior import (
     LandscapeProfile,
     SimilarInstance,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
 
 
@@ -43,7 +43,7 @@ class _StaticModel:
         return self.result
 
 
-class SimilarityAgentTest(unittest.TestCase):
+class SimilaritySelectionNodeTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.project = Path(__file__).resolve().parents[1]
@@ -53,11 +53,11 @@ class SimilarityAgentTest(unittest.TestCase):
 
     def test_fake_selects_top_two_and_preserves_prompt_provenance(self):
         llm = FakeLLM()
-        agent = SimilarityAgent(self.registry, llm)
+        agent = SimilaritySelectionNode(self.registry, llm)
 
         decision = agent.select(self.target, self.candidates, _semantics())
 
-        self.assertEqual("SimilarityAgent", agent.name)
+        self.assertEqual("SimilaritySelectionNode", agent.name)
         self.assertEqual(AgentCapability.SEMANTIC_SIMILARITY, agent.capability)
         self.assertEqual(["A", "b"], decision.selected_instance_ids)
         self.assertEqual("semantic_similarity_selection", decision.skill_name)
@@ -104,7 +104,7 @@ class SimilarityAgentTest(unittest.TestCase):
             with self.subTest(result=result), self.assertRaises(
                 MalformedSimilarityDecisionError
             ):
-                SimilarityAgent(self.registry, _StaticModel(result)).select(
+                SimilaritySelectionNode(self.registry, _StaticModel(result)).select(
                     self.target, self.candidates, _semantics()
                 )
 
@@ -113,7 +113,7 @@ class SimilarityAgentTest(unittest.TestCase):
             with self.subTest(result=result), self.assertRaises(
                 MalformedSimilarityDecisionError
             ):
-                SimilarityAgent(self.registry, _StaticModel(result)).select(
+                SimilaritySelectionNode(self.registry, _StaticModel(result)).select(
                     self.target, self.candidates, _semantics()
                 )
 
@@ -121,7 +121,7 @@ class SimilarityAgentTest(unittest.TestCase):
         semantics = _semantics()
         semantics.pop("NBC")
         with self.assertRaisesRegex(ValueError, "NBC"):
-            SimilarityAgent(self.registry, FakeLLM()).select(
+            SimilaritySelectionNode(self.registry, FakeLLM()).select(
                 self.target, self.candidates, semantics
             )
 

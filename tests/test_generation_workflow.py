@@ -5,16 +5,16 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.generation_workflow import DurableGenerationWorkflow
+from prievo_agent.application.workflows.generation_workflow import DurableGenerationWorkflow
 from prievo_agent.domain.models import Candidate, CandidateStatus, OptimizationTask, Run
 from prievo_agent.domain.prior import (
     InstanceSpecificPrior,
     LandscapeProfile,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class DurableGenerationWorkflowTest(unittest.TestCase):

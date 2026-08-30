@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from prievo_agent.application.tool_governance import (
+from prievo_agent.application.tools.tool_governance import (
     CandidateInspectionTool,
     ToolCallDenied,
     ToolGovernanceGateway,
@@ -17,7 +17,7 @@ from prievo_agent.domain.models import (
     ToolCallRecord,
 )
 from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class CandidateInspectionIsolationTest(unittest.TestCase):
@@ -128,12 +128,11 @@ class RuntimeHealthAndInitializationTest(unittest.TestCase):
 
     def test_full_mode_syncs_dataset_metadata_only_during_initialization(self):
         environment = {
-            "PRIEVO_MODE": "full",
             "DATABASE_URL": "mysql+pymysql://u:p@db/prievo",
             "REDIS_URL": "",
-            "LLM_API_ENDPOINT": "",
-            "LLM_API_KEY": "",
-            "LLM_MODEL": "",
+            "LLM_API_ENDPOINT": "https://llm.example",
+            "LLM_API_KEY": "secret",
+            "LLM_MODEL": "model",
         }
         with tempfile.TemporaryDirectory() as directory, patch.dict(
             os.environ, environment, clear=False
@@ -172,13 +171,17 @@ class RuntimeHealthAndInitializationTest(unittest.TestCase):
 
     def test_database_ping_failure_makes_readiness_down(self):
         environment = {
-            "PRIEVO_MODE": "demo",
-            "LLM_API_ENDPOINT": "",
-            "LLM_API_KEY": "",
-            "LLM_MODEL": "",
+            "DATABASE_URL": "mysql+pymysql://u:p@db/prievo",
+            "REDIS_URL": "",
+            "LLM_API_ENDPOINT": "https://llm.example",
+            "LLM_API_KEY": "secret",
+            "LLM_MODEL": "model",
         }
         with tempfile.TemporaryDirectory() as directory, patch.dict(
             os.environ, environment, clear=False
+        ), patch(
+            "prievo_agent.infrastructure.local_runtime.MySQLRuntimeStore",
+            _FakeMySQLStore,
         ):
             composition = LocalRuntimeComposition(Path(directory))
             with patch.object(

@@ -4,14 +4,16 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from prievo_agent.agents.nodes.evolution_planner import EvolutionPlannerNode
 from prievo_agent.domain.models import Event
-from prievo_agent.infrastructure.llm_adapter import configured_llm
-from prievo_agent.infrastructure.llm_adapter import OpenAICompatibleLLM
-from prievo_agent.infrastructure.llm_adapter import MalformedLLMResponseError
-from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
 from prievo_agent.infrastructure.env_loader import load_env_file
+from prievo_agent.infrastructure.llm_adapter import (
+    MalformedLLMResponseError,
+    OpenAICompatibleLLM,
+    configured_llm,
+)
+from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
 from prievo_agent.infrastructure.redis_events import PublishingStore
-from prievo_agent.agents.evolution_planner import EvolutionPlannerAgent
 
 
 class FakeResponse:
@@ -19,10 +21,18 @@ class FakeResponse:
         return None
 
     def json(self):
-        return {"choices": [{"message": {"content": (
-            '{"code":"def run_tuners(file, budget, seed, maxlives):\\n'
-            '    return 1","description":"real adapter","operators":["Revise"]}'
-        )}}]}
+        return {
+            "choices": [
+                {
+                    "message": {
+                        "content": (
+                            '{"code":"def run_tuners(file, budget, seed, maxlives):\\n'
+                            '    return 1","description":"real adapter","operators":["Revise"]}'
+                        )
+                    }
+                }
+            ]
+        }
 
 
 class FakeHTTPStatusError(RuntimeError):
@@ -31,7 +41,7 @@ class FakeHTTPStatusError(RuntimeError):
         super().__init__("HTTP {}".format(status_code))
 
 
-class FakeStore:
+class FakeEventStore:
     def __init__(self):
         self.persisted = []
 
@@ -46,17 +56,49 @@ class FailingBus:
         return False
 
 
+class FakeMySQLStore:
+    instances = []
+    synced_dataset_ids = []
+
+    def __init__(self, database_url, artifact_root, ensure_schema=True):
+        self.database_url = database_url
+        self.artifact_root = Path(artifact_root)
+        self.ensure_schema = ensure_schema
+        self.connection = type(
+            "Connection", (), {"ping": lambda _self, reconnect=True: None}
+        )()
+        FakeMySQLStore.instances.append(self)
+
+    def sync_dataset(self, dataset):
+        FakeMySQLStore.synced_dataset_ids.append(dataset.id)
+
+    def list_runs(self):
+        return []
+
+    def evaluation_jobs_for_run(self, _run_id):
+        return []
+
+    def close(self):
+        return None
+
+
 class V5AdapterTest(unittest.TestCase):
     def test_openai_compatible_llm_is_real_configurable_path(self):
-        environment = {"LLM_API_ENDPOINT": "https://llm.example/v1/chat/completions",
-                       "LLM_API_KEY": "secret", "LLM_MODEL": "model"}
+        environment = {
+            "LLM_API_ENDPOINT": "https://llm.example/v1/chat/completions",
+            "LLM_API_KEY": "secret",
+            "LLM_MODEL": "model",
+        }
         with patch.dict(os.environ, environment, clear=False), patch(
-                "prievo_agent.infrastructure.llm_adapter.OpenAICompatibleLLM._post",
-                return_value=FakeResponse()) as request:
+            "prievo_agent.infrastructure.llm_adapter.OpenAICompatibleLLM._post",
+            return_value=FakeResponse(),
+        ) as request:
             candidate = configured_llm().generate_candidate("m1", [], 2)
         self.assertEqual("real adapter", candidate.description)
         self.assertEqual(["Revise"], candidate.operators)
-        self.assertEqual("Bearer secret", request.call_args.kwargs["headers"]["Authorization"])
+        self.assertEqual(
+            "Bearer secret", request.call_args.kwargs["headers"]["Authorization"]
+        )
         self.assertEqual(
             "https://llm.example/v1/chat/completions",
             request.call_args.kwargs["url"],
@@ -108,42 +150,71 @@ class V5AdapterTest(unittest.TestCase):
                 llm.generate_similarity_decision("prompt", ["A"])
 
     def test_redis_notification_failure_does_not_rollback_durable_event(self):
-        inner = FakeStore()
+        inner = FakeEventStore()
         event = PublishingStore(inner, FailingBus()).append_event(
-            "run-1", "GENERATION_STARTED", "开始")
+            "run-1", "GENERATION_STARTED", "start"
+        )
         self.assertEqual(1, event.sequence)
         self.assertEqual(1, len(inner.persisted))
 
-    def test_full_mode_refuses_non_mysql_database(self):
+    def test_runtime_refuses_non_mysql_database(self):
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-                os.environ, {"PRIEVO_MODE": "full", "DATABASE_URL": "sqlite:///bad.db",
-                             "REDIS_URL": ""}, clear=False):
+            os.environ,
+            {
+                "DATABASE_URL": "sqlite:///bad.db",
+                "REDIS_URL": "",
+                "LLM_API_ENDPOINT": "https://llm.example",
+                "LLM_API_KEY": "secret",
+                "LLM_MODEL": "model",
+            },
+            clear=False,
+        ):
             with self.assertRaisesRegex(RuntimeError, r"mysql\+pymysql"):
                 LocalRuntimeComposition(Path(directory))
 
-    def test_partial_llm_configuration_fails_instead_of_silently_using_fake(self):
+    def test_partial_llm_configuration_fails_instead_of_silent_fallback(self):
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-                os.environ,
-                {"PRIEVO_MODE": "demo", "LLM_API_ENDPOINT": "https://llm.example",
-                 "LLM_API_KEY": "", "LLM_MODEL": ""},
-                clear=False):
-            with self.assertRaisesRegex(RuntimeError, "LLM 配置不完整"):
+            os.environ,
+            {
+                "DATABASE_URL": "mysql+pymysql://u:p@db/prievo",
+                "REDIS_URL": "",
+                "LLM_API_ENDPOINT": "https://llm.example",
+                "LLM_API_KEY": "",
+                "LLM_MODEL": "",
+            },
+            clear=False,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "LLM"):
                 LocalRuntimeComposition(Path(directory))
 
     def test_ark_api_key_counts_as_complete_llm_configuration(self):
+        FakeMySQLStore.instances = []
+        FakeMySQLStore.synced_dataset_ids = []
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-                os.environ,
-                {"PRIEVO_MODE": "demo", "LLM_API_ENDPOINT": "https://llm.example",
-                 "LLM_API_KEY": "", "ARK_API_KEY": "ark-fixture",
-                 "LLM_MODEL": "glm-5-2-260617"},
-                clear=False):
+            os.environ,
+            {
+                "DATABASE_URL": "mysql+pymysql://u:p@db/prievo",
+                "REDIS_URL": "",
+                "LLM_API_ENDPOINT": "https://llm.example",
+                "LLM_API_KEY": "",
+                "ARK_API_KEY": "ark-fixture",
+                "LLM_MODEL": "glm-5-2-260617",
+            },
+            clear=False,
+        ), patch(
+            "prievo_agent.infrastructure.local_runtime.MySQLRuntimeStore",
+            FakeMySQLStore,
+        ):
             composition = LocalRuntimeComposition(Path(directory))
             snapshot = composition.health_snapshot()
         self.assertEqual("openai-compatible", snapshot["llm"])
+        self.assertEqual("mysql", snapshot["database"])
+        self.assertEqual("external", snapshot["evaluation_execution_mode"])
 
     def test_load_env_file_does_not_override_existing_environment(self):
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-                os.environ, {"LLM_MODEL": "from-shell"}, clear=False):
+            os.environ, {"LLM_MODEL": "from-shell"}, clear=False
+        ):
             path = Path(directory) / ".env"
             path.write_text(
                 "LLM_MODEL=from-file\nARK_API_KEY='hidden-fixture'\n",
@@ -155,7 +226,7 @@ class V5AdapterTest(unittest.TestCase):
             self.assertNotIn("LLM_MODEL", loaded)
 
     def test_planner_normalizes_redundant_parent_count_from_real_llm(self):
-        plan = EvolutionPlannerAgent._parse_plan(
+        plan = EvolutionPlannerNode._parse_plan(
             {
                 "generation_strategy": "i1",
                 "parent_selection_policy": "roulette",
@@ -176,7 +247,7 @@ class V5AdapterTest(unittest.TestCase):
         self.assertIn("Backend contract normalization", plan.decision_reason)
 
     def test_planner_normalizes_null_policy_for_parent_strategy(self):
-        plan = EvolutionPlannerAgent._parse_plan(
+        plan = EvolutionPlannerNode._parse_plan(
             {
                 "generation_strategy": "e1",
                 "parent_selection_policy": "null",
@@ -194,25 +265,19 @@ class V5AdapterTest(unittest.TestCase):
         self.assertEqual("roulette", plan.parent_selection_policy)
         self.assertEqual(2, plan.required_parent_count)
 
-    def test_health_snapshot_explains_fake_llm_and_non_fact_redis(self):
-        with tempfile.TemporaryDirectory() as directory, patch.dict(
-                os.environ,
-                {"PRIEVO_MODE": "demo", "LLM_API_ENDPOINT": "",
-                 "LLM_API_KEY": "", "LLM_MODEL": ""},
-                clear=False):
-            composition = LocalRuntimeComposition(Path(directory))
-            snapshot = composition.health_snapshot()
-        self.assertEqual("sqlite", snapshot["database"])
-        self.assertEqual("disabled", snapshot["redis"])
-        self.assertEqual("deterministic-fake", snapshot["llm"])
-        self.assertEqual("inline", snapshot["evaluation_execution_mode"])
-        self.assertEqual(10.0, snapshot["evaluation_timeout_seconds"])
-
     def test_evaluation_timeout_environment_is_validated(self):
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-                os.environ,
-                {"PRIEVO_MODE": "demo", "EVALUATION_TIMEOUT_SECONDS": "0"},
-                clear=False):
+            os.environ,
+            {
+                "DATABASE_URL": "mysql+pymysql://u:p@db/prievo",
+                "REDIS_URL": "",
+                "LLM_API_ENDPOINT": "https://llm.example",
+                "LLM_API_KEY": "secret",
+                "LLM_MODEL": "model",
+                "EVALUATION_TIMEOUT_SECONDS": "0",
+            },
+            clear=False,
+        ):
             with self.assertRaisesRegex(ValueError, "EVALUATION_TIMEOUT_SECONDS"):
                 LocalRuntimeComposition(Path(directory))
 

@@ -3,13 +3,13 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from prievo_agent.application.recovery_manager import RecoveryManager
+from prievo_agent.application.orchestration.recovery_manager import RecoveryManager
 from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class RecoveryManagerTest(unittest.TestCase):

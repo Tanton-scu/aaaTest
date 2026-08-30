@@ -79,8 +79,8 @@ class MySQLAgentTaskTest(unittest.TestCase):
                 outcomes = []
                 with ThreadPoolExecutor(max_workers=2) as executor:
                     futures = [
-                        executor.submit(claim, "SimilarityAgent-A"),
-                        executor.submit(claim, "SimilarityAgent-B"),
+                        executor.submit(claim, "SimilaritySelectionNode-A"),
+                        executor.submit(claim, "SimilaritySelectionNode-B"),
                     ]
                     for future in futures:
                         try:
@@ -104,13 +104,13 @@ class MySQLAgentTaskTest(unittest.TestCase):
                 )
 
                 retry_task = AgentTask(
-                    "agent-task-retry-" + suffix, run.id, "PRIOR_RESEARCH",
-                    AgentCapability.PRIOR_RESEARCH, "research:gap:v1",
+                    "agent-task-retry-" + suffix, run.id, "LITERATURE_EVIDENCE",
+                    AgentCapability.LITERATURE_EVIDENCE, "research:gap:v1",
                     ["artifact-gap"], max_attempts=2,
                 )
                 store.add_agent_task(retry_task)
                 claimed_retry = store.claim_agent_task(
-                    retry_task.id, "PriorResearchAgent"
+                    retry_task.id, "LiteratureEvidenceResolver"
                 )
                 first_failure = store.fail_agent_task(
                     retry_task.id, claimed_retry.claim_token,
@@ -118,7 +118,7 @@ class MySQLAgentTaskTest(unittest.TestCase):
                 )
                 self.assertEqual(AgentTaskStatus.PENDING, first_failure.status)
                 claimed_retry = store.claim_agent_task(
-                    retry_task.id, "PriorResearchAgent"
+                    retry_task.id, "LiteratureEvidenceResolver"
                 )
                 final_failure = store.fail_agent_task(
                     retry_task.id, claimed_retry.claim_token,

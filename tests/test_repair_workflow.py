@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.repair_workflow import DurableRepairWorkflow
+from prievo_agent.application.workflows.repair_workflow import DurableRepairWorkflow
 from prievo_agent.domain.models import (
     Candidate,
     EvaluationJob,
@@ -13,10 +13,10 @@ from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.agent_memory import InMemoryAgentWorkingMemory
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.security.heuristic_worker import validate_heuristic_source
 
 

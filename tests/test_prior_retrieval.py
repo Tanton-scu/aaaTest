@@ -55,7 +55,7 @@ class PriorRetrievalTest(unittest.TestCase):
             StructuredPriorRepository(histories, {}), DeterministicPriorRefiner()
         )
         numeric = service.retrieve_numeric(target, top_k=3)
-        decision = SemanticRefinement([numeric[0].instance_name], "fixture", "SimilarityAgent")
+        decision = SemanticRefinement([numeric[0].instance_name], "fixture", "SimilaritySelectionNode")
 
         prior = service.extract(target, numeric, decision)
 
@@ -64,7 +64,7 @@ class PriorRetrievalTest(unittest.TestCase):
             service.extract(
                 target,
                 numeric,
-                SemanticRefinement(["not-in-top5"], "bad", "SimilarityAgent"),
+                SemanticRefinement(["not-in-top5"], "bad", "SimilaritySelectionNode"),
             )
 
 

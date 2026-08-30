@@ -13,8 +13,8 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from prievo_agent.agents.registry import AgentRegistry
-from prievo_agent.application.agent_dispatcher import (
+from prievo_agent.agents.runtime.registry import AgentRegistry
+from prievo_agent.application.orchestration.agent_dispatcher import (
     AgentDispatchError,
     AgentTaskDispatcher,
 )
@@ -26,7 +26,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class _Handler:
@@ -150,9 +150,9 @@ class AgentTaskDispatcherTest(unittest.TestCase):
         self.assertEqual([], list(self.store.candidates_for_run(self.run.id)))
 
     def test_handler_failure_requeues_then_enters_terminal_failed(self):
-        handler = _Handler(AgentCapability.PRIOR_RESEARCH, fail=True)
+        handler = _Handler(AgentCapability.LITERATURE_EVIDENCE, fail=True)
         task = self._task(
-            "agent-task-failure", AgentCapability.PRIOR_RESEARCH,
+            "agent-task-failure", AgentCapability.LITERATURE_EVIDENCE,
             max_attempts=2,
         )
         dispatcher = AgentTaskDispatcher(

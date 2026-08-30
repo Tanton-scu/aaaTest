@@ -6,13 +6,13 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from prievo_agent.agents.final_selection import NoQualifiedFinalCandidateError
+from prievo_agent.agents.nodes.final_selection import NoQualifiedFinalCandidateError
 from prievo_agent.algorithm.prievo_engine import PriEvOEngine
 from prievo_agent.algorithm.dataset_evaluator import DatasetEvaluator
 from prievo_agent.datasets.registry import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.fake_llm import FakeLLM
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.domain.errors import CandidateRuntimeError
 
 
@@ -64,6 +64,7 @@ class FaithfulModeTest(unittest.TestCase):
                             DatasetRegistry(project / "resources" / "datasets"),
                             project / "resources" / "prior_knowledge",
                             llm=FakeLLM(),
+                            evaluation_execution_mode="inline",
                             research_faithful_mode=True,
                         ).run(run.id)
                 candidates = list(store.candidates_for_run(run.id))
@@ -95,7 +96,7 @@ class FaithfulModeTest(unittest.TestCase):
         self.assertNotIn(repaired[0].id, payload["population_ids"])
         self.assertIsNone(persisted.best_candidate_id)
         self.assertIn("CANDIDATE_REPAIR", task_types)
-        self.assertNotIn("PRIOR_RESEARCH", task_types)
+        self.assertNotIn("LITERATURE_EVIDENCE", task_types)
         self.assertIn("FAITHFUL_REPAIR_EXCLUDED", event_types)
         self.assertNotIn("FINAL_HEURISTIC", artifact_kinds)
         self.assertNotIn("FINAL_SELECTION_DECISION", artifact_kinds)

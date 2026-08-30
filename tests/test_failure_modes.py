@@ -3,7 +3,7 @@ import unittest
 import sqlite3
 from pathlib import Path
 
-from prievo_agent.application.run_facade import RunApplicationFacade
+from prievo_agent.application.orchestration.run_facade import RunApplicationFacade
 from prievo_agent.core.prior_retrieval import PriorRetrievalService
 from prievo_agent.domain.errors import (
     ArtifactIntegrityError,
@@ -13,7 +13,7 @@ from prievo_agent.domain.errors import (
 from prievo_agent.domain.models import Candidate, OptimizationTask, Run, RunStatus
 from prievo_agent.domain.prior import LANDSCAPE_METRICS, LandscapeProfile
 from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
 
 
@@ -40,7 +40,7 @@ class FailureModeTest(unittest.TestCase):
             )
             run_id = facade.create_run("LLM 超时", 3, 60)["run_id"]
             with self.assertLogs(
-                "prievo_agent.application.run_facade", level="ERROR"
+                "prievo_agent.application.orchestration.run_facade", level="ERROR"
             ) as logs:
                 facade.resume(run_id)
                 facade.shutdown()

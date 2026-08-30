@@ -4,8 +4,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.agent_dispatcher import AgentDispatchError
-from prievo_agent.application.generation_workflow import DurableGenerationWorkflow
+from prievo_agent.application.orchestration.agent_dispatcher import AgentDispatchError
+from prievo_agent.application.workflows.generation_workflow import DurableGenerationWorkflow
 from prievo_agent.domain.models import OptimizationTask, Run
 from prievo_agent.domain.prior import (
     LANDSCAPE_METRICS,
@@ -13,9 +13,9 @@ from prievo_agent.domain.prior import (
     LandscapeProfile,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.scripted_fake_llm import ScriptedFakeLLM
+from prievo_agent.infrastructure.testing.scripted_fake_llm import ScriptedFakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 def _prior():

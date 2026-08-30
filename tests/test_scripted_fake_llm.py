@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from prievo_agent.infrastructure.scripted_fake_llm import (
+from prievo_agent.infrastructure.testing.scripted_fake_llm import (
     ScriptedFakeLLM,
     ScriptedTransientLLMError,
 )

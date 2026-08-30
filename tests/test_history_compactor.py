@@ -5,12 +5,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.history_compactor import HistoryCompactor
-from prievo_agent.application.run_local_memory import RunLocalMemoryService
+from prievo_agent.application.memory.history_compactor import HistoryCompactor
+from prievo_agent.application.memory.run_local_memory import RunLocalMemoryService
 from prievo_agent.infrastructure.agent_memory import InMemoryAgentWorkingMemory
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class HistoryCompactorTest(unittest.TestCase):

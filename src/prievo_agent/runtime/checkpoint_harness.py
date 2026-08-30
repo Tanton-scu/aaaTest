@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Dict
 
 from prievo_agent.domain.models import RunStatus
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 from .harness import LifecycleHarness
 

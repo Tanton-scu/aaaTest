@@ -19,8 +19,8 @@ from prievo_agent.core.selection import (
 )
 from prievo_agent.core.serialization import candidate_from_dict, candidate_to_dict
 from prievo_agent.domain.models import Candidate, OptimizationTask
-from prievo_agent.infrastructure.fake_evaluator import FakeEvaluator
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_evaluator import FakeEvaluator
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 
 
 def candidate(identifier: str, objective: float, operators: list) -> Candidate:

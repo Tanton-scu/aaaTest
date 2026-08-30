@@ -12,12 +12,12 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from prievo_agent.agents.registry import (
+from prievo_agent.agents.runtime.registry import (
     AgentNotRegisteredError,
     AgentRegistry,
     DuplicateAgentRegistrationError,
 )
-from prievo_agent.application.blackboard import Blackboard
+from prievo_agent.application.orchestration.blackboard import Blackboard
 from prievo_agent.domain.events import EventType
 from prievo_agent.domain.models import (
     AgentCapability,
@@ -26,7 +26,7 @@ from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class _Agent:
@@ -38,7 +38,7 @@ class _Agent:
 class AgentRegistryTests(unittest.TestCase):
     def test_capability_matches_exactly_one_handler(self):
         similarity = _Agent(
-            "SimilarityAgent", AgentCapability.SEMANTIC_SIMILARITY
+            "SimilaritySelectionNode", AgentCapability.SEMANTIC_SIMILARITY
         )
         generation = _Agent(
             "HeuristicGenerationAgent", AgentCapability.HEURISTIC_GENERATION
@@ -59,17 +59,17 @@ class AgentRegistryTests(unittest.TestCase):
         self.assertEqual(len(registry), 2)
         self.assertEqual(
             registry.registration_for("SEMANTIC_SIMILARITY").name,
-            "SimilarityAgent",
+            "SimilaritySelectionNode",
         )
 
     def test_duplicate_capability_and_missing_capability_fail_explicitly(self):
         registry = AgentRegistry(
-            [_Agent("SimilarityAgent", AgentCapability.SEMANTIC_SIMILARITY)]
+            [_Agent("SimilaritySelectionNode", AgentCapability.SEMANTIC_SIMILARITY)]
         )
 
         with self.assertRaises(DuplicateAgentRegistrationError):
             registry.register(
-                _Agent("AnotherSimilarityAgent", AgentCapability.SEMANTIC_SIMILARITY)
+                _Agent("AnotherSimilaritySelectionNode", AgentCapability.SEMANTIC_SIMILARITY)
             )
         with self.assertRaises(AgentNotRegisteredError):
             registry.resolve(AgentCapability.FINAL_SELECTION)

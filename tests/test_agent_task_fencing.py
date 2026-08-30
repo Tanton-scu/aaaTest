@@ -13,7 +13,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class AgentTaskFencingTest(unittest.TestCase):
@@ -121,12 +121,12 @@ class AgentTaskFencingTest(unittest.TestCase):
         self.store.add_task(optimization)
         self.store.add_run(active)
         terminal_task = AgentTask(
-            "agent-task-max", active.id, "PRIOR_RESEARCH",
-            AgentCapability.PRIOR_RESEARCH, "fencing:max", max_attempts=1,
+            "agent-task-max", active.id, "LITERATURE_EVIDENCE",
+            AgentCapability.LITERATURE_EVIDENCE, "fencing:max", max_attempts=1,
         )
         self.store.add_agent_task(terminal_task)
         self.store.claim_agent_task(
-            terminal_task.id, "PriorResearchAgent", self.now, 5,
+            terminal_task.id, "LiteratureEvidenceResolver", self.now, 5,
             claim_token="last-claim",
         )
         self.assertEqual(
@@ -140,7 +140,7 @@ class AgentTaskFencingTest(unittest.TestCase):
         self.assertEqual("", exhausted.claim_token)
         with self.assertRaisesRegex(RuntimeError, "重试耗尽"):
             self.store.claim_agent_task(
-                terminal_task.id, "PriorResearchAgent",
+                terminal_task.id, "LiteratureEvidenceResolver",
                 self.now + timedelta(seconds=6), 5,
             )
 

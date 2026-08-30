@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from prievo_agent.domain.literature import LiteratureQuery
-from prievo_agent.infrastructure.literature_hybrid import LocalHybridLiteratureRAG
+from prievo_agent.infrastructure.rag.literature_hybrid import LocalHybridLiteratureRAG
 
 
 VARIANTS = (

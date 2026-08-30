@@ -11,7 +11,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.runtime.evaluation_queue import utc_clock
 from prievo_agent.runtime.persistent_runtime import PersistentEvolutionRuntime
 

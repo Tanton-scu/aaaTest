@@ -4,13 +4,13 @@ import unittest
 from pathlib import Path
 
 from prievo_agent.domain.literature import LiteratureQuery
-from prievo_agent.infrastructure.literature_bm25 import (
+from prievo_agent.infrastructure.rag.literature_bm25 import (
     LiteratureCorpusError,
     LocalLiteratureBM25,
     REQUIRED_PAPER_FIELDS,
     load_literature_corpus,
 )
-from prievo_agent.infrastructure.literature_hybrid import (
+from prievo_agent.infrastructure.rag.literature_hybrid import (
     DeterministicHashingVectorizer,
     LocalHybridLiteratureRAG,
 )
@@ -45,6 +45,43 @@ class _Reader:
             "does not replace empirical validation in production systems."
         ),
     ]
+
+
+class _QueryDocumentVectorizer:
+    name = "fake-bge-m3"
+    production_semantic_embedding = True
+
+    def __init__(self):
+        self.queries = []
+        self.documents = []
+
+    def encode(self, text):
+        raise AssertionError("hybrid RAG should call encode_query/encode_document when available")
+
+    def encode_query(self, text):
+        self.queries.append(text)
+        return (1.0, 0.0, 0.0)
+
+    def encode_document(self, text):
+        self.documents.append(text)
+        lowered = text.lower()
+        if "hyperband" in lowered:
+            return (1.0, 0.0, 0.0)
+        if "dehb" in lowered:
+            return (0.8, 0.2, 0.0)
+        return (0.0, 1.0, 0.0)
+
+
+class _RecordingCrossEncoderReranker:
+    name = "fake-bge-reranker-v2-m3"
+    production_cross_encoder = True
+
+    def __init__(self):
+        self.calls = []
+
+    def score(self, query_text, documents):
+        self.calls.append((query_text, tuple(documents)))
+        return tuple(float(index) for index in range(len(documents), 0, -1))
 
 
 class HybridLiteratureRAGTest(unittest.TestCase):
@@ -181,6 +218,39 @@ class HybridLiteratureRAGTest(unittest.TestCase):
             sum(value * value for value in vectorizer.encode("DEHB mechanism")),
             places=10,
         )
+
+    def test_cross_encoder_reranker_only_scores_coarse_top_n(self):
+        vectorizer = _QueryDocumentVectorizer()
+        reranker = _RecordingCrossEncoderReranker()
+        rag = LocalHybridLiteratureRAG(
+            ROOT / "data" / "literature" / "corpus.json",
+            vector_port=vectorizer,
+            reranker_port=reranker,
+            rerank_candidate_pool=2,
+        )
+        results = rag.retrieve(
+            LiteratureQuery(
+                ["Hyperband"],
+                "successive halving resource allocation",
+                "explain mechanism",
+                "test",
+                3,
+            ),
+            mode="hybrid",
+            rerank=True,
+            top_k=2,
+        )
+
+        self.assertEqual(1, len(reranker.calls))
+        self.assertEqual(2, len(reranker.calls[0][1]))
+        self.assertEqual(1, len(vectorizer.queries))
+        self.assertGreater(len(vectorizer.documents), len(reranker.calls[0][1]))
+        self.assertEqual("hybrid+rrf+cross-rerank", results[0].retrieval_mode)
+        self.assertEqual("fake-bge-m3", results[0].vector_backend)
+        self.assertTrue(results[0].vector_is_production_semantic)
+        self.assertEqual("fake-bge-reranker-v2-m3", results[0].cross_encoder_backend)
+        self.assertIsNotNone(results[0].cross_encoder_score)
+        self.assertEqual(0.0, results[0].rerank_bonus)
 
     def test_product_loader_merges_curated_and_pdf_corpora(self):
         with tempfile.TemporaryDirectory() as directory:

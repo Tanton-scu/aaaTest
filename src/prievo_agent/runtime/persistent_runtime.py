@@ -549,7 +549,7 @@ class PersistentEvolutionRuntime:
         self, run, task, population, generation, operator
     ):
         """逐个持久化 GenerationTask output；已完成 Draft 恢复时不重调 LLM。"""
-        from prievo_agent.agents.heuristic_generation import KnowledgeGap
+        from prievo_agent.agents.nodes.heuristic_generation import KnowledgeGap
 
         offspring = []
         for index in range(self.core.population_size):
@@ -568,7 +568,7 @@ class PersistentEvolutionRuntime:
     def _generate_durable_candidate(
         self, run, task, population, generation, operator, index, parents=None, plan=None
     ):
-        from prievo_agent.agents.heuristic_generation import KnowledgeGap
+        from prievo_agent.agents.nodes.heuristic_generation import KnowledgeGap
 
         plan = plan or self._plan_generation(
             run, task, population, generation, operator, index
@@ -596,7 +596,7 @@ class PersistentEvolutionRuntime:
                 knowledge_gap_artifact_id=output_ref,
             )
             raise RuntimeError(
-                "GenerationTask 产生 KnowledgeGap；当前 faithful/纯领域模式未装配 PriorResearch resume"
+                "GenerationTask 产生 KnowledgeGap；当前 faithful/纯领域模式未装配 LiteratureEvidence resume"
             )
         candidate = self.core.materialize_candidate(
             plan.generation_strategy,

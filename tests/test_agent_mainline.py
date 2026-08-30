@@ -6,8 +6,8 @@ from pathlib import Path
 from prievo_agent.algorithm.prievo_engine import PriEvOEngine
 from prievo_agent.datasets.registry import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.fake_llm import FakeLLM
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class AgentMainlineTest(unittest.TestCase):
@@ -31,6 +31,7 @@ class AgentMainlineTest(unittest.TestCase):
                     DatasetRegistry(project / "resources" / "datasets"),
                     project / "resources" / "prior_knowledge",
                     llm=llm,
+                    evaluation_execution_mode="inline",
                 ).run(run.id)
                 artifacts = list(store.artifacts_for_run(run.id))
                 events = list(store.events_for_run(run.id))

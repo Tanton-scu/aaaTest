@@ -1,144 +1,158 @@
 # PriEvO-Agent
 
-PriEvO-Agent 是一个面向算法配置优化的后端 + Agent 工程项目。它把 PriEvO 风格的启发式演化流程封装成可恢复、可观测、可测试的服务：后端负责任务生命周期、候选算法评估、持久化与并发控制；Agent 负责相似实例选择、演化规划、候选生成、RAG 补充证据、修复与最终选择。
+PriEvO-Agent 是一个面向算法自动生成的后端 + Agent 项目。它把 PriEvO 的启发式搜索流程工程化为可恢复、可审计、可观测的运行时：FastAPI 接收任务，MySQL 保存 durable facts，Redis 做事件通知和短期记忆缓存，独立 Evaluation Worker 消费候选算法评估任务。
 
-## 项目亮点
+## 核心能力
 
-- 后端主链：FastAPI + SQLite demo mode，MySQL + Redis + 独立 Worker full mode。
-- Agent 编排：SimilaritySelectionNode、EvolutionPlannerAgent、HeuristicGenerationAgent、PriorResearchAgent、RepairAgent、FinalSelectionNode。
-- PriEvO 演化规则：early 使用 `i1/e1/e2/m1`，late 使用 `e1/e2/m1/m2`；每个 operator 生成 `population_size` 个候选，再执行 `5P -> P` 保留。
-- RAG：本地 literature corpus 经 BM25 + hashing vector + weighted RRF + rerank 检索，证据带 provenance，不覆盖算法 prior。
-- 工程可靠性：Run/Event/Artifact/Candidate/EvaluationJob/Checkpoint/Trace 全部持久化；支持 pause/resume/cancel、lease fencing、idempotency 与 crash recovery。
-- 安全边界：候选代码执行在受控子进程中，带 timeout、import allowlist、资源限制和结构化校验。
-- 可验证交付：包含 unit tests、agent harness、full mode smoke 脚本和 Docker Compose。
+- PriEvO 主流程：前期 `i1/e1/e2/m1`，后期 `e1/e2/m1/m2`；每个算子生成 `population_size` 个候选，再按适应度和算子多样性选择保留种群。
+- 多 Agent 编排：主链路是 3 个 Agent + 2 个 LLM Node；Coordinator 根据 MySQL 中的事实补偿缺失任务，Dispatcher 领取任务并重建 Blackboard。
+- RAG 工具链：RAG 不是独立 Agent，而是 GenerationAgent 在 `KnowledgeGap` 时调用的只读 literature search tool。
+- 企业级检索扩展：默认可快速启动；需要生产级 RAG 时，可启用 BGE-M3 embedding + BGE cross-encoder reranker。
+- 独立评估 Worker：候选算法不在 API 进程里直接跑，而是写入 EvaluationJob，由 worker 领取、执行、结算。
+- 可恢复运行时：Run、AgentTask、EvaluationJob 均有 lease/fencing/retry，服务重启后可从 MySQL 恢复。
+- 可观测性：SSE 推送 durable events；`/api/runs/{run_id}/trace` 可从事件、任务、工具调用、artifact 引用重建执行链路。
 
-## 目录结构
+## 项目结构
+
+Agent / Node / Tool 的边界：
 
 ```text
-PriEvO-Agent/
-├── src/prievo_agent/
-│   ├── api/             # FastAPI API 与内置 dashboard
-│   ├── application/     # workflow、trace、tool governance、run facade
-│   ├── agents/          # Agent / Node 实现与上下文策略
-│   ├── algorithm/       # PriEvO engine 与 dataset evaluator
-│   ├── core/            # PriEvO schedule、selection、prior retrieval
-│   ├── domain/          # 领域模型、事件、端口
-│   ├── infrastructure/  # SQLite/MySQL/Redis/LLM/RAG/skill adapters
-│   ├── runtime/         # durable runtime、queue、checkpoint、harness
-│   └── security/        # 候选代码校验与隔离执行
-├── skills/              # i1/e1/e2/m1/m2 与 repair/research/final skills
-├── resources/           # 小型 dataset 与 prior knowledge
-├── data/literature/     # 小型 curated RAG corpus
-├── scripts/             # demo、harness、paper ingest、full smoke
-├── tests/               # 可运行测试
-└── docs/                # 必要工程说明
+3 个 Agent
+├── HeuristicGenerationAgent：生成候选算法，必要时提出 KnowledgeGap
+├── RepairAgent：修复候选代码和失败候选
+└── FinalSelectionAgent：最终候选选择与审计
+
+2 个 LLM Node
+├── SimilaritySelectionNode：语义精选相似 prior instance
+└── EvolutionPlannerNode：生成当前 operator batch 的计划与父代选择说明
+
+Tool
+└── LiteratureSearchTool / RAG：只读检索工具，不拥有自主目标
+```
+
+```text
+src/prievo_agent/
+├── api/                 # FastAPI 路由与 Dashboard
+├── algorithm/           # PriEvO 产品主引擎与 dataset evaluator
+├── agents/
+│   ├── common/          # Agent 上下文、上下文裁剪策略、共享模型
+│   ├── nodes/           # 3 个 Agent + 2 个 LLM Node
+│   └── runtime/         # AgentRegistry 等执行期辅助
+├── application/
+│   ├── orchestration/   # Run facade、Coordinator、Dispatcher、Blackboard、Recovery
+│   ├── workflows/       # Similarity / Planning / Generation / Repair / Final workflows
+│   ├── tools/           # Tool Governance
+│   ├── memory/          # Run-local memory 与 history compaction
+│   ├── literature/      # LiteratureEvidenceResolver：RAG 工具结果的结构化解析
+│   └── observability/   # Metrics 与 Agent Trace
+├── core/                # PriEvO schedule、selection、prior retrieval 等核心逻辑
+├── datasets/            # Dataset registry
+├── domain/              # 领域模型、端口、事件
+├── infrastructure/
+│   ├── rag/             # BM25、BGE embedding、BGE reranker、RRF 检索管线
+│   ├── testing/         # FakeLLM、SQLite store 等测试/harness adapter
+│   └── *.py             # MySQL、Redis、LLM、Skill registry 等生产 adapter
+├── runtime/             # 持久化演化 runtime、评估队列、生命周期
+└── security/            # 候选代码校验与受控执行
 ```
 
 ## 快速运行
 
-推荐 Python 3.10+。Windows / Conda 示例：
+1. 安装依赖：
 
 ```powershell
-conda create -n prievo-agent python=3.10 -y
-conda activate prievo-agent
-cd PriEvO-Agent
-
-python -m pip install -U pip
 python -m pip install -e ".[research,papers,test]"
+```
+
+如果要启用 BGE embedding / reranker，再安装：
+
+```powershell
+python -m pip install -e ".[rag]"
+```
+
+或直接：
+
+```powershell
+python -m pip install FlagEmbedding
+```
+
+2. 准备配置：
+
+```powershell
 Copy-Item .env.example .env
+```
+
+编辑 `.env`，至少填入：
+
+```env
+LLM_API_ENDPOINT=https://ark.cn-beijing.volces.com/api/v3/chat/completions
+ARK_API_KEY=你的方舟APIKey
+LLM_MODEL=glm-5-2-260617
+```
+
+3. 启动 MySQL 和 Redis：
+
+```powershell
+docker compose up -d
+```
+
+这里 Docker 只负责本机基础设施。App 和 Worker 仍然用 Python 命令启动，方便调试和阅读日志。
+
+4. 启动 API / Dashboard：
+
+```powershell
 python -m prievo_agent.cli.api_server --root .prievo-runtime
 ```
 
-打开：
+5. 另开一个终端启动独立评估 Worker：
+
+```powershell
+python -m prievo_agent.cli.evaluation_worker --root .prievo-runtime
+```
+
+6. 打开：
 
 ```text
 http://127.0.0.1:8000
 ```
 
-`.env.example` 默认使用 `demo + fake evaluator`。如果没有配置 LLM，系统会自动使用 deterministic FakeLLM，适合快速演示完整后端流程。
+## 启用 BGE RAG
 
-建议第一次创建 Run 时使用小参数：
-
-```text
-dataset: brotli
-generations: 1
-population_size: 2
-candidate_budget: 3
-```
-
-## 接入真实 LLM
-
-项目使用 OpenAI-compatible Chat Completions adapter。以火山方舟 GLM-5.2 为例，在 `.env` 中填写：
+默认配置使用轻量 hashing embedding，方便 clone 后快速启动。要切换为 BGE 全套，在 `.env` 中修改：
 
 ```env
-PRIEVO_MODE=demo
-PRIEVO_EVALUATOR_MODE=fake
-
-LLM_API_ENDPOINT=https://ark.cn-beijing.volces.com/api/v3/chat/completions
-ARK_API_KEY=你的方舟 API Key
-LLM_MODEL=glm-5-2-260617
-LLM_TIMEOUT_SECONDS=1800
-LLM_MAX_TOKENS=4096
-LLM_TEMPERATURE=0.1
-LLM_THINKING_TYPE=enabled
+RAG_EMBEDDING_BACKEND=bge
+RAG_EMBEDDING_MODEL=BAAI/bge-m3
+RAG_QUERY_INSTRUCTION=为这个查询生成表示以用于检索相关文献：
+RAG_RERANKER_BACKEND=bge
+RAG_RERANKER_MODEL=BAAI/bge-reranker-v2-m3
+RAG_RERANK_CANDIDATE_POOL=40
 ```
 
-然后重启：
+实现细节：
 
-```powershell
-python -m prievo_agent.cli.api_server --root .prievo-runtime-ark
+- embedding 阶段会区分 `encode_query()` 和 `encode_document()`；
+- query 会加 `RAG_QUERY_INSTRUCTION` 前缀；
+- document chunk 不加前缀；
+- reranker 是 cross-encoder，只对粗召回 Top-N 候选重排，不对全库逐条打分；
+- 没有开启 `RAG_RERANKER_BACKEND=bge` 时，系统仍保留确定性的轻量 rerank bonus，便于测试复现。
+
+CPU 环境可以设置：
+
+```env
+RAG_BGE_USE_FP16=false
+RAG_BGE_DEVICE=cpu
 ```
 
-`PRIEVO_EVALUATOR_MODE=fake` 只影响候选 benchmark，不会阻止真实 LLM 调用。也就是说可以先用真实模型生成/规划，但用 fake evaluator 低成本走通流程。
+## API
 
-## 本地 RAG 论文导入
+- `POST /api/runs`：创建 PriEvO run。
+- `GET /api/runs/{run_id}`：查看 run 状态、预算、候选。
+- `POST /api/runs/{run_id}/pause`：请求在 safe point 暂停。
+- `POST /api/runs/{run_id}/resume`：从 checkpoint / durable facts 继续。
+- `POST /api/runs/{run_id}/cancel`：取消 run，并取消未完成评估任务。
+- `GET /api/runs/{run_id}/events/stream`：SSE 事件流。
+- `GET /api/runs/{run_id}/artifacts`：查看产物索引。
+- `GET /api/runs/{run_id}/trace`：查看 Agent / Node / Tool 因果追踪。
 
-仓库默认只带小型 curated corpus。若要加入自己的 PDF：
-
-```powershell
-New-Item -ItemType Directory -Force data\papers
-# 把 PDF 放入 data\papers\，可保留多级子目录
-python scripts\ingest_papers.py --paper-root data\papers --output data\literature\pdf_corpus.json
-```
-
-运行时会自动合并读取：
-
-- `data/literature/corpus.json`
-- `data/literature/pdf_corpus.json`，如果存在
-
-PDF 和生成的 `pdf_corpus.json` 默认不建议提交到 Git。
-
-## 测试与 Harness
-
-```powershell
-python -m compileall src\prievo_agent scripts
-python -m unittest discover -s tests -v
-python scripts\agent_harness.py
-python -m prievo_agent.rag_eval --corpus data/literature/corpus.json `
-  --cases data/literature/eval_cases.json --output reports/rag_eval.json `
-  --markdown docs/RAG_EVALUATION.md -k 3
-```
-
-Full mode 需要 Docker、MySQL、Redis、App、Worker：
-
-```powershell
-docker compose up --build
-```
-
-## 关键 API
-
-- `GET /api/health`
-- `GET /api/datasets`
-- `POST /api/runs`
-- `GET /api/runs/{id}`
-- `POST /api/runs/{id}/pause`
-- `POST /api/runs/{id}/resume`
-- `POST /api/runs/{id}/cancel`
-- `GET /api/runs/{id}/events`
-- `GET /api/runs/{id}/events/stream`
-- `GET /api/runs/{id}/artifacts`
-- `GET /api/runs/{id}/trace`
-
-## 边界说明
-
-本项目是单租户工程原型，不宣称商业级多租户、高可用或强安全沙箱。默认 hashing vector 是可复验 lexical vector，不是生产语义 embedding。候选代码隔离执行降低风险，但不等价于容器级安全沙箱。
+更详细的后台调用链见 [docs/FULL_RUNTIME.md](docs/FULL_RUNTIME.md)。

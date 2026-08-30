@@ -68,7 +68,7 @@ class OpenAICompatibleLLM:
         )
 
     def plan_generation(self, prompt):
-        """EvolutionPlannerAgent 的结构化计划能力端口。"""
+        """EvolutionPlannerNode 的结构化计划能力端口。"""
         return self._agent_json(
             prompt,
             "Return JSON only with generation_strategy, parent_selection_policy, "

@@ -16,7 +16,7 @@ from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class SQLiteAgentTaskTest(unittest.TestCase):
@@ -50,11 +50,11 @@ class SQLiteAgentTaskTest(unittest.TestCase):
         self.assertFalse(duplicate_created)
         self.assertEqual(persisted.id, duplicate.id)
 
-        claimed = self.store.claim_agent_task(task.id, "SimilarityAgent")
+        claimed = self.store.claim_agent_task(task.id, "SimilaritySelectionNode")
         self.assertEqual(AgentTaskStatus.CLAIMED, claimed.status)
         self.assertEqual(1, claimed.attempts)
         with self.assertRaises(RuntimeError):
-            self.store.claim_agent_task(task.id, "SimilarityAgent-2")
+            self.store.claim_agent_task(task.id, "SimilaritySelectionNode-2")
 
         completed = self.store.complete_agent_task(
             task.id, claimed.claim_token, ["artifact-decision"]
@@ -65,16 +65,16 @@ class SQLiteAgentTaskTest(unittest.TestCase):
 
     def test_failure_requeues_until_max_attempts(self):
         task = AgentTask(
-            "agent-task-failure", "run-1", "PRIOR_RESEARCH",
-            AgentCapability.PRIOR_RESEARCH, "research:gap:v1", max_attempts=2,
+            "agent-task-failure", "run-1", "LITERATURE_EVIDENCE",
+            AgentCapability.LITERATURE_EVIDENCE, "research:gap:v1", max_attempts=2,
         )
         self.store.add_agent_task(task)
-        claimed = self.store.claim_agent_task(task.id, "PriorResearchAgent")
+        claimed = self.store.claim_agent_task(task.id, "LiteratureEvidenceResolver")
         first = self.store.fail_agent_task(
             task.id, claimed.claim_token, "transient"
         )
         self.assertEqual(AgentTaskStatus.PENDING, first.status)
-        claimed = self.store.claim_agent_task(task.id, "PriorResearchAgent")
+        claimed = self.store.claim_agent_task(task.id, "LiteratureEvidenceResolver")
         final = self.store.fail_agent_task(
             task.id, claimed.claim_token, "malformed twice"
         )

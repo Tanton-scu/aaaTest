@@ -4,19 +4,19 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.final_selection_workflow import (
+from prievo_agent.application.workflows.final_selection_workflow import (
     DurableFinalSelectionWorkflow,
 )
-from prievo_agent.agents.final_selection import NoQualifiedFinalCandidateError
+from prievo_agent.agents.nodes.final_selection import NoQualifiedFinalCandidateError
 from prievo_agent.domain.models import (
     Candidate,
     EvaluationResult,
     OptimizationTask,
     Run,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 def _long_code(value):

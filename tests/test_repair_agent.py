@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from prievo_agent.agents.repair import (
+from prievo_agent.agents.nodes.repair import (
     CrossRunRepairContextError,
     FailureEvidence,
     MalformedDiagnosisError,

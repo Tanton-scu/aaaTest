@@ -10,7 +10,7 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from prievo_agent.application.durable_agent_coordinator import (
+from prievo_agent.application.orchestration.durable_agent_coordinator import (
     DurableAgentCoordinator,
 )
 from prievo_agent.domain.models import (
@@ -19,7 +19,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class DurableAgentCoordinatorTest(unittest.TestCase):
@@ -73,8 +73,8 @@ class DurableAgentCoordinatorTest(unittest.TestCase):
                 AgentCapability.HEURISTIC_GENERATION,
             ),
             "KNOWLEDGE_GAP": (
-                "PRIOR_RESEARCH",
-                AgentCapability.PRIOR_RESEARCH,
+                "LITERATURE_EVIDENCE",
+                AgentCapability.LITERATURE_EVIDENCE,
             ),
             "CANDIDATE_FAILURE": (
                 "CANDIDATE_REPAIR",
@@ -159,7 +159,7 @@ class DurableAgentCoordinatorTest(unittest.TestCase):
         research_tasks = DurableAgentCoordinator(self.store).reconcile(
             research_run.id
         )
-        self.assertEqual(["PRIOR_RESEARCH"], [task.task_type for task in research_tasks])
+        self.assertEqual(["LITERATURE_EVIDENCE"], [task.task_type for task in research_tasks])
 
         generation_run = self._add_run("run-multiple-generation-requests")
         first = self._artifact(

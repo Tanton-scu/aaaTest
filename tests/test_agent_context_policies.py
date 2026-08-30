@@ -1,7 +1,7 @@
 import unittest
 
-from prievo_agent.agents.context import AgentContextBuilder
-from prievo_agent.agents.context_policies import (
+from prievo_agent.agents.common.context import AgentContextBuilder
+from prievo_agent.agents.common.context_policies import (
     ContextPolicyFramework,
     build,
 )
@@ -12,7 +12,7 @@ class ContextPolicyTests(unittest.TestCase):
         self.framework = ContextPolicyFramework(AgentContextBuilder(max_chars=12000))
 
     def test_similarity_uses_only_fla_top5_and_skill(self):
-        result = self.framework.build("SimilarityAgent", {
+        result = self.framework.build("SimilaritySelectionNode", {
             "target_landscape": {"profile_ref": "landscape-1"},
             "fla_metrics": {"ela_meta.lin_simple.adj_r2": 0.81},
             "metric_semantics": {"ela_meta.lin_simple.adj_r2": "linearity"},
@@ -72,7 +72,7 @@ class ContextPolicyTests(unittest.TestCase):
         self.assertTrue(result.evidence)
 
     def test_research_minimizes_context_and_caps_its_own_history(self):
-        result = self.framework.build("PriorResearchAgent", {
+        result = self.framework.build("LiteratureEvidenceResolver", {
             "knowledge_gap": {"term": "Decision Tree Surrogate"},
             "prior_slice": {"ref": "prior-slice-2"},
             "landscape_summary": {"ruggedness": "high"},

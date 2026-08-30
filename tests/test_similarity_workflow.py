@@ -11,14 +11,14 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from prievo_agent.application.similarity_workflow import DurableSimilarityWorkflow
+from prievo_agent.application.workflows.similarity_workflow import DurableSimilarityWorkflow
 from prievo_agent.core.prior_retrieval import PriorRetrievalService
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.prior_adapters import DeterministicPriorRefiner
 from prievo_agent.infrastructure.prior_repository import CsvPriorRepository
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class DurableSimilarityWorkflowTest(unittest.TestCase):

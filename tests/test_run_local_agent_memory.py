@@ -7,7 +7,7 @@ from prievo_agent.infrastructure.agent_memory import (
     InMemoryAgentWorkingMemory,
     RedisAgentWorkingMemory,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class FakePipeline:

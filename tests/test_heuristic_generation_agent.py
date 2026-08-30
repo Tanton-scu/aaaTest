@@ -3,9 +3,9 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from prievo_agent.agents.context import AgentContextBuilder
-from prievo_agent.agents.context_policies import ContextPolicyFramework
-from prievo_agent.agents.heuristic_generation import (
+from prievo_agent.agents.common.context import AgentContextBuilder
+from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.nodes.heuristic_generation import (
     CandidateDraft,
     GenerationContractError,
     GenerationParent,

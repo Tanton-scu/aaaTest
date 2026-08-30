@@ -21,20 +21,20 @@ from prievo_agent.algorithm.executable_dataset_evaluator import (
     ExecutableDatasetEvaluator,
 )
 from prievo_agent.algorithm.prievo_engine import PriEvOEngine
-from prievo_agent.application.agent_trace import AgentTraceQuery
-from prievo_agent.application.blackboard import Blackboard
-from prievo_agent.application.durable_agent_coordinator import (
+from prievo_agent.application.observability.agent_trace import AgentTraceQuery
+from prievo_agent.application.orchestration.blackboard import Blackboard
+from prievo_agent.application.orchestration.durable_agent_coordinator import (
     DurableAgentCoordinator,
 )
-from prievo_agent.application.final_selection_workflow import (
+from prievo_agent.application.workflows.final_selection_workflow import (
     DurableFinalSelectionWorkflow,
 )
-from prievo_agent.application.generation_workflow import DurableGenerationWorkflow
-from prievo_agent.application.prior_research_workflow import (
-    DurablePriorResearchWorkflow,
+from prievo_agent.application.workflows.generation_workflow import DurableGenerationWorkflow
+from prievo_agent.application.workflows.literature_evidence_workflow import (
+    DurableLiteratureEvidenceWorkflow,
 )
-from prievo_agent.application.repair_workflow import DurableRepairWorkflow
-from prievo_agent.application.tool_governance import (
+from prievo_agent.application.workflows.repair_workflow import DurableRepairWorkflow
+from prievo_agent.application.tools.tool_governance import (
     ToolCallDenied,
     ToolGovernanceGateway,
     ToolPolicy,
@@ -65,9 +65,9 @@ from prievo_agent.domain.prior import (
     SemanticRefinement,
 )
 from prievo_agent.infrastructure.agent_memory import RedisAgentWorkingMemory
-from prievo_agent.infrastructure.scripted_fake_llm import ScriptedFakeLLM
+from prievo_agent.infrastructure.testing.scripted_fake_llm import ScriptedFakeLLM
 from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.runtime.checkpoint_harness import CheckpointRecoveryHarness
 from prievo_agent.runtime.lifecycle import RunLifecycleService
 from prievo_agent.runtime.queue_harness import QueueReliabilityHarness
@@ -309,6 +309,7 @@ class AgentEngineeringHarness:
                 DatasetRegistry(self.project_root / "resources" / "datasets"),
                 self.project_root / "resources" / "prior_knowledge",
                 llm=model,
+                evaluation_execution_mode="inline",
             ).run(run.id)
             tasks = list(store.agent_tasks_for_run(run.id))
             events = list(store.events_for_run(run.id))
@@ -458,9 +459,9 @@ class AgentEngineeringHarness:
             store.add_task(task)
             store.add_run(run)
             skills = SkillRegistry(self.project_root / "skills")
-            research = DurablePriorResearchWorkflow(store, skills, model, backend)
+            research = DurableLiteratureEvidenceWorkflow(store, skills, model, backend)
             generation = DurableGenerationWorkflow(
-                store, skills, model, prior_research_workflow=research
+                store, skills, model, literature_evidence_workflow=research
             )
             original_prior = _fixture_prior()
             prior_snapshot = copy.deepcopy(original_prior)
@@ -479,7 +480,7 @@ class AgentEngineeringHarness:
             expected_counts = {
                 "HEURISTIC_GENERATION": 1,
                 "HEURISTIC_GENERATION_RESUME": 1,
-                "PRIOR_RESEARCH": 1,
+                "LITERATURE_EVIDENCE": 1,
             }
             artifacts = list(store.artifacts_for_run(run.id))
             artifact_counts = _counts(item.kind for item in artifacts)
@@ -488,10 +489,10 @@ class AgentEngineeringHarness:
             trace = AgentTraceQuery(store).trace(run.id)
             expected_trace = [
                 "GENERATION_REQUESTED",
-                "PRIOR_RESEARCH_REQUESTED",
+                "LITERATURE_EVIDENCE_REQUESTED",
                 "TOOL_CALL_STARTED",
                 "TOOL_CALL_COMPLETED",
-                "PRIOR_RESEARCH_COMPLETED",
+                "LITERATURE_EVIDENCE_COMPLETED",
                 "GENERATION_RESUMED_AFTER_RESEARCH",
             ]
             check.equal("agent_task_cardinality", expected_counts, task_counts)
@@ -610,7 +611,7 @@ class AgentEngineeringHarness:
             store.close()
 
     def _malformed(self, root, check):
-        from prievo_agent.application.agent_dispatcher import AgentDispatchError
+        from prievo_agent.application.orchestration.agent_dispatcher import AgentDispatchError
 
         store = self._store(root)
         model = ScriptedFakeLLM(
@@ -803,7 +804,7 @@ class AgentEngineeringHarness:
             store.close()
 
     def _repair_limit(self, root, check):
-        from prievo_agent.application.agent_dispatcher import AgentDispatchError
+        from prievo_agent.application.orchestration.agent_dispatcher import AgentDispatchError
 
         store, task, run, parent, job = self._repair_fixture(root, repair_attempt=3)
         model = ScriptedFakeLLM()
@@ -1066,7 +1067,7 @@ class AgentEngineeringHarness:
             store.add_run(run)
             policy = ToolPolicy(
                 "literature_search",
-                frozenset({"PriorResearchAgent"}),
+                frozenset({"LiteratureEvidenceResolver"}),
                 1,
                 "READ_ONLY",
                 "LOCAL_LOW",

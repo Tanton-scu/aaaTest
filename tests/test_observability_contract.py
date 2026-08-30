@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.application.run_facade import RunApplicationFacade
+from prievo_agent.application.orchestration.run_facade import RunApplicationFacade
 from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
 
 

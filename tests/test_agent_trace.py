@@ -3,11 +3,11 @@ import unittest
 from pathlib import Path
 
 from prievo_agent.algorithm.prievo_engine import PriEvOEngine
-from prievo_agent.application.agent_trace import AgentTraceQuery
+from prievo_agent.application.observability.agent_trace import AgentTraceQuery
 from prievo_agent.datasets.registry import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.fake_llm import FakeLLM
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 
 
 class AgentTraceTest(unittest.TestCase):
@@ -28,6 +28,7 @@ class AgentTraceTest(unittest.TestCase):
                 PriEvOEngine(
                     store, DatasetRegistry(project / "resources" / "datasets"),
                     project / "resources" / "prior_knowledge", llm=FakeLLM(),
+                    evaluation_execution_mode="inline",
                 ).run(run.id)
                 trace = AgentTraceQuery(store).trace(run.id)
             finally:

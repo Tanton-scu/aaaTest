@@ -6,9 +6,9 @@ from pathlib import Path
 
 from prievo_agent.core.evolution import PriEvoEvolutionCore
 from prievo_agent.domain.models import OptimizationTask, Run, RunStatus
-from prievo_agent.infrastructure.fake_evaluator import FakeEvaluator
-from prievo_agent.infrastructure.fake_llm import FakeLLM
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.fake_evaluator import FakeEvaluator
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.runtime.lifecycle import RunLifecycleService
 from prievo_agent.runtime.persistent_runtime import PersistentEvolutionRuntime
 from prievo_agent.runtime.state_machine import RunStateMachine

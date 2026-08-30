@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -75,7 +75,6 @@ class EvaluationWorkerSettingsTest(unittest.TestCase):
             "/runtime",
             "/datasets",
             {
-                "PRIEVO_MODE": "full",
                 "DATABASE_URL": (
                     "mysql+pymysql://private-user:private-password@mysql/prievo"
                 ),
@@ -92,7 +91,7 @@ class EvaluationWorkerSettingsTest(unittest.TestCase):
         self.assertEqual(12.0, settings.evaluation_timeout_seconds)
         self.assertNotIn("private-user", str(public))
         self.assertNotIn("private-password", str(public))
-        self.assertIn("无后台 heartbeat", public["heartbeat_mode"])
+        self.assertIn("no background heartbeat", public["heartbeat_mode"])
 
     def test_lease_must_cover_timeout_without_background_heartbeat(self):
         with self.assertRaisesRegex(ValueError, "lease_seconds"):
@@ -225,7 +224,6 @@ class EvaluationWorkerCliTest(unittest.TestCase):
             exit_code = main(
                 ["--root", directory, "--health-check"],
                 environ={
-                    "PRIEVO_MODE": "full",
                     "DATABASE_URL": "mysql+pymysql://user:pass@mysql/prievo",
                 },
                 store_factory=_Store,
@@ -238,27 +236,18 @@ class EvaluationWorkerCliTest(unittest.TestCase):
         self.assertTrue(instances[0].closed)
 
 
-class ComposeWorkerContractTest(unittest.TestCase):
-    def test_compose_declares_separate_worker_shared_artifacts_and_healthcheck(self):
+class ComposeInfrastructureContractTest(unittest.TestCase):
+    def test_compose_only_declares_mysql_and_redis_infrastructure(self):
         compose = (
             Path(__file__).resolve().parents[1] / "docker-compose.yml"
         ).read_text(encoding="utf-8")
 
-        self.assertIn("  worker:\n", compose)
-        self.assertIn("prievo_agent.cli.evaluation_worker", compose)
-        self.assertIn("EVALUATION_WORKER_MAX_POLL_SECONDS", compose)
-        self.assertIn("EVALUATION_LEASE_SECONDS", compose)
-        self.assertIn("- prievo_data:/var/lib/prievo", compose)
-        self.assertIn("--health-check", compose)
-        self.assertIn("stop_grace_period: 45s", compose)
-        # App 构造 logical job identity，Worker 执行 benchmark；两者必须共享 timeout。
-        timeout_keys = [
-            line
-            for line in compose.splitlines()
-            if line.strip().startswith("EVALUATION_TIMEOUT_SECONDS:")
-        ]
-        self.assertEqual(2, len(timeout_keys))
-
+        self.assertIn("  mysql:\n", compose)
+        self.assertIn("  redis:\n", compose)
+        self.assertNotIn("  app:\n", compose)
+        self.assertNotIn("  worker:\n", compose)
+        self.assertIn("${MYSQL_PORT:-3306}:3306", compose)
+        self.assertIn("${REDIS_PORT:-6379}:6379", compose)
 
 if __name__ == "__main__":
     unittest.main()

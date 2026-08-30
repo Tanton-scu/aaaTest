@@ -17,7 +17,7 @@ from prievo_agent.domain.prior import (
     OptimizerEvidence,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]

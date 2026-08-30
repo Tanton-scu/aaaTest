@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List
 
-from prievo_agent.application.prior_service import PriorApplicationService
+from prievo_agent.application.workflows.prior_service import PriorApplicationService
 from prievo_agent.core.evolution import PriEvoEvolutionCore
 from prievo_agent.core.prior_retrieval import PriorRetrievalService
 from prievo_agent.domain.events import EventType
@@ -14,7 +14,7 @@ from prievo_agent.domain.prior import (
     OperatorEvidence,
     OptimizerEvidence,
 )
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 from prievo_agent.infrastructure.memory import InMemoryRuntimeStore
 from prievo_agent.infrastructure.prior_adapters import (
     DeterministicPriorRefiner,

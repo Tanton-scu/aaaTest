@@ -19,7 +19,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
 from prievo_agent.runtime.lifecycle import RunLifecycleService
 from prievo_agent.runtime.persistent_runtime import RuntimeLeaseConflict
@@ -221,8 +221,8 @@ class BackendRaceFencingTest(unittest.TestCase):
                 self.assertIn(claimed_job.id, {job.id for job in jobs})
 
                 pending_agent = AgentTask(
-                    "agent-pending-" + suffix, run.id, "PRIOR_RESEARCH",
-                    AgentCapability.PRIOR_RESEARCH, "pending:" + suffix,
+                    "agent-pending-" + suffix, run.id, "LITERATURE_EVIDENCE",
+                    AgentCapability.LITERATURE_EVIDENCE, "pending:" + suffix,
                 )
                 claimed_agent = AgentTask(
                     "agent-claimed-" + suffix, run.id, "CANDIDATE_REPAIR",

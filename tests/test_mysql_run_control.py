@@ -257,8 +257,8 @@ class MySQLRunControlTest(unittest.TestCase):
                     self.assertEqual(job.id, claimed_job.id)
 
                     pending_agent = AgentTask(
-                        "agent-pending-" + case, run.id, "PRIOR_RESEARCH",
-                        AgentCapability.PRIOR_RESEARCH, "pending:" + case,
+                        "agent-pending-" + case, run.id, "LITERATURE_EVIDENCE",
+                        AgentCapability.LITERATURE_EVIDENCE, "pending:" + case,
                     )
                     claimed_agent = AgentTask(
                         "agent-claimed-" + case, run.id, "CANDIDATE_REPAIR",

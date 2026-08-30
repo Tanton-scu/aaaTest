@@ -6,8 +6,8 @@ from pathlib import Path
 from prievo_agent.algorithm.prievo_engine import PriEvOEngine
 from prievo_agent.datasets.registry import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.sqlite_store import SQLiteRuntimeStore
-from prievo_agent.infrastructure.fake_llm import FakeLLM
+from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
 
 
 class V5PriEvOEngineTest(unittest.TestCase):
@@ -30,6 +30,7 @@ class V5PriEvOEngineTest(unittest.TestCase):
                     store, DatasetRegistry(project / "resources" / "datasets"),
                     project / "resources" / "prior_knowledge",
                     llm=model,
+                    evaluation_execution_mode="inline",
                 )
                 completed = engine.run(run.id)
                 checkpoint = store.latest_checkpoint(run.id)
@@ -198,8 +199,13 @@ class V5PriEvOEngineTest(unittest.TestCase):
                 run = Run("run", task.id, dataset_id=task.dataset_id)
                 store.add_task(task)
                 store.add_run(run)
-                engine = PriEvOEngine(store, DatasetRegistry(dataset_root),
-                                      project / "resources" / "prior_knowledge")
+                engine = PriEvOEngine(
+                    store,
+                    DatasetRegistry(dataset_root),
+                    project / "resources" / "prior_knowledge",
+                    llm=FakeLLM(),
+                    evaluation_execution_mode="inline",
+                )
                 engine.run(run.id)
                 # 保持 CSV 合法但改变 digest，恢复必须拒绝。
                 target.write_bytes(target.read_bytes() + b"\n")

@@ -1,19 +1,27 @@
-"""PriEvO 产品主链：3 个 Agent + 2 个结构化 LLM Node。"""
+"""PriEvO Agent 层。
 
-from .evolution_planner import EvolutionPlannerAgent
-from .final_selection import FinalSelectionAgent, FinalSelectionNode
-from .heuristic_generation import HeuristicGenerationAgent
-from .prior_research import PriorResearchAgent
-from .repair import RepairAgent
-from .similarity import SimilarityAgent, SimilaritySelectionNode
+目录按职责拆分：
+- common：上下文构建、上下文策略、共享模型；
+- nodes：可被 workflow 调用的 LLM Agent / Node；
+- runtime：Agent 注册表等执行期辅助。
+"""
+
+from .nodes import (
+    EvolutionPlannerNode,
+    FinalSelectionAgent,
+    FinalSelectionNode,
+    HeuristicGenerationAgent,
+    RepairAgent,
+    SimilaritySelectionNode,
+    SimilaritySelectionNode,
+)
 
 __all__ = [
-    "EvolutionPlannerAgent",
-    "SimilaritySelectionNode",
-    "SimilarityAgent",
-    "HeuristicGenerationAgent",
-    "PriorResearchAgent",
-    "RepairAgent",
-    "FinalSelectionNode",
+    "EvolutionPlannerNode",
     "FinalSelectionAgent",
+    "FinalSelectionNode",
+    "HeuristicGenerationAgent",
+    "RepairAgent",
+    "SimilaritySelectionNode",
+    "SimilaritySelectionNode",
 ]

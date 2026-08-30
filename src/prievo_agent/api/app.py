@@ -13,7 +13,7 @@ from fastapi import FastAPI, Header, HTTPException, Query, Request
 from fastapi.responses import FileResponse, StreamingResponse, Response
 
 from prievo_agent import __version__
-from prievo_agent.application.run_facade import (
+from prievo_agent.application.orchestration.run_facade import (
     RunApplicationFacade,
     RunConflict,
     RunNotFound,
