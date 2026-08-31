@@ -27,7 +27,9 @@ Agent / Node / Tool 的边界：
 └── EvolutionPlannerNode：生成当前 operator batch 的计划与父代选择说明
 
 Tool
-└── LiteratureSearchTool / RAG：只读检索工具，不拥有自主目标
+├── LiteratureSearchTool / RAG：只读文献检索，不拥有自主目标
+├── CandidateInspectionTool：按 candidate_id 查看同 Run 个体详情、父代、评估结果和失败 job
+└── CandidateCodeAuditTool：对候选代码做 AST / 入口函数 / 禁止 import 与危险 builtin 审查
 ```
 
 ```text

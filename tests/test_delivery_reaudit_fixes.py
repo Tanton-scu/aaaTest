@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from prievo_agent.application.tools.tool_governance import (
+    CandidateCodeAuditTool,
     CandidateInspectionTool,
     ToolCallDenied,
     ToolGovernanceGateway,
@@ -44,6 +45,46 @@ class CandidateInspectionIsolationTest(unittest.TestCase):
                     ["tool-z-first", "tool-a-second"],
                     [item.id for item in store.tool_calls_for_run(run.id)],
                 )
+            finally:
+                store.close()
+
+    def test_candidate_code_audit_is_static_governed_and_audited(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            store = SQLiteRuntimeStore(root / "state.sqlite3", root / "artifacts")
+            try:
+                task = OptimizationTask("task-audit", "代码审查", "minimize", 3, 30)
+                run = Run("run-audit", task.id)
+                store.add_task(task)
+                store.add_run(run)
+                tool = CandidateCodeAuditTool(ToolGovernanceGateway(store))
+
+                passed = tool.audit(
+                    run.id,
+                    "def run_tuners(file, budget, seed, maxlives):\n    return []\n",
+                    "提交评估前做静态审查",
+                    candidate_id="candidate-audit",
+                )
+
+                self.assertEqual("PASSED", passed["status"])
+                self.assertEqual("run_tuners", passed["function_name"])
+                self.assertIn("python_ast_parse", passed["checks"])
+                self.assertTrue(passed["tool_call_ref"].startswith("tool-call-"))
+                self.assertEqual(
+                    "candidate_code_audit",
+                    list(store.tool_calls_for_run(run.id))[-1].tool_name,
+                )
+
+                with self.assertRaises(Exception):
+                    tool.audit(
+                        run.id,
+                        "import os\ndef run_tuners(file, budget, seed, maxlives):\n    return []\n",
+                        "拦截带 import 的候选代码",
+                        candidate_id="candidate-bad",
+                    )
+                failed = list(store.tool_calls_for_run(run.id))[-1]
+                self.assertEqual("FAILED", failed.status)
+                self.assertEqual("candidate_code_audit", failed.tool_name)
             finally:
                 store.close()
 

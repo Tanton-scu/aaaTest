@@ -7,6 +7,7 @@ import uuid
 from prievo_agent.domain.events import EventType
 from prievo_agent.domain.ports import RuntimeStore
 from prievo_agent.domain.models import ToolCallRecord, utc_now
+from prievo_agent.security.candidate_validation import CandidateCodeValidator
 
 
 class ToolCallDenied(RuntimeError):
@@ -260,6 +261,66 @@ class CandidateInspectionTool:
                      "attempts": job.attempts, "error_code": job.error_code,
                      "stderr": job.error_message or "", "stdout": ""}
                     if job else None),
+        }
+
+
+class CandidateCodeAuditTool:
+    """受治理的候选代码静态审查工具。
+
+    它不执行候选代码，只做 AST / 入口函数 / 禁止语法与危险 builtin 检查；
+    主要给 GenerationAgent 和 RepairAgent 在提交评估前做快速自检。
+    """
+
+    policy = ToolPolicy(
+        "candidate_code_audit",
+        frozenset({"HeuristicGenerationAgent", "RepairAgent"}),
+        20,
+        "READ_ONLY",
+        "LOCAL_LOW",
+    )
+
+    def __init__(self, gateway, validator=None):
+        self.gateway = gateway
+        self.validator = validator or CandidateCodeValidator()
+
+    def audit(
+        self,
+        run_id,
+        code,
+        reason,
+        caller="HeuristicGenerationAgent",
+        candidate_id="",
+        tool_budget_scope="",
+    ):
+        result, call_id = self.gateway.execute_with_audit(
+            run_id,
+            caller,
+            self.policy,
+            reason,
+            lambda: self._audit(code),
+            input_metadata={
+                "candidate_id": candidate_id,
+                "code_size": len(str(code)),
+                "tool_budget_scope": tool_budget_scope or candidate_id or "code-audit",
+            },
+        )
+        value = dict(result)
+        value["tool_call_ref"] = call_id
+        return value
+
+    def _audit(self, code):
+        report = self.validator.validate(str(code))
+        return {
+            "status": "PASSED",
+            "function_name": report.function_name,
+            "parameters": list(report.parameters),
+            "node_count": report.node_count,
+            "checks": [
+                "python_ast_parse",
+                "single_run_tuners_entrypoint",
+                "signature_file_budget_seed_maxlives",
+                "forbidden_import_global_dunder_builtin",
+            ],
         }
 
 

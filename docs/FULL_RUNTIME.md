@@ -102,7 +102,22 @@ Run lease 的意义就是防止这些情况下两个 app 同时推进同一个 R
 12. 保存 `FINAL_HEURISTIC` artifact；
 13. 写入 `RUN_COMPLETED`。
 
-## 6. 文献检索与 RAG 的职责
+## 6. Agent 可用工具的职责
+
+工具不是独立 Agent，而是由后端 workflow 在明确条件下调用的受治理能力。当前主要有三类：
+
+```text
+literature_search
+  由 GenerationAgent 返回 KnowledgeGap 后触发，用于检索文献证据。
+
+candidate_inspection
+  按 candidate_id 查看同 Run 内个体详情、代码摘要、父代、评估结果和失败 job。
+
+candidate_code_audit
+  对候选代码做 AST / run_tuners 入口 / 禁止 import / 危险 builtin 静态审查。
+```
+
+每次工具调用都会经过 `ToolGovernanceGateway`，检查 caller allowlist、调用原因、scope 预算，并写入 tool call audit 与 durable event。
 
 文献检索不是一个独立“先验研究主流程”。它是算法生成阶段可用的工具。
 
