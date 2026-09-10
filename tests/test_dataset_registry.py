@@ -2,13 +2,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.datasets.registry import DatasetError, DatasetRegistry
+from prievo_agent.evaluation.datasets import DatasetError, DatasetRegistry
 
 
 class DatasetRegistryTest(unittest.TestCase):
     def test_bundled_datasets_are_scanned_and_loaded(self):
         root = Path(__file__).resolve().parents[1]
-        registry = DatasetRegistry(root / "resources" / "datasets")
+        registry = DatasetRegistry(root / "assets" / "datasets")
         datasets = registry.list_datasets()
         self.assertEqual(
             {"brotli", "sqlite", "xgboost-Covtype", "xgboost-PimaIndiansDiabetes"},
@@ -27,7 +27,7 @@ class DatasetRegistryTest(unittest.TestCase):
             registry = DatasetRegistry(root)
             self.assertEqual([], registry.list_datasets())
             with self.assertRaises(DatasetError):
-                registry.get("../resources/datasets/xgboost-Covtype")
+                registry.get("../assets/datasets/xgboost-Covtype")
 
 
 if __name__ == "__main__":

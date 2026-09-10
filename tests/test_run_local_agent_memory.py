@@ -3,11 +3,11 @@ import unittest
 from pathlib import Path
 
 from prievo_agent.domain.models import AgentMemory
-from prievo_agent.infrastructure.agent_memory import (
+from prievo_agent.infrastructure.working_memory import (
     InMemoryAgentWorkingMemory,
     RedisAgentWorkingMemory,
 )
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class FakePipeline:

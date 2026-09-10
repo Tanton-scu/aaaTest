@@ -13,7 +13,7 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from prievo_agent.agents.runtime.registry import AgentRegistry
+from prievo_agent.agents.registry import AgentRegistry
 from prievo_agent.application.orchestration.agent_dispatcher import (
     AgentDispatchError,
     AgentTaskDispatcher,
@@ -26,7 +26,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class _Handler:

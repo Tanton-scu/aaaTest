@@ -2,11 +2,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.algorithm.dataset_evaluator import DatasetEvaluator
-from prievo_agent.algorithm.executable_dataset_evaluator import (
+from prievo_agent.evaluation.evaluator import DatasetEvaluator
+from prievo_agent.evaluation.executor import (
     ExecutableDatasetEvaluator,
 )
-from prievo_agent.datasets.registry import DatasetRegistry
+from prievo_agent.evaluation.datasets import DatasetRegistry
 from prievo_agent.domain.errors import (
     AlgorithmOOMError,
     AlgorithmTimeoutError,

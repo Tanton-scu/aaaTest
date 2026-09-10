@@ -2,7 +2,7 @@
 .env.*
 !.env.example
 
-.venv/
+.venv*/
 venv/
 __pycache__/
 *.py[cod]
@@ -15,8 +15,8 @@ __pycache__/
 reports/
 snapshots/
 
-data/papers/
-data/literature/pdf_corpus.json
+assets/literature/papers/
+assets/literature/pdf_corpus.json
 
 .DS_Store
 Thumbs.db

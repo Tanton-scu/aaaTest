@@ -12,13 +12,13 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from prievo_agent.application.workflows.similarity_workflow import DurableSimilarityWorkflow
-from prievo_agent.core.prior_retrieval import PriorRetrievalService
+from prievo_agent.knowledge.prior.retrieval import PriorRetrievalService
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.prior_adapters import DeterministicPriorRefiner
-from prievo_agent.infrastructure.prior_repository import CsvPriorRepository
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.knowledge.prior.adapters import DeterministicPriorRefiner
+from prievo_agent.knowledge.prior.repository import CsvPriorRepository
+from prievo_agent.knowledge.skills.registry import SkillRegistry
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class DurableSimilarityWorkflowTest(unittest.TestCase):
@@ -31,7 +31,7 @@ class DurableSimilarityWorkflowTest(unittest.TestCase):
                 run = Run("run-sim", task.id)
                 store.add_task(task)
                 store.add_run(run)
-                repository = CsvPriorRepository(PROJECT_ROOT / "resources" / "prior_knowledge")
+                repository = CsvPriorRepository(PROJECT_ROOT / "assets" / "prior")
                 target = next(
                     item for item in repository.landscape_profiles()
                     if item.instance_name == "xgboost-Covtype"
@@ -39,11 +39,11 @@ class DurableSimilarityWorkflowTest(unittest.TestCase):
                 retrieval = PriorRetrievalService(repository, DeterministicPriorRefiner())
                 numeric = retrieval.retrieve_numeric(target, 5)
                 semantics = _metric_semantics(
-                    PROJECT_ROOT / "resources" / "prior_knowledge" / "fl_metric.csv"
+                    PROJECT_ROOT / "assets" / "prior" / "fl_metric.csv"
                 )
 
                 refinement, top5_ref, decision_ref = DurableSimilarityWorkflow(
-                    store, SkillRegistry(PROJECT_ROOT / "skills"), FakeLLM()
+                    store, SkillRegistry(PROJECT_ROOT / "assets" / "skills"), FakeLLM()
                 ).select(run.id, target, numeric, semantics)
                 prior = retrieval.extract(target, numeric, refinement)
 

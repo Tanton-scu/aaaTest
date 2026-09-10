@@ -3,8 +3,8 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from prievo_agent.agents.common.context import AgentContextBuilder
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.context import AgentContextBuilder
+from prievo_agent.agents.context_policies import ContextPolicyFramework
 from prievo_agent.agents.nodes.heuristic_generation import (
     CandidateDraft,
     GenerationContractError,
@@ -15,7 +15,7 @@ from prievo_agent.agents.nodes.heuristic_generation import (
     MalformedHeuristicOutputError,
 )
 from prievo_agent.domain.models import AgentCapability
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
+from prievo_agent.knowledge.skills.registry import SkillRegistry
 
 
 PARENT_CODE_A = """\
@@ -98,7 +98,7 @@ class HeuristicGenerationAgentTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         root = Path(__file__).resolve().parents[1]
-        cls.skills = SkillRegistry(root / "skills")
+        cls.skills = SkillRegistry(root / "assets" / "skills")
 
     def _agent(self, result):
         model = _Model(result)

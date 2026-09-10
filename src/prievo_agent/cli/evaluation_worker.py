@@ -20,10 +20,10 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Mapping
 
-from prievo_agent.datasets.registry import DatasetRegistry
+from prievo_agent.evaluation.datasets import DatasetRegistry
 from prievo_agent.infrastructure.mysql_store import MySQLRuntimeStore
 from prievo_agent.infrastructure.redis_events import PublishingStore, RedisEventBus
-from prievo_agent.runtime.evaluation_queue import EvaluationWorker, WorkerCrashed
+from prievo_agent.evaluation.queue import EvaluationWorker, WorkerCrashed
 
 
 logger = logging.getLogger("prievo.evaluation_worker")
@@ -239,7 +239,7 @@ def main(argv=None, environ=None, store_factory=None, worker_factory=None):
     args = parser.parse_args(argv)
 
     project_root = Path(__file__).resolve().parents[3]
-    dataset_root = args.dataset_root or project_root / "resources" / "datasets"
+    dataset_root = args.dataset_root or project_root / "assets" / "datasets"
     settings = EvaluationWorkerSettings.from_environment(
         args.root, dataset_root, environ=environ
     )
@@ -306,7 +306,7 @@ def unique_worker_id(prefix, hostname=None, process_id=None, nonce=None):
 
 
 def _build_worker(store, settings, worker_id):
-    from prievo_agent.algorithm.dataset_evaluator import DatasetEvaluator
+    from prievo_agent.evaluation.evaluator import DatasetEvaluator
 
     registry = DatasetRegistry(settings.dataset_root)
     evaluator = DatasetEvaluator(

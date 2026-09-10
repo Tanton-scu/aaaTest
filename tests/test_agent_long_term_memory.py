@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 from prievo_agent.domain.models import AgentMemory
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class AgentLongTermMemoryTest(unittest.TestCase):

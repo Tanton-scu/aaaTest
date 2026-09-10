@@ -9,7 +9,7 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class RecoveryManagerTest(unittest.TestCase):
@@ -117,7 +117,7 @@ class RecoveryManagerTest(unittest.TestCase):
 
     def test_recovery_first_requeues_expired_evaluation_lease(self):
         from prievo_agent.domain.models import Candidate, EvaluationJobStatus
-        from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
+        from prievo_agent.evaluation.queue import EvaluationQueueService
 
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

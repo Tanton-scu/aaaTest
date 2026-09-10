@@ -17,7 +17,7 @@ from prievo_agent.application.observability.agent_trace import AgentTraceQuery
 from .recovery_manager import RecoveryManager
 from .durable_agent_coordinator import DurableAgentCoordinator
 from prievo_agent.runtime.persistent_runtime import RuntimeLeaseConflict
-from prievo_agent.runtime.final_optimization import (
+from prievo_agent.evaluation.final_optimization import (
     required_final_optimization_budget,
 )
 

@@ -18,7 +18,7 @@ from prievo_agent.domain.models import (
     RunStatus,
 )
 from prievo_agent.infrastructure.mysql_store import MySQLRuntimeStore
-from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
+from prievo_agent.evaluation.queue import EvaluationQueueService
 
 
 @unittest.skipUnless(

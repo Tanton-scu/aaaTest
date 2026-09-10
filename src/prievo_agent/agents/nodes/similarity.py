@@ -7,14 +7,14 @@ from collections.abc import Mapping, Sequence
 from typing import Any
 
 from prievo_agent.domain.models import AgentCapability
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     LANDSCAPE_METRICS,
     LandscapeProfile,
     SimilarInstance,
 )
 
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
-from prievo_agent.agents.common.models import SimilarityDecision
+from prievo_agent.agents.context_policies import ContextPolicyFramework
+from prievo_agent.agents.models import SimilarityDecision
 
 
 class SimilaritySelectionNodeError(RuntimeError):

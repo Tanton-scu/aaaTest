@@ -18,7 +18,7 @@ from prievo_agent.domain.models import (
     AgentCapability, AgentMemory, AgentTask, AgentTaskStatus, ToolCallRecord,
     TraceRecord,
 )
-from prievo_agent.infrastructure.agent_memory import memory_types_for_scope
+from prievo_agent.infrastructure.working_memory import memory_types_for_scope
 
 
 def _dt(value):

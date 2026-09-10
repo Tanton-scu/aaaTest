@@ -9,18 +9,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from prievo_agent.core.evolution import PriEvoEvolutionCore
-from prievo_agent.core.research_runner import ResearchRunner
-from prievo_agent.core.schedule import operators_for_generation
-from prievo_agent.core.selection import (
+from prievo_agent.evolution.population import PriEvoEvolutionCore
+from prievo_agent.evolution.research import ResearchRunner
+from prievo_agent.evolution.schedule import operators_for_generation
+from prievo_agent.evolution.selection import (
     select_parents,
     select_population_early,
     select_population_late,
 )
-from prievo_agent.core.serialization import candidate_from_dict, candidate_to_dict
+from prievo_agent.evolution.serialization import candidate_from_dict, candidate_to_dict
 from prievo_agent.domain.models import Candidate, OptimizationTask
-from prievo_agent.infrastructure.testing.fake_evaluator import FakeEvaluator
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.devtools.fake_evaluator import FakeEvaluator
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
 
 
 def candidate(identifier: str, objective: float, operators: list) -> Candidate:

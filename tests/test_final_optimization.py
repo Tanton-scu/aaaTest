@@ -16,10 +16,10 @@ try:
 except ModuleNotFoundError:
     sys.modules["httpx"] = types.ModuleType("httpx")
 
-from prievo_agent.algorithm.executable_dataset_evaluator import (
+from prievo_agent.evaluation.executor import (
     ExecutableDatasetEvaluator,
 )
-from prievo_agent.datasets.registry import DatasetRegistry
+from prievo_agent.evaluation.datasets import DatasetRegistry
 from prievo_agent.domain.errors import TransientEvaluationError
 from prievo_agent.domain.models import (
     Candidate,
@@ -28,8 +28,8 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
-from prievo_agent.runtime.final_optimization import (
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.evaluation.final_optimization import (
     FINAL_OPTIMIZATION_DISCLOSURE_CN,
     FinalOptimizationFailed,
     FinalOptimizationService,

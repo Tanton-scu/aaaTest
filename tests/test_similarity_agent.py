@@ -8,13 +8,13 @@ from prievo_agent.agents.nodes.similarity import (
     SimilaritySelectionNode,
 )
 from prievo_agent.domain.models import AgentCapability
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     LANDSCAPE_METRICS,
     LandscapeProfile,
     SimilarInstance,
 )
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.knowledge.skills.registry import SkillRegistry
 
 
 def _metrics(offset: float) -> dict[str, float]:
@@ -47,7 +47,7 @@ class SimilaritySelectionNodeTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.project = Path(__file__).resolve().parents[1]
-        cls.registry = SkillRegistry(cls.project / "skills")
+        cls.registry = SkillRegistry(cls.project / "assets" / "skills")
         cls.target = LandscapeProfile("target", _metrics(0.0), 100, "fixture")
         cls.candidates = [_candidate("A", 1), _candidate("b", 2), _candidate("C", 3)]
 

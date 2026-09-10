@@ -1,9 +1,9 @@
 import copy
 import unittest
 
-from prievo_agent.agents.common.context import AgentContextBuilder
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
-from prievo_agent.application.literature.evidence_resolver import (
+from prievo_agent.agents.context import AgentContextBuilder
+from prievo_agent.agents.context_policies import ContextPolicyFramework
+from prievo_agent.knowledge.literature.resolver import (
     KnowledgeGap,
     LiteratureEvidenceResolver,
     ResearchSkill,
@@ -116,7 +116,7 @@ class LiteratureEvidenceResolverTests(unittest.TestCase):
                 score=0.91,
                 source_metadata={
                     "identifier": "doi:10.1000/example",
-                    "source_path": "data/literature/smith-2024.pdf",
+                    "source_path": "assets/literature/smith-2024.pdf",
                     "page": 7,
                 },
             ),

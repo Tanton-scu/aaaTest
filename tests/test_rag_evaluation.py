@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.rag_eval.evaluator import (
+from prievo_agent.devtools.rag_eval.evaluator import (
     compute_ranking_metrics,
     run_evaluation,
 )
@@ -24,8 +24,8 @@ class RAGEvaluationTest(unittest.TestCase):
         self.assertEqual(0.5, metrics["recall_at_k"])
 
     def test_real_four_configuration_evaluation_is_reproducible(self):
-        corpus = ROOT / "data" / "literature" / "corpus.json"
-        cases = ROOT / "data" / "literature" / "eval_cases.json"
+        corpus = ROOT / "assets" / "literature" / "corpus.json"
+        cases = ROOT / "assets" / "literature" / "eval_cases.json"
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "report.json"
             markdown = Path(directory) / "report.md"
@@ -64,7 +64,7 @@ class RAGEvaluationTest(unittest.TestCase):
         self.assertIn("少量", "".join(first["limitations"]))
 
     def test_missing_fixed_gold_id_fails_instead_of_title_matching(self):
-        corpus = ROOT / "data" / "literature" / "corpus.json"
+        corpus = ROOT / "assets" / "literature" / "corpus.json"
         with tempfile.TemporaryDirectory() as directory:
             cases = Path(directory) / "cases.json"
             cases.write_text(

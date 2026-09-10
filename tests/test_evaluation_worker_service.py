@@ -12,7 +12,7 @@ from prievo_agent.cli.evaluation_worker import (
     unique_worker_id,
 )
 from prievo_agent.domain.models import EvaluationJobStatus
-from prievo_agent.runtime.evaluation_queue import WorkerCrashed
+from prievo_agent.evaluation.queue import WorkerCrashed
 
 
 class _Clock:

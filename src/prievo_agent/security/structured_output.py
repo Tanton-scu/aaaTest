@@ -4,7 +4,7 @@ import json
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Tuple
 
-from prievo_agent.core.models import GeneratedCandidate
+from prievo_agent.evolution.models import GeneratedCandidate
 
 
 class StructuredOutputError(ValueError):

@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from prievo_agent.application.tools.tool_governance import (
+from prievo_agent.agents.tools import (
     CandidateCodeAuditTool,
     CandidateInspectionTool,
     ToolCallDenied,
@@ -17,8 +17,8 @@ from prievo_agent.domain.models import (
     Run,
     ToolCallRecord,
 )
-from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.composition import RuntimeComposition
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class CandidateInspectionIsolationTest(unittest.TestCase):
@@ -178,10 +178,10 @@ class RuntimeHealthAndInitializationTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory, patch.dict(
             os.environ, environment, clear=False
         ), patch(
-            "prievo_agent.infrastructure.local_runtime.MySQLRuntimeStore",
+            "prievo_agent.infrastructure.composition.MySQLRuntimeStore",
             _FakeMySQLStore,
         ):
-            composition = LocalRuntimeComposition(Path(directory))
+            composition = RuntimeComposition(Path(directory))
             expected_ids = {
                 item.id for item in composition.dataset_registry.list_datasets()
             }
@@ -221,10 +221,10 @@ class RuntimeHealthAndInitializationTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory, patch.dict(
             os.environ, environment, clear=False
         ), patch(
-            "prievo_agent.infrastructure.local_runtime.MySQLRuntimeStore",
+            "prievo_agent.infrastructure.composition.MySQLRuntimeStore",
             _FakeMySQLStore,
         ):
-            composition = LocalRuntimeComposition(Path(directory))
+            composition = RuntimeComposition(Path(directory))
             with patch.object(
                 composition, "open_store", side_effect=OSError("database offline")
             ):

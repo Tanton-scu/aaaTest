@@ -7,12 +7,12 @@ from pathlib import Path
 from unittest.mock import patch
 
 from prievo_agent.agents.nodes.final_selection import NoQualifiedFinalCandidateError
-from prievo_agent.algorithm.prievo_engine import PriEvOEngine
-from prievo_agent.algorithm.dataset_evaluator import DatasetEvaluator
-from prievo_agent.datasets.registry import DatasetRegistry
+from prievo_agent.evolution.engine import PriEvOEngine
+from prievo_agent.evaluation.evaluator import DatasetEvaluator
+from prievo_agent.evaluation.datasets import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 from prievo_agent.domain.errors import CandidateRuntimeError
 
 
@@ -55,14 +55,14 @@ class FaithfulModeTest(unittest.TestCase):
                 store.add_task(task)
                 store.add_run(run)
                 with patch(
-                    "prievo_agent.algorithm.prievo_engine.DatasetEvaluator",
+                    "prievo_agent.evolution.engine.DatasetEvaluator",
                     _FailFirstPriorEvaluator,
                 ):
                     with self.assertRaises(NoQualifiedFinalCandidateError) as raised:
                         PriEvOEngine(
                             store,
-                            DatasetRegistry(project / "resources" / "datasets"),
-                            project / "resources" / "prior_knowledge",
+                            DatasetRegistry(project / "assets" / "datasets"),
+                            project / "assets" / "prior",
                             llm=FakeLLM(),
                             evaluation_execution_mode="inline",
                             research_faithful_mode=True,

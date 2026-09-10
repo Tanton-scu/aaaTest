@@ -4,17 +4,17 @@ import sqlite3
 from pathlib import Path
 
 from prievo_agent.application.orchestration.run_facade import RunApplicationFacade
-from prievo_agent.core.prior_retrieval import PriorRetrievalService
+from prievo_agent.knowledge.prior.retrieval import PriorRetrievalService
 from prievo_agent.domain.errors import (
     ArtifactIntegrityError,
     LLMTimeoutError,
     PriorRepositoryUnavailableError,
 )
 from prievo_agent.domain.models import Candidate, OptimizationTask, Run, RunStatus
-from prievo_agent.domain.prior import LANDSCAPE_METRICS, LandscapeProfile
-from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
-from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
+from prievo_agent.knowledge.prior.models import LANDSCAPE_METRICS, LandscapeProfile
+from prievo_agent.infrastructure.composition import RuntimeComposition
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.evaluation.queue import EvaluationQueueService
 
 
 class UnavailablePriorRepository:
@@ -30,7 +30,7 @@ class UnusedRefiner:
 class FailureModeTest(unittest.TestCase):
     def test_llm_timeout_marks_accepted_run_failed(self):
         with tempfile.TemporaryDirectory() as directory:
-            composition = LocalRuntimeComposition(Path(directory))
+            composition = RuntimeComposition(Path(directory))
 
             def timeout_executor(run_id):
                 raise LLMTimeoutError("LLM provider timeout")

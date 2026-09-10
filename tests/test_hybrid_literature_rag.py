@@ -3,14 +3,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.domain.literature import LiteratureQuery
-from prievo_agent.infrastructure.rag.literature_bm25 import (
+from prievo_agent.knowledge.literature.models import LiteratureQuery
+from prievo_agent.knowledge.literature.retrieval.bm25 import (
     LiteratureCorpusError,
     LocalLiteratureBM25,
     REQUIRED_PAPER_FIELDS,
     load_literature_corpus,
 )
-from prievo_agent.infrastructure.rag.literature_hybrid import (
+from prievo_agent.knowledge.literature.retrieval.hybrid import (
     DeterministicHashingVectorizer,
     LocalHybridLiteratureRAG,
 )
@@ -95,7 +95,7 @@ class HybridLiteratureRAGTest(unittest.TestCase):
             self.assertEqual([], json.loads(output.read_text(encoding="utf-8")))
 
     def test_legacy_curated_schema_search_and_true_empty_result(self):
-        corpus = ROOT / "data" / "literature" / "corpus.json"
+        corpus = ROOT / "assets" / "literature" / "corpus.json"
         bm25 = LocalLiteratureBM25(corpus)
         evidence = bm25.search(
             LiteratureQuery(
@@ -116,7 +116,7 @@ class HybridLiteratureRAGTest(unittest.TestCase):
 
     def test_hybrid_has_stage_scores_provenance_and_is_deterministic(self):
         rag = LocalHybridLiteratureRAG(
-            ROOT / "data" / "literature" / "corpus.json"
+            ROOT / "assets" / "literature" / "corpus.json"
         )
         query = LiteratureQuery(
             ["Hyperband"],
@@ -223,7 +223,7 @@ class HybridLiteratureRAGTest(unittest.TestCase):
         vectorizer = _QueryDocumentVectorizer()
         reranker = _RecordingCrossEncoderReranker()
         rag = LocalHybridLiteratureRAG(
-            ROOT / "data" / "literature" / "corpus.json",
+            ROOT / "assets" / "literature" / "corpus.json",
             vector_port=vectorizer,
             reranker_port=reranker,
             rerank_candidate_pool=2,
@@ -257,7 +257,7 @@ class HybridLiteratureRAGTest(unittest.TestCase):
             root = Path(directory)
             pdf = root / "pdf_corpus.json"
             pdf.write_text("[]\n", encoding="utf-8")
-            paths = [ROOT / "data" / "literature" / "corpus.json", pdf]
+            paths = [ROOT / "assets" / "literature" / "corpus.json", pdf]
             papers = load_literature_corpus(paths)
             rag = LocalHybridLiteratureRAG(paths)
             results = rag.retrieve(

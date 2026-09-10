@@ -19,7 +19,7 @@ from prievo_agent.agents.nodes.heuristic_generation import (
     HeuristicGenerationAgent,
     KnowledgeGap,
 )
-from prievo_agent.agents.runtime.registry import AgentRegistry
+from prievo_agent.agents.registry import AgentRegistry
 from prievo_agent.application.orchestration.agent_dispatcher import AgentTaskDispatcher
 from prievo_agent.application.orchestration.durable_agent_coordinator import (
     DurableAgentCoordinator,

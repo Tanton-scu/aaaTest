@@ -6,7 +6,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from prievo_agent.algorithm.prievo_engine import PriEvOEngine
+from prievo_agent.evolution.engine import PriEvOEngine
 from prievo_agent.domain.models import (
     AgentCapability,
     AgentTask,
@@ -19,8 +19,8 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
-from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.evaluation.queue import EvaluationQueueService
 from prievo_agent.runtime.lifecycle import RunLifecycleService
 from prievo_agent.runtime.persistent_runtime import RuntimeLeaseConflict
 from prievo_agent.runtime.state_machine import RunStateMachine

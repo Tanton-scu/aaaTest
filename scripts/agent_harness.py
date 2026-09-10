@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from prievo_agent.runtime.agent_harness import AgentEngineeringHarness
+from prievo_agent.devtools.harness.agent import AgentEngineeringHarness
 
 
 def main():

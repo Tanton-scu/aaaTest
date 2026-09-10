@@ -6,13 +6,13 @@ import math
 import unittest
 from pathlib import Path
 
-from prievo_agent.core.landscape_analysis import (
+from prievo_agent.knowledge.prior.landscape import (
     DatasetLandscapeSampler,
     LandscapeAnalysisService,
     UnsupportedLandscapeAnalysisError,
 )
-from prievo_agent.datasets.registry import DatasetInfo, LoadedDataset
-from prievo_agent.domain.prior import LANDSCAPE_METRICS, LandscapeProfile
+from prievo_agent.evaluation.datasets import DatasetInfo, LoadedDataset
+from prievo_agent.knowledge.prior.models import LANDSCAPE_METRICS, LandscapeProfile
 
 
 def _dataset(instance_name="known", full_factorial=True):

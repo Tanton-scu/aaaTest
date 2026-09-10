@@ -12,8 +12,8 @@ from prievo_agent.agents.nodes.repair import (
     RepairNotAllowedError,
 )
 from prievo_agent.domain.models import Candidate
-from prievo_agent.domain.skills import SkillDefinition
-from prievo_agent.runtime.failure_classifier import FailureAction, FailureType
+from prievo_agent.knowledge.skills.models import SkillDefinition
+from prievo_agent.evaluation.failures import FailureAction, FailureType
 
 
 ORIGINAL_CODE = """def run_tuners(file, budget, seed, maxlives):

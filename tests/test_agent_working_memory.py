@@ -1,6 +1,6 @@
 import unittest
 
-from prievo_agent.infrastructure.agent_memory import RedisAgentWorkingMemory
+from prievo_agent.infrastructure.working_memory import RedisAgentWorkingMemory
 
 
 class FakePipeline:

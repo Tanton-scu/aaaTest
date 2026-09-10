@@ -8,10 +8,10 @@ import uuid
 from typing import List, Optional
 
 from prievo_agent import __version__
-from prievo_agent.core.evolution import PriEvoEvolutionCore
-from prievo_agent.core.schedule import is_early_generation, operators_for_generation
-from prievo_agent.core.selection import select_population_early, select_population_late
-from prievo_agent.core.serialization import candidate_to_dict
+from prievo_agent.evolution.population import PriEvoEvolutionCore
+from prievo_agent.evolution.schedule import is_early_generation, operators_for_generation
+from prievo_agent.evolution.selection import select_population_early, select_population_late
+from prievo_agent.evolution.serialization import candidate_to_dict
 from prievo_agent.domain.events import EventType
 from prievo_agent.domain.models import (
     Candidate,
@@ -22,14 +22,18 @@ from prievo_agent.domain.models import (
     RunStatus,
 )
 from prievo_agent.domain.ports import CandidateEvaluator, RuntimeStore
-
-from .lifecycle import RunLifecycleService
-from .state_machine import RunStateMachine
-from .evaluation_queue import EvaluationQueueService, EvaluationWorker, utc_clock
-from .evaluation_driver import (
+from prievo_agent.evaluation.driver import (
     DurableEvaluationJobDriver,
     normalize_evaluation_execution_mode,
 )
+from prievo_agent.evaluation.queue import (
+    EvaluationQueueService,
+    EvaluationWorker,
+    utc_clock,
+)
+
+from .lifecycle import RunLifecycleService
+from .state_machine import RunStateMachine
 
 
 CHECKPOINT_SCHEMA_VERSION = 4
@@ -721,7 +725,10 @@ class PersistentEvolutionRuntime:
                     if failed_job_id else None
                 )
                 if self.repair_workflow is not None and failed_job is not None:
-                    from .failure_classifier import FailureAction, FailureClassifier
+                    from prievo_agent.evaluation.failures import (
+                        FailureAction,
+                        FailureClassifier,
+                    )
 
                     decision = FailureClassifier().classify(
                         error_code=failed_job.error_code or "UNKNOWN"

@@ -7,11 +7,11 @@ import unittest
 from pathlib import Path
 
 from prievo_agent.application.workflows.generation_workflow import DurableGenerationWorkflow
-from prievo_agent.application.workflows.literature_evidence_workflow import (
+from prievo_agent.knowledge.literature.workflow import (
     DurableLiteratureEvidenceWorkflow,
 )
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     LANDSCAPE_METRICS,
     InstanceSpecificPrior,
     LandscapeProfile,
@@ -19,8 +19,8 @@ from prievo_agent.domain.prior import (
     OptimizerEvidence,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.knowledge.skills.registry import SkillRegistry
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class _GapThenDraftModel:
@@ -142,7 +142,7 @@ class PriorResearchWorkflowTest(unittest.TestCase):
         root = Path(self.temporary.name)
         self.store = SQLiteRuntimeStore(root / "state.sqlite3", root / "artifacts")
         self.project = Path(__file__).resolve().parents[1]
-        self.skills = SkillRegistry(self.project / "skills")
+        self.skills = SkillRegistry(self.project / "assets" / "skills")
 
     def tearDown(self):
         self.store.close()

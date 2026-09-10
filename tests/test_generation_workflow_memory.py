@@ -15,18 +15,18 @@ from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
 )
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     InstanceSpecificPrior,
     LandscapeProfile,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.agent_memory import (
+from prievo_agent.infrastructure.working_memory import (
     InMemoryAgentWorkingMemory,
     RedisAgentWorkingMemory,
 )
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.knowledge.skills.registry import SkillRegistry
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class _UnavailableRedis:
@@ -57,7 +57,7 @@ class GenerationWorkflowMemoryTest(unittest.TestCase):
             work / "state.sqlite3", work / "artifacts"
         )
         self.project_root = Path(__file__).resolve().parents[1]
-        self.skills = SkillRegistry(self.project_root / "skills")
+        self.skills = SkillRegistry(self.project_root / "assets" / "skills")
         self.task = OptimizationTask(
             "task-memory",
             "fixture",

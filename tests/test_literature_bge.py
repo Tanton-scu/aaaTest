@@ -3,7 +3,7 @@ import types
 import unittest
 from unittest.mock import patch
 
-from prievo_agent.infrastructure.rag import literature_bge
+from prievo_agent.knowledge.literature.retrieval import bge as literature_bge
 
 
 class _FakeFlagModel:

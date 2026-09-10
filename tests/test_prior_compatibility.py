@@ -5,19 +5,19 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.core.evolution import PriEvoEvolutionCore
-from prievo_agent.core.prior_compatibility import (
+from prievo_agent.evolution.population import PriEvoEvolutionCore
+from prievo_agent.knowledge.prior.compatibility import (
     assess_prior_code,
     load_prior_compatibility_report,
 )
 from prievo_agent.domain.models import Run
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     InstanceSpecificPrior,
     LandscapeProfile,
     OptimizerEvidence,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -25,7 +25,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 class PriorCompatibilityTest(unittest.TestCase):
     def test_all_31_records_have_stable_matrix(self):
-        source = PROJECT_ROOT / "resources" / "prior_knowledge" / "prior_population.json"
+        source = PROJECT_ROOT / "assets" / "prior" / "prior_population.json"
         first = load_prior_compatibility_report(source)
         second = load_prior_compatibility_report(source)
 

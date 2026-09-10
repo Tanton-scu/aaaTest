@@ -1,7 +1,7 @@
 import unittest
 
-from prievo_agent.agents.common.context import AgentContextBuilder
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.context import AgentContextBuilder
+from prievo_agent.agents.context_policies import ContextPolicyFramework
 from prievo_agent.agents.nodes.final_selection import (
     DeterministicFinalSelector,
     FinalCandidate,

@@ -13,7 +13,7 @@ from dataclasses import asdict, dataclass, field
 from math import isfinite
 from typing import Any, Dict, List, Protocol, Union
 
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.context_policies import ContextPolicyFramework
 from prievo_agent.domain.models import AgentCapability
 
 

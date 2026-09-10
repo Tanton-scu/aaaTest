@@ -16,7 +16,7 @@ from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
 )
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class SQLiteAgentTaskTest(unittest.TestCase):

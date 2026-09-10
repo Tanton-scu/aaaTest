@@ -5,7 +5,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from prievo_agent.core.evolution import PriEvoEvolutionCore
+from prievo_agent.evolution.population import PriEvoEvolutionCore
 from prievo_agent.domain.errors import (
     AlgorithmOOMError,
     AlgorithmTimeoutError,
@@ -20,10 +20,10 @@ from prievo_agent.domain.models import (
     Run,
     RunStatus,
 )
-from prievo_agent.infrastructure.testing.fake_evaluator import FakeEvaluator
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
-from prievo_agent.runtime.evaluation_queue import EvaluationQueueService
+from prievo_agent.devtools.fake_evaluator import FakeEvaluator
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.evaluation.queue import EvaluationQueueService
 from prievo_agent.runtime.persistent_runtime import (
     CooperativePause,
     PersistentEvolutionRuntime,

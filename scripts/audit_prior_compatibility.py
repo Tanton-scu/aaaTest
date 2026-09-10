@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from prievo_agent.core.prior_compatibility import load_prior_compatibility_report
+from prievo_agent.knowledge.prior.compatibility import load_prior_compatibility_report
 
 
 def main() -> int:
@@ -14,7 +14,7 @@ def main() -> int:
     parser.add_argument(
         "--source",
         type=Path,
-        default=Path("resources/prior_knowledge/prior_population.json"),
+        default=Path("assets/prior/prior_population.json"),
     )
     parser.add_argument(
         "--output", type=Path, default=Path("reports/prior_compatibility.json")

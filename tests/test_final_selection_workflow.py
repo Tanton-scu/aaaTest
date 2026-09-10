@@ -14,9 +14,9 @@ from prievo_agent.domain.models import (
     OptimizationTask,
     Run,
 )
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.knowledge.skills.registry import SkillRegistry
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 def _long_code(value):
@@ -59,7 +59,7 @@ class DurableFinalSelectionWorkflowTest(unittest.TestCase):
                     ))
                 model = FakeLLM()
                 workflow = DurableFinalSelectionWorkflow(
-                    store, SkillRegistry(project / "skills"), model
+                    store, SkillRegistry(project / "assets" / "skills"), model
                 )
 
                 selected, direct_ref, direct = workflow.select(
@@ -150,7 +150,7 @@ class DurableFinalSelectionWorkflowTest(unittest.TestCase):
                     {"x": 1},
                     3,
                 ))
-                skills = SkillRegistry(project / "skills")
+                skills = SkillRegistry(project / "assets" / "skills")
 
                 engineering = DurableFinalSelectionWorkflow(
                     store, skills, FakeLLM(), faithful_mode=False
@@ -206,7 +206,7 @@ class DurableFinalSelectionWorkflowTest(unittest.TestCase):
                 model = FakeLLM()
                 workflow = DurableFinalSelectionWorkflow(
                     store,
-                    SkillRegistry(project / "skills"),
+                    SkillRegistry(project / "assets" / "skills"),
                     model,
                     faithful_mode=True,
                 )

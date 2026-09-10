@@ -12,7 +12,7 @@ import json
 from datetime import datetime, timezone
 from typing import Iterable
 
-from prievo_agent.agents.runtime.registry import AgentNotRegisteredError, AgentRegistry
+from prievo_agent.agents.registry import AgentNotRegisteredError, AgentRegistry
 from prievo_agent.application.orchestration.blackboard import Blackboard
 from prievo_agent.domain.events import EventType
 from prievo_agent.domain.errors import LLMTimeoutError

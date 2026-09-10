@@ -15,10 +15,10 @@ from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass, field
 from typing import Any, Optional, Protocol
 
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.context_policies import ContextPolicyFramework
 from prievo_agent.domain.models import AgentCapability, Candidate
-from prievo_agent.domain.skills import SkillDefinition
-from prievo_agent.runtime.failure_classifier import (
+from prievo_agent.knowledge.skills.models import SkillDefinition
+from prievo_agent.evaluation.failures import (
     FailureAction,
     FailureClassifier,
     FailureDecision,

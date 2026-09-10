@@ -3,13 +3,13 @@ import unittest
 from pathlib import Path
 
 from prievo_agent.application.orchestration.run_facade import RunApplicationFacade
-from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
+from prievo_agent.infrastructure.composition import RuntimeComposition
 
 
 class ObservabilityContractTest(unittest.TestCase):
     def test_metrics_derive_from_events_jobs_and_run_state(self):
         with tempfile.TemporaryDirectory() as directory:
-            composition = LocalRuntimeComposition(Path(directory))
+            composition = RuntimeComposition(Path(directory))
             facade = RunApplicationFacade(
                 composition.open_store, composition.execute, auto_start=False,
                 dataset_registry=composition.dataset_registry,

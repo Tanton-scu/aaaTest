@@ -7,15 +7,15 @@ from pathlib import Path
 from prievo_agent.application.orchestration.agent_dispatcher import AgentDispatchError
 from prievo_agent.application.workflows.generation_workflow import DurableGenerationWorkflow
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     LANDSCAPE_METRICS,
     InstanceSpecificPrior,
     LandscapeProfile,
     SemanticRefinement,
 )
-from prievo_agent.infrastructure.testing.scripted_fake_llm import ScriptedFakeLLM
-from prievo_agent.infrastructure.skill_registry import SkillRegistry
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.devtools.scripted_fake_llm import ScriptedFakeLLM
+from prievo_agent.knowledge.skills.registry import SkillRegistry
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 def _prior():
@@ -64,7 +64,7 @@ class AgentTaskRedriveTest(unittest.TestCase):
 
     def _workflow(self, model):
         return DurableGenerationWorkflow(
-            self.store, SkillRegistry(self.project / "skills"), model
+            self.store, SkillRegistry(self.project / "assets" / "skills"), model
         )
 
     def test_transient_once_is_automatically_redriven_to_success(self):

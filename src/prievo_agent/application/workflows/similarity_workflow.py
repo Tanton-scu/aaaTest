@@ -9,7 +9,7 @@ from dataclasses import asdict
 from prievo_agent.agents.nodes.similarity import SimilaritySelectionNode
 from prievo_agent.domain.events import EventType
 from prievo_agent.domain.models import TraceRecord
-from prievo_agent.domain.prior import (
+from prievo_agent.knowledge.prior.models import (
     LandscapeProfile,
     SemanticRefinement,
     SimilarInstance,

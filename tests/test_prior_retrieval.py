@@ -7,11 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from prievo_agent.core.prior_retrieval import PriorRetrievalService
-from prievo_agent.domain.prior import LandscapeProfile, SemanticRefinement
-from prievo_agent.infrastructure.prior_adapters import DeterministicPriorRefiner
-from prievo_agent.infrastructure.prior_repository import StructuredPriorRepository
-from prievo_agent.runtime.prior_harness import PriorRetrievalHarness, _metrics
+from prievo_agent.knowledge.prior.retrieval import PriorRetrievalService
+from prievo_agent.knowledge.prior.models import LandscapeProfile, SemanticRefinement
+from prievo_agent.knowledge.prior.adapters import DeterministicPriorRefiner
+from prievo_agent.knowledge.prior.repository import StructuredPriorRepository
+from prievo_agent.devtools.harness.prior import PriorRetrievalHarness, _metrics
 
 
 class BrokenRefiner:

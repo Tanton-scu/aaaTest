@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from prievo_agent.runtime.agent_harness import AgentMainlineHarness
+from prievo_agent.devtools.harness.agent import AgentMainlineHarness
 
 
 class AgentHarnessTest(unittest.TestCase):

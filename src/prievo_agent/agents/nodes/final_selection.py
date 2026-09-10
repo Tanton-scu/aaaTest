@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from types import MappingProxyType
 from typing import Any, Mapping, Protocol, Sequence
 
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.context_policies import ContextPolicyFramework
 from prievo_agent.domain.models import AgentCapability
 
 

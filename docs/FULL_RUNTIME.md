@@ -168,8 +168,8 @@ RAG_RERANK_CANDIDATE_POOL=40
 
 实现落点：
 
-- `src/prievo_agent/infrastructure/rag/literature_hybrid.py`：负责 chunk、BM25、vector recall、RRF、候选池、provenance；
-- `src/prievo_agent/infrastructure/rag/literature_bge.py`：负责 FlagEmbedding adapter；
+- `src/prievo_agent/knowledge/literature/retrieval/hybrid.py`：负责 chunk、BM25、vector recall、RRF、候选池、provenance；
+- `src/prievo_agent/knowledge/literature/retrieval/bge.py`：负责 FlagEmbedding adapter；
 - query embedding 调用 `encode_query()`，会加 `RAG_QUERY_INSTRUCTION`；
 - document chunk 调用 `encode_document()`，不加 query 前缀；
 - reranker 调用 `FlagReranker.compute_score([[query, chunk], ...])`；

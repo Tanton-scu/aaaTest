@@ -8,7 +8,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import asdict
 from typing import Any, Protocol
 
-from prievo_agent.agents.common.context_policies import ContextPolicyFramework
+from prievo_agent.agents.context_policies import ContextPolicyFramework
 from prievo_agent.domain.models import AgentCapability, GenerationPlan, PreviousPlanFeedback, utc_now
 
 

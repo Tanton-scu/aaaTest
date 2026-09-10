@@ -18,7 +18,7 @@ from prievo_agent.application.orchestration.run_facade import (
     RunConflict,
     RunNotFound,
 )
-from prievo_agent.infrastructure.local_runtime import LocalRuntimeComposition
+from prievo_agent.infrastructure.composition import RuntimeComposition
 
 from .schemas import CreateRunRequest
 
@@ -37,7 +37,7 @@ def create_app(
     auto_start: bool = True,
     start_delay_seconds: float = 0.0,
 ) -> FastAPI:
-    composition = LocalRuntimeComposition(runtime_root)
+    composition = RuntimeComposition(runtime_root)
     facade = RunApplicationFacade(
         composition.open_store,
         composition.execute,

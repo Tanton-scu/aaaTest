@@ -14,8 +14,8 @@ from typing import Any, Callable
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PAPER_ROOT = PROJECT_ROOT / "data" / "papers"
-DEFAULT_OUTPUT = PROJECT_ROOT / "data" / "literature" / "pdf_corpus.json"
+DEFAULT_PAPER_ROOT = PROJECT_ROOT / "assets" / "literature" / "papers"
+DEFAULT_OUTPUT = PROJECT_ROOT / "assets" / "literature" / "pdf_corpus.json"
 DOI_PATTERN = re.compile(r"10\.\d{4,9}/[-._;()/:A-Z0-9]+", re.IGNORECASE)
 YEAR_PATTERN = re.compile(r"(?:19|20)\d{2}")
 NUMBERED_HEADING = re.compile(
@@ -320,7 +320,7 @@ def main(argv=None):
     except OSError as exc:
         print(
             "PDF ingest 无法写入 {}：{}。Linux bind mount 请确保当前容器用户"
-            "对 data/literature 有写权限，或改在宿主机执行该脚本。".format(
+            "对 assets/literature 有写权限，或改在宿主机执行该脚本。".format(
                 args.output, exc
             ),
             file=sys.stderr,

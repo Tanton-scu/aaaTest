@@ -33,30 +33,39 @@ Tool
 ```
 
 ```text
-src/prievo_agent/
+assets/                  # 所有版本化运行资产
+├── datasets/            # 内置优化数据集
+├── literature/          # Literature RAG corpus 与评测集
+├── prior/               # FLA、optimizer 与 operator 先验
+└── skills/              # Agent Skill 指令
+scripts/                 # 可直接执行的维护与 harness 入口
+src/prievo_agent/        # 产品 Python package
+├── agents/              # Agent/Node、上下文策略、工具治理与 registry
 ├── api/                 # FastAPI 路由与 Dashboard
-├── algorithm/           # PriEvO 产品主引擎与 dataset evaluator
-├── agents/
-│   ├── common/          # Agent 上下文、上下文裁剪策略、共享模型
-│   ├── nodes/           # 3 个 Agent + 2 个 LLM Node
-│   └── runtime/         # AgentRegistry 等执行期辅助
-├── application/
-│   ├── orchestration/   # Run facade、Coordinator、Dispatcher、Blackboard、Recovery
-│   ├── workflows/       # Similarity / Planning / Generation / Repair / Final workflows
-│   ├── tools/           # Tool Governance
-│   ├── memory/          # Run-local memory 与 history compaction
-│   ├── literature/      # LiteratureEvidenceResolver：RAG 工具结果的结构化解析
-│   └── observability/   # Metrics 与 Agent Trace
-├── core/                # PriEvO schedule、selection、prior retrieval 等核心逻辑
-├── datasets/            # Dataset registry
-├── domain/              # 领域模型、端口、事件
-├── infrastructure/
-│   ├── rag/             # BM25、BGE embedding、BGE reranker、RRF 检索管线
-│   ├── testing/         # FakeLLM、SQLite store 等测试/harness adapter
-│   └── *.py             # MySQL、Redis、LLM、Skill registry 等生产 adapter
-├── runtime/             # 持久化演化 runtime、评估队列、生命周期
+├── application/         # 用例编排、工作流、记忆与可观测查询
+├── cli/                 # API Server 与 Evaluation Worker 命令入口
+├── devtools/            # 集中的测试支持与 engineering harness
+│   ├── harness/         # Agent、checkpoint、queue、prior、lifecycle harness
+│   └── rag_eval/        # Literature RAG 离线评测工具
+├── domain/              # 跨功能域模型、持久化端口、事件与错误
+├── evaluation/          # 数据集、候选执行、任务队列与最终优化
+├── evolution/           # PriEvO 演化引擎、种群、调度、选择与序列化
+├── infrastructure/      # 运行时装配、MySQL、Redis、LLM 等 adapter
+│   └── local/           # FakeLLM 与 SQLite demo adapter
+├── knowledge/           # literature RAG、prior knowledge 与 Agent skills
+├── runtime/             # 持久化演化循环、租约生命周期与状态机
 └── security/            # 候选代码校验与受控执行
+tests/                   # pytest 测试；不承载产品实现
 ```
+
+`scripts/` 不是另一套产品代码。它只放供开发者直接执行的仓库维护入口：
+
+- `agent_harness.py`：运行跨 Agent、checkpoint、queue、prior 的工程验收场景；
+- `audit_prior_compatibility.py`：重新生成或核对 prior candidate 兼容性报告；
+- `ingest_papers.py`：把 PDF 文献整理进 `assets/literature/` corpus。
+
+产品启动入口统一在 `prievo_agent.cli`；测试辅助实现统一在
+`prievo_agent.devtools`，因此 `scripts/` 中不再承载可复用业务逻辑。
 
 ## 快速运行
 
@@ -90,6 +99,28 @@ Copy-Item .env.example .env
 LLM_API_ENDPOINT=https://ark.cn-beijing.volces.com/api/v3/chat/completions
 ARK_API_KEY=你的方舟APIKey
 LLM_MODEL=glm-5-2-260617
+```
+
+需要通过完整 Dashboard 离线体验时，可以改用确定性 FakeLLM，无需填写 API Key：
+
+```env
+RUNTIME_MODE=demo
+LLM_BACKEND=fake
+LLM_API_ENDPOINT=
+LLM_API_KEY=
+ARK_API_KEY=
+LLM_MODEL=
+```
+
+Demo 模式使用本地 SQLite、FakeLLM 和 API 进程内候选评估，不需要 MySQL、Redis
+或独立 Evaluation Worker。它适合本地体验；生产运行仍应使用 `RUNTIME_MODE=full`。
+
+Demo 模式可以直接启动：
+
+```powershell
+$env:RUNTIME_MODE="demo"
+$env:LLM_BACKEND="fake"
+python -m prievo_agent.cli.api_server --root .prievo-demo-runtime
 ```
 
 3. 启动 MySQL 和 Redis：

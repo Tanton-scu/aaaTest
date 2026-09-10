@@ -4,12 +4,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.algorithm.prievo_engine import PriEvOEngine
+from prievo_agent.evolution.engine import PriEvOEngine
 from prievo_agent.application.orchestration.agent_dispatcher import AgentDispatchError
-from prievo_agent.datasets.registry import DatasetRegistry
+from prievo_agent.evaluation.datasets import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
 
 
 class _FailSecondGenerationCall(FakeLLM):
@@ -43,8 +43,8 @@ class GenerationCrashRecoveryTest(unittest.TestCase):
                 model = _FailSecondGenerationCall()
                 engine = PriEvOEngine(
                     store,
-                    DatasetRegistry(project / "resources" / "datasets"),
-                    project / "resources" / "prior_knowledge",
+                    DatasetRegistry(project / "assets" / "datasets"),
+                    project / "assets" / "prior",
                     llm=model,
                     evaluation_execution_mode="inline",
                 )

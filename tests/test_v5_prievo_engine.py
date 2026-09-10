@@ -3,11 +3,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prievo_agent.algorithm.prievo_engine import PriEvOEngine
-from prievo_agent.datasets.registry import DatasetRegistry
+from prievo_agent.evolution.engine import PriEvOEngine
+from prievo_agent.evaluation.datasets import DatasetRegistry
 from prievo_agent.domain.models import OptimizationTask, Run
-from prievo_agent.infrastructure.testing.sqlite_store import SQLiteRuntimeStore
-from prievo_agent.infrastructure.testing.fake_llm import FakeLLM
+from prievo_agent.infrastructure.local.sqlite_store import SQLiteRuntimeStore
+from prievo_agent.infrastructure.local.fake_llm import FakeLLM
 
 
 class V5PriEvOEngineTest(unittest.TestCase):
@@ -27,8 +27,8 @@ class V5PriEvOEngineTest(unittest.TestCase):
                 store.add_run(run)
                 model = FakeLLM()
                 engine = PriEvOEngine(
-                    store, DatasetRegistry(project / "resources" / "datasets"),
-                    project / "resources" / "prior_knowledge",
+                    store, DatasetRegistry(project / "assets" / "datasets"),
+                    project / "assets" / "prior",
                     llm=model,
                     evaluation_execution_mode="inline",
                 )
@@ -188,7 +188,7 @@ class V5PriEvOEngineTest(unittest.TestCase):
             root = Path(directory)
             dataset_root = root / "datasets"
             dataset_root.mkdir()
-            source = project / "resources" / "datasets" / "xgboost-Covtype.csv"
+            source = project / "assets" / "datasets" / "xgboost-Covtype.csv"
             target = dataset_root / source.name
             target.write_bytes(source.read_bytes())
             store = SQLiteRuntimeStore(root / "state.sqlite3", root / "artifacts")
@@ -202,7 +202,7 @@ class V5PriEvOEngineTest(unittest.TestCase):
                 engine = PriEvOEngine(
                     store,
                     DatasetRegistry(dataset_root),
-                    project / "resources" / "prior_knowledge",
+                    project / "assets" / "prior",
                     llm=FakeLLM(),
                     evaluation_execution_mode="inline",
                 )

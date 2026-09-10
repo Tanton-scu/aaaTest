@@ -6,7 +6,7 @@ import json
 from dataclasses import dataclass
 from typing import Mapping, Optional
 
-from prievo_agent.agents.runtime.registry import AgentRegistry
+from prievo_agent.agents.registry import AgentRegistry
 from prievo_agent.agents.nodes.repair import (
     FailureEvidence,
     RepairAgent,
@@ -19,7 +19,7 @@ from prievo_agent.application.memory.run_local_memory import (
     memory_context,
 )
 from prievo_agent.application.memory.history_compactor import HistoryCompactor
-from prievo_agent.application.tools.tool_governance import (
+from prievo_agent.agents.tools import (
     CandidateInspectionTool,
     ToolGovernanceGateway,
 )
